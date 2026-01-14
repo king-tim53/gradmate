@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Billing | GradMate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+
+    <style>
+        :root {
+            --primary: #6C63FF;
+            --primary-dark: #4834d4;
+            --accent: #FF6F61;
+            --success: #2ecc71;
+            --glass: rgba(255, 255, 255, 0.9);
+        }
+
+        body {
+            background: linear-gradient(135deg, #f8f9ff 0%, #e2e8f0 100%);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            color: #2d3436;
+        }
+
+        /* Modern Glass Card */
+        .billing-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 32px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .header-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            padding: 40px 30px;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .price-circle {
+            background: rgba(255, 255, 255, 0.15);
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 20px auto;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .price-circle h2 { font-weight: 800; margin: 0; font-size: 2rem; }
+        .price-circle span { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; }
+
+        /* Timeline Visualizer */
+        .trial-timeline {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .trial-timeline::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #edf2f7;
+            z-index: 1;
+        }
+
+        .time-node {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            width: 80px;
+        }
+
+        .node-dot {
+            width: 30px;
+            height: 30px;
+            background: white;
+            border: 4px solid #cbd5e0;
+            border-radius: 50%;
+            margin: 0 auto 8px;
+            transition: 0.3s;
+        }
+
+        .time-node.active .node-dot { border-color: var(--primary); background: var(--primary); }
+        .time-node.current .node-dot { border-color: var(--accent); animation: pulse 2s infinite; }
+
+        .feature-item {
+            padding: 12px;
+            border-radius: 12px;
+            background: #f8fafc;
+            margin-bottom: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+
+        .feature-item i { color: var(--success); margin-right: 12px; }
+
+        .btn-pay {
+            background: #09a5db; /* Paystack Blue */
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 16px;
+            font-weight: 700;
+            width: 100%;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        .btn-pay:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(9, 165, 219, 0.4); }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 111, 97, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 111, 97, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 111, 97, 0); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-5 col-lg-4">
+            <div class="billing-card">
+                <div class="header-section">
+                    <span class="badge bg-white text-primary mb-2 fw-bold" id="statusBadge">TRIAL STATUS</span>
+                    <h5 class="fw-bold opacity-90">Academic Quarter Pass</h5>
+                    <div class="price-circle">
+                        <span>NGN</span>
+                        <h2>400</h2>
+                    </div>
+                    <p class="small mb-0 opacity-75">Billed every 90 days</p>
+                </div>
+
+                <div class="p-4 pt-2">
+                    <div class="trial-timeline">
+                        <div class="time-node active">
+                            <div class="node-dot"></div>
+                            <span class="smaller fw-bold text-muted">Signup</span>
+                        </div>
+                        <div class="time-node current" id="nodeCurrent">
+                            <div class="node-dot"></div>
+                            <span class="smaller fw-bold text-muted" id="daysLabel">Day --</span>
+                        </div>
+                        <div class="time-node">
+                            <div class="node-dot"></div>
+                            <span class="smaller fw-bold text-muted">Billed</span>
+                        </div>
+                    </div>
+
+                    <div id="alertBox" class="alert alert-info py-2 small d-none">
+                        <i class="fa-solid fa-circle-info me-2"></i> Your 90-day free trial has expired.
+                    </div>
+
+                    <div class="features-box mb-4">
+                        <div class="feature-item"><i class="fa-solid fa-check"></i> Unlimited SIWES Logbooks</div>
+                        <div class="feature-item"><i class="fa-solid fa-check"></i> AI Defense Simulator Access</div>
+                        <div class="feature-item"><i class="fa-solid fa-check"></i> Project Vault Cloud Sync</div>
+                    </div>
+
+                    <button class="btn-pay" id="payBtn">
+                        <i class="fa-solid fa-shield-halved me-2"></i> Pay ₦400 via Paystack
+                    </button>
+
+                    <div class="text-center mt-3">
+                        <p class="smaller text-muted">Access valid until: <span class="fw-bold text-dark" id="expiryText">--/--/--</span></p>
+                        <a href="dashboard.html" class="text-decoration-none smaller fw-bold text-primary">Return to Dashboard</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // --- 1. CONFIGURATION ---
+    const SUPABASE_URL = 'YOUR_SUPABASE_URL';
+    const SUPABASE_KEY = 'YOUR_ANON_KEY';
+    const PAYSTACK_PUB_KEY = 'pk_test_xxxxxxxxxxxxxxxx'; 
+    const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    // --- 2. INITIALIZATION ---
+    async function initPaymentPage() {
+        const { data: { user } } = await _supabase.auth.getUser();
+        if (!user) { window.location.href = 'login.html'; return; }
+
+        // Fetch profile to check expiry
+        const { data: profile } = await _supabase
+            .from('profiles')
+            .select('subscription_expiry, created_at')
+            .eq('id', user.id)
+            .single();
+
+        const expiry = new Date(profile.subscription_expiry);
+        const created = new Date(profile.created_at);
+        const today = new Date();
+
+        // Calculate days since signup for the timeline
+        const diffInMs = today - created;
+        const daysSinceSignup = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
+        
+        // Update UI Elements
+        document.getElementById('expiryText').innerText = expiry.toLocaleDateString('en-GB');
+        document.getElementById('daysLabel').innerText = `Day ${daysSinceSignup}`;
+
+        if (today > expiry) {
+            document.getElementById('statusBadge').className = "badge bg-danger mb-2 fw-bold";
+            document.getElementById('statusBadge').innerText = "EXPIRED";
+            document.getElementById('alertBox').classList.remove('d-none');
+            document.getElementById('nodeCurrent').className = "time-node"; // Remove pulsing from middle
+        } else {
+            document.getElementById('statusBadge').innerText = "TRIAL ACTIVE";
+        }
+
+        // --- 3. PAYSTACK INTEGRATION ---
+        document.getElementById('payBtn').onclick = () => {
+            const handler = PaystackPop.setup({
+                key: PAYSTACK_PUB_KEY,
+                email: user.email,
+                amount: 400 * 100, // 400 Naira in kobo
+                currency: "NGN",
+                callback: async function(response) {
+                    // Logic: Extend expiry by 90 days from the CURRENT expiry date
+                    // (This ensures if they pay early, they don't lose days)
+                    let baseDate = (today > expiry) ? today : expiry;
+                    let newExpiry = new Date(baseDate);
+                    newExpiry.setDate(newExpiry.getDate() + 90);
+
+                    const { error } = await _supabase
+                        .from('profiles')
+                        .update({ subscription_expiry: newExpiry.toISOString() })
+                        .eq('id', user.id);
+
+                    if (!error) {
+                        alert("Subscription Updated Successfully!");
+                        window.location.href = 'dashboard.html';
+                    }
+                }
+            });
+            handler.openIframe();
+        };
+    }
+
+    initPaymentPage();
+</script>
+</body>
+</html>

@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Mastery | GradMate</title>
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Bootstrap 5 & AOS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="project.css">
+</head>
+<body>
+
+    <!-- SIDEBAR NAVIGATION -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="/asset/EHSnV01.svg" alt="GradMate" class="nav-logo" style="height: 25px;">
+            <span class="ms-2 fw-bold logo-text">
+                <span class="logo-g">G</span><span class="logo-rest">radMate</span>
+            </span>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="dashboard.html"><i class="fa-solid fa-house"></i> Overview</a></li>
+            <li><a href="siwes.html"><i class="fa-solid fa-briefcase"></i> SIWES Module</a></li>
+            <li class="active"><a href="project.html"><i class="fa-solid fa-graduation-cap"></i> Project Defense</a></li>
+            <li><a href="resoP.html"><i class="fa-solid fa-book"></i> Resources</a></li>
+            <li class="menu-divider"></li>
+            <li><a href="infop.html"><i class="fa-solid fa-book"></i> Info</a></li>
+            <li><a href="login.html" class="text-danger"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="content-area">
+        <div class="container-fluid px-lg-4">
+
+            <!-- SECTION 1: Header & Identity Profile -->
+            <section class="mb-4" data-aos="fade-down">
+                <div class="d-flex justify-content-between align-items-center mb-4 pt-2">
+                    <div>
+                        <h3 class="fw-800 mb-0 text-secondary">Project Defense Mastery</h3>
+                        <p class="text-muted small">Final Year Research & Defense Tracking</p>
+                    </div>
+                    <button class="btn btn-primary-gm shadow-sm" data-bs-toggle="modal" data-bs-target="#projectSetupModal">
+                        <i class="fa-solid fa-pen-nib me-2"></i> Project Setup
+                    </button>
+                </div>
+
+                <div class="project-identity-card shadow-sm border-radius-lg bg-white p-4">
+                    <div class="row align-items-center">
+                        <div class="col-lg-7 border-end-lg">
+                            <div class="d-flex align-items-center mb-3">
+                                <span class="badge bg-soft-purple text-primary me-3">Active Research</span>
+                                <span class="text-muted small fw-bold" id="displayUnits">0 Units</span>
+                            </div>
+                            <h4 class="fw-800 text-secondary mb-2" id="displayTopic">Topic: No topic set yet.</h4>
+                            <p class="text-muted mb-0" id="displaySupervisor">
+                                <i class="fa-solid fa-user-tie text-primary me-2"></i> Supervisor: <span class="fw-bold text-dark">Not Assigned</span>
+                            </p>
+                        </div>
+                        <div class="col-lg-5 ps-lg-5 mt-4 mt-lg-0">
+                            <div class="row g-3 mb-3">
+                                <div class="col-6">
+                                    <small class="text-muted d-block text-uppercase smaller fw-800">Start Date</small>
+                                    <span class="fw-bold" id="displayStart">-- / -- / --</span>
+                                </div>
+                                <div class="col-6">
+                                    <small class="text-muted d-block text-uppercase smaller fw-800">Defense Date</small>
+                                    <span class="fw-bold" id="displayEnd">-- / -- / --</span>
+                                </div>
+                            </div>
+                            <div class="project-countdown-box d-flex align-items-center justify-content-between p-3 rounded-4">
+                                <div class="d-flex align-items-center">
+                                    <div class="countdown-icon-circle me-3">
+                                        <i class="fa-solid fa-hourglass-half text-accent"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="fw-800 mb-0 text-accent" id="daysRemaining">000</h5>
+                                        <small class="text-muted fw-bold smaller uppercase">Days Left</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- NEW: Clearance Zone (Hidden until Supervisor clears you) -->
+
+                    </div>
+                </div>
+                <div id="clearanceZone" class="mt-4 d-none animate__animated animate__zoomIn">
+                    <div class="clearance-card-modern p-4 text-center">
+                        <div class="verified-seal">
+                            <i class="fa-solid fa-check-double"></i>
+                        </div>
+                        
+                        <h5 class="fw-800 text-dark mb-1">Defense Authorization Granted</h5>
+                        <p class="text-muted small mb-3">Your supervisor has officially cleared your thesis for final defense.</p>
+                        
+                        <div class="d-flex justify-content-center align-items-center gap-3 mb-4">
+                            <span class="text-uppercase smaller fw-800 text-muted">Auth Token:</span>
+                            <span id="clearanceCode" class="clearance-code-pill">CERT-XXXX-XXXX</span>
+                        </div>
+                
+                        <div class="border-top pt-3">
+                            <button class="btn btn-print-modern w-100" onclick="printClearanceForm()">
+                                <i class="fa-solid fa-file-pdf me-2"></i> Generate Official Form 004
+                            </button>
+                            <p class="smaller text-muted mt-2 mb-0">
+                                <i class="fa-solid fa-circle-info me-1"></i> 
+                                Submit this digital copy to the HOD's office.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Linked Methodology Data (Hidden until calculated) -->
+<div id="methodologyLink" class="mt-3 d-none animate__animated animate__fadeIn">
+    <div class="p-2 px-3 bg-primary-light rounded-pill d-inline-block border border-primary border-opacity-25">
+        <small class="text-primary fw-bold">
+            <i class="fa-solid fa-microscope me-1"></i> 
+            Sample Size: <span id="linkedSampleSize" class="text-dark">--</span> 
+            <span class="mx-1 text-muted">|</span>
+            Pop: <span id="linkedPop" class="text-dark">--</span>
+        </small>
+    </div>
+</div>
+            </section>
+
+            <!-- SECTION 2: Thesis Roadmap -->
+            <div class="row mb-4">
+                <div class="col-12" data-aos="fade-up">
+                    <div class="project-card neon-card-bg">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h6 class="fw-800 text-uppercase small letter-spacing-1 mb-0">Thesis Roadmap</h6>
+                            <span class="badge bg-soft-purple text-primary" id="currentPhase">Initial Stage</span>
+                        </div>
+                        <div class="roadmap-wrapper">
+                            <div class="roadmap-line-bg"></div>
+                            <div class="roadmap-line-fill" id="neonPipeline"></div>
+                            <div class="roadmap-steps-container">
+                                <div class="roadmap-step active" onclick="updateRoadmap(1)"><div class="step-icon-neon">1</div><span class="step-label">Ch. 1</span></div>
+                                <div class="roadmap-step" onclick="updateRoadmap(2)"><div class="step-icon-neon">2</div><span class="step-label">Ch. 2</span></div>
+                                <div class="roadmap-step" onclick="updateRoadmap(3)"><div class="step-icon-neon">3</div><span class="step-label">Ch. 3</span></div>
+                                <div class="roadmap-step" onclick="updateRoadmap(4)"><div class="step-icon-neon">4</div><span class="step-label">Ch. 4</span></div>
+                                <div class="roadmap-step" onclick="updateRoadmap(5)"><div class="step-icon-neon">5</div><span class="step-label">Ch. 5</span></div>
+                            </div>
+                        </div>
+                        <div class="mt-5 p-3 neon-status-bar d-flex justify-content-between align-items-center">
+                            <div><span class="small text-muted d-block">Overall Progress</span><h5 class="fw-800 mb-0" id="completionPercent">20%</h5></div>
+                            <i class="fa-solid fa-rocket neon-rocket-icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+<!-- SECTION 1.5: Supervisor Link (SPID System) -->
+<div class="row mb-4" data-aos="fade-up">
+    <div class="col-12">
+        <div class="project-card border-0 shadow-sm bg-white position-relative overflow-hidden">
+            <!-- Decorative Background Element -->
+            <div class="spid-bg-decoration"></div>
+            
+            <div class="row align-items-center position-relative z-index-1">
+                <div class="col-lg-5 border-end-lg">
+                    <h6 class="fw-800 text-secondary mb-2">
+                        <i class="fa-solid fa-link text-primary me-2"></i>Link Supervisor
+                    </h6>
+                    <p class="text-muted smaller mb-3">
+                        Enter the unique <strong>SPID</strong> provided by your lecturer to sync your project progress with their dashboard.
+                    </p>
+                    
+                    <div class="input-group mb-2">
+                        <span class="input-group-text bg-light border-0 fw-bold text-muted small">SPID-</span>
+                        <input type="text" id="spidInput" class="form-control border-0 bg-light fw-bold text-uppercase" placeholder="DR-2356177-FA-OAU">
+                        <button class="btn btn-primary-gm" onclick="searchSPID()">
+                            <i class="fa-solid fa-magnifying-glass"></i> Search
+                        </button>
+                    </div>
+                    <small class="text-danger fw-bold smaller d-none" id="spidErrorMsg"><i class="fa-solid fa-circle-exclamation me-1"></i> Invalid SPID Format</small>
+                </div>
+
+                <!-- Result Display Area -->
+                <div class="col-lg-7 ps-lg-5 mt-4 mt-lg-0">
+                    
+                    <!-- State 1: Nothing Searched -->
+                    <div id="spidIdleState" class="text-center text-muted py-2">
+                        <i class="fa-solid fa-user-shield fa-2x mb-2 opacity-25"></i>
+                        <p class="smaller">Waiting for SPID input...</p>
+                    </div>
+
+                    <!-- State 2: Supervisor Found (Hidden by default) -->
+                    <div id="spidResultCard" class="d-none">
+                        <div class="d-flex align-items-center justify-content-between p-3 rounded-4 border border-primary bg-soft-blue mb-3">
+                            <div class="d-flex align-items-center">
+                                <div class="supervisor-avatar me-3">
+                                    <span id="res_initials">FA</span>
+                                </div>
+                                <div>
+                                    <span class="badge bg-primary mb-1" id="res_uni">OAU</span>
+                                    <h5 class="fw-800 mb-0 text-dark" id="res_name">Dr. F. Adebayo</h5>
+                                    <small class="text-muted fw-bold smaller" id="res_group">Group: <span class="text-dark">Project Alpha Team</span></small>
+                                </div>
+                            </div>
+                            <div class="text-end">
+                                <small class="d-block text-muted smaller fw-bold">SPID VERIFIED</small>
+                                <i class="fa-solid fa-circle-check text-success fs-4"></i>
+                            </div>
+                        </div>
+                        <button class="btn btn-dark w-100 py-2 fw-bold" onclick="requestSupervisorRegistration()">
+                            Request Registration <i class="fa-solid fa-paper-plane ms-2"></i>
+                        </button>
+                    </div>
+
+                    <!-- State 3: Request Sent (Hidden by default) -->
+                    <div id="spidSuccessState" class="d-none text-center py-3">
+                        <div class="mb-2">
+                            <i class="fa-solid fa-hourglass-start text-warning fs-3 me-2"></i>
+                            <span class="fw-800 text-secondary">Request Pending Approval</span>
+                        </div>
+                        <p class="smaller text-muted mb-0">A notification has been sent to the supervisor. Your dashboard will update once approved.</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+            <!-- SECTION 3: Vault & Consultations -->
+            <div class="row g-4 mb-4">
+                <!-- Anti-Loss Vault -->
+                <div class="col-lg-7" data-aos="fade-right">
+                    <div class="project-card h-100">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <div><h6 class="fw-800 mb-0">The Anti-Loss Vault</h6><p class="smaller text-muted mb-0">Cloud-sync per chapter</p></div>
+                            <div class="d-flex gap-2">
+                                <button class="btn btn-sm btn-outline-primary" onclick="createNewChapter()"><i class="fa-solid fa-plus me-1"></i> Add Chapter</button>
+                                <span class="badge bg-soft-blue text-primary" id="vaultSyncStatus"><i class="fa-solid fa-cloud-check me-1"></i> Secured</span>
+                            </div>
+                        </div>
+                        <div id="vaultFiles" class="vault-container">
+                            <!-- Dynamic Injection -->
+                        </div>
+                        <input type="file" id="chapterFileInput" class="d-none" onchange="handleFileProcessing(this)">
+                    </div>
+                </div>
+
+                <!-- Consultation Log -->
+                <div class="col-lg-5" data-aos="fade-left">
+                    <div class="project-card h-100">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h6 class="fw-800 mb-0 small text-uppercase">Consultation Log</h6>
+                            <button class="btn btn-sm btn-primary-gm" data-bs-toggle="modal" data-bs-target="#addMeetingModal"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                        <div id="meetingLogContainer" class="meeting-log-list">
+                            <div class="text-center py-5 text-muted"><p class="smaller">No meetings logged yet.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 4: AI Defense Simulator & Tasks -->
+            <div class="row g-4 mb-5">
+                <!-- AI Mock Defense -->
+                <div class="col-lg-6" data-aos="fade-up">
+                    <div class="project-card h-100 bg-soft-purple border-0">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h6 class="fw-800 mb-0"><i class="fa-solid fa-robot text-primary me-2"></i>Defense Simulator</h6>
+                            <span class="badge bg-white text-primary" id="sessionCount">Q: 0/0</span>
+                        </div>
+                        <div class="simulator-display mb-3">
+                            <div class="question-container p-4 bg-white rounded-4 border-start border-4 border-primary">
+                                <h6 class="fw-bold mb-0" id="mockQuestion">Click 'Next Question' to start.</h6>
+                            </div>
+                        </div>
+                        <div id="hintArea" class="hint-container d-none mb-4">
+                            <div class="p-3 rounded-4 bg-light border-start border-4 border-warning">
+                                <p class="smaller mb-0" id="questionHint"></p>
+                            </div>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-outline-primary flex-grow-1" id="hintBtn" onclick="toggleHint()" disabled>Hint</button>
+                            <button class="btn btn-primary-gm flex-grow-1" onclick="generateMockQuestion()">Next Question</button>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Feature 3: Peak Supervisor Correction Tracker -->
+<div class="col-md-6" data-aos="zoom-in">
+    <div class="project-card h-100 shadow-sm border-0">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h6 class="fw-800 mb-0">Correction Tracker</h6>
+                <p class="smaller text-muted mb-0" id="pendingCount">0 Tasks Pending</p>
+            </div>
+            <span class="badge bg-soft-blue text-primary">Task Manager</span>
+        </div>
+
+        <!-- Scrollable Correction List -->
+        <div class="correction-feed mb-4" id="correctionList">
+            <!-- Dynamic Items injected by JS -->
+            <div class="text-center py-5 text-muted empty-state">
+                <i class="fa-solid fa-clipboard-check fa-2x mb-2 opacity-25"></i>
+                <p class="smaller">Your correction list is empty. Great job!</p>
+            </div>
+        </div>
+
+        <!-- Advanced Input Group -->
+        <div class="correction-input-zone p-3 bg-light rounded-4">
+            <div class="row g-2 mb-2">
+                <div class="col-5">
+                    <select id="corrChapter" class="form-select form-select-sm border-0 shadow-none bg-white">
+                        <option value="Ch. 1">Chapter 1</option>
+                        <option value="Ch. 2">Chapter 2</option>
+                        <option value="Ch. 3">Chapter 3</option>
+                        <option value="Ch. 4">Chapter 4</option>
+                        <option value="Ch. 5">Chapter 5</option>
+                        <option value="General">General</option>
+                    </select>
+                </div>
+                <div class="col-7">
+                    <div class="form-check form-switch pt-1">
+                        <input class="form-check-input" type="checkbox" id="corrPriority">
+                        <label class="smaller fw-bold text-danger">High Priority?</label>
+                    </div>
+                </div>
+            </div>
+            <div class="input-group">
+                <input type="text" id="corrText" class="form-control border-0 shadow-none px-0 bg-transparent" placeholder="Describe the fix needed...">
+                <button class="btn btn-primary-gm btn-sm rounded-3 ms-2" onclick="addCorrection()">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+            <!-- SECTION 5: Formatting Engine -->
+            <div class="row mb-5">
+                <div class="col-12" data-aos="zoom-in">
+                    <div class="project-card border-neon-accent">
+                        <div class="row align-items-center">
+                            <div class="col-md-8">
+                                <h6 class="fw-800 mb-1">Formatting & Citation Engine</h6>
+                                <p class="smaller text-muted mb-0">Standardized APA 7th Generation for Nigerian Universities.</p>
+                            </div>
+                            <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                                <button class="btn btn-outline-accent me-2" data-bs-toggle="modal" data-bs-target="#citationModal">Ref Generator</button>
+                                <button class="btn btn-accent-gm" onclick="downloadNUCGuide()">Guide PDF</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- End container-fluid -->
+    </main>
+
+    <!-- ==========================================================================
+         MODALS SECTION (Keep all Modals here to avoid clashing with main content)
+         ========================================================================== -->
+
+      <!-- Modal: Setup -->
+   <div class="modal fade" id="setupModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 p-3">
+            <div class="modal-header border-0">
+                <h5 class="fw-800">Project Config</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="topicIn" class="form-control mb-3" placeholder="Project Topic">
+                <input type="date" id="dateIn" class="form-control mb-3">
+                <button class="btn btn-primary-gm w-100" onclick="saveSetup()">Save & Initialize</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal: Practice Session -->
+<div class="modal fade" id="practiceModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="fw-800 mb-0">Practice Session</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-4 text-center">
+                <h5 class="fw-bold mb-4" id="practiceQ">The question will appear here...</h5>
+                <textarea class="form-control mb-3" rows="4" placeholder="Speak or type your answer..."></textarea>
+                <button class="btn btn-primary-gm w-100" onclick="submitPractice()">Get AI Evaluation</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+    <!-- MODAL: Chapter Manager (The Peak of Functionality) -->
+    <div class="modal fade" id="chapterManagerModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg p-3" style="border-radius: 24px;">
+                <div class="modal-header border-0 pb-0">
+                    <div class="d-flex align-items-center">
+                        <div class="icon-box me-3 bg-soft-blue text-primary p-2 rounded-3">
+                            <i class="fa-solid fa-folder-open"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-800 mb-0" id="m_chapterName">Chapter Manager</h5>
+                            <small class="text-muted">Configure chapter details and sync files</small>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                
+                <div class="modal-body py-4">
+                    <input type="hidden" id="m_chapterId">
+                    
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-7">
+                            <label class="small fw-bold text-uppercase mb-2" style="letter-spacing: 1px;">Sub-Topic</label>
+                            <input type="text" id="m_subTopic" class="form-control border-0 bg-light p-3" 
+                                   placeholder="e.g. Research Design" style="border-radius: 12px;">
+                        </div>
+                        <div class="col-md-5">
+                            <label class="small fw-bold text-uppercase mb-2" style="letter-spacing: 1px;">Target Pages</label>
+                            <input type="number" id="m_pages" class="form-control border-0 bg-light p-3" 
+                                   placeholder="e.g. 15" style="border-radius: 12px;">
+                        </div>
+                    </div>
+    
+                    <div class="mb-4">
+                        <label class="small fw-bold text-uppercase mb-2" style="letter-spacing: 1px;">Chapter Tagline</label>
+                        <input type="text" id="m_tagline" class="form-control border-0 bg-light p-3" 
+                               placeholder="e.g. Explaining the 'How' of the study" style="border-radius: 12px;">
+                    </div>
+    
+                    <div class="p-3 bg-soft-blue rounded-4 mb-3 d-flex justify-content-between align-items-center border border-primary border-opacity-10">
+                        <div>
+                            <small class="text-muted d-block fw-bold text-uppercase smaller">Sync Status</small>
+                            <span class="fw-bold small text-primary" id="m_statusText text-primary">Not Uploaded</span>
+                        </div>
+                        <button class="btn btn-sm btn-primary-gm px-3 py-2" onclick="triggerSpecificUpload()">
+                            <i class="fa-solid fa-cloud-arrow-up me-1"></i> Upload File
+                        </button>
+                    </div>
+                </div>
+    
+                <div class="modal-footer border-0 pt-0">
+                    <button class="btn btn-outline-danger btn-sm border-0 me-auto" onclick="deleteChapterFile()" title="Delete Chapter">
+                        <i class="fa-solid fa-trash-can me-1"></i> Remove
+                    </button>
+                    <button type="button" class="btn btn-light px-4 py-2" data-bs-dismiss="modal" style="border-radius: 12px;">Cancel</button>
+                    <button class="btn btn-primary-gm px-4 py-2" onclick="saveChapterSettings()" style="border-radius: 12px;">
+                        Save Changes
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- MODAL: Add Meeting Log -->
+<div class="modal fade" id="addMeetingModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 p-3 shadow-lg">
+            <div class="modal-header border-0">
+                <h5 class="fw-800">Log Supervisor Meeting</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <input type="date" id="mt_date" class="form-control mb-3">
+                <textarea id="mt_feedback" class="form-control mb-3" rows="3" placeholder="What did the supervisor say?"></textarea>
+                <input type="text" id="mt_nextSteps" class="form-control" placeholder="Next action steps...">
+            </div>
+            <div class="modal-footer border-0">
+                <button class="btn btn-primary-gm w-100" onclick="saveMeeting()">Save Log</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Combined Setup Modal -->
+<div class="modal fade" id="projectSetupModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 p-3 shadow-lg">
+            <div class="modal-header border-0 pb-0">
+                <h5 class="fw-800">Thesis Configuration</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form id="projectSetupForm">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="small fw-bold">Project Topic</label>
+                        <textarea class="form-control bg-light border-0 p-3" id="topicInput" rows="2" placeholder="Enter your approved research topic..." required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="small fw-bold">Supervisor Name</label>
+                        <input type="text" class="form-control bg-light border-0 p-3" id="supervisorInput" placeholder="e.g. Prof. Adebayo" required>
+                    </div>
+                    <div class="row g-2 mb-3">
+                        <div class="col-6">
+                            <label class="small fw-bold">Project Start Date</label>
+                            <input type="date" class="form-control bg-light border-0 p-3" id="startDateInput" required>
+                        </div>
+                        <div class="col-6">
+                            <label class="small fw-bold">Defense Date (Target)</label>
+                            <input type="date" class="form-control bg-light border-0 p-3" id="defenseDateInput" required>
+                        </div>
+                    </div>
+                    <div class="mb-0">
+                        <label class="small fw-bold">Course Units</label>
+                        <select class="form-control bg-light border-0 p-3 px-4" id="unitsInput">
+                            <option value="3 Units" selected>3 Units</option>
+                            <option value="4 Units">4 Units</option>
+                            <option value="6 Units" selected>6 Units</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="submit" class="btn btn-primary-gm w-100 py-3">Initialize Thesis Track</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+ <!-- MODAL: Advanced Citation Generator -->
+<div class="modal fade" id="citationModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg p-3 rounded-5">
+            <div class="modal-header border-0 pb-0">
+                <h5 class="fw-800">APA 7th Citation Generator</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row g-2 mb-3">
+                    <div class="col-12">
+                        <label class="smaller fw-bold">Author(s)</label>
+                        <input type="text" id="citeAuthor" class="form-control form-control-sm" placeholder="e.g. Segun-Ojo, T.">
+                    </div>
+                    <div class="col-4">
+                        <label class="smaller fw-bold">Year</label>
+                        <input type="number" id="citeYear" class="form-control form-control-sm" placeholder="2024">
+                    </div>
+                    <div class="col-8">
+                        <label class="smaller fw-bold">Source Title</label>
+                        <input type="text" id="citeTitle" class="form-control form-control-sm" placeholder="e.g. Impact of SIWES on Tech">
+                    </div>
+                    <div class="col-8">
+                        <label class="smaller fw-bold">Matric Number</label>
+                        <input type="text" id="citeMatric" class="form-control form-control-sm" placeholder="e.g. 2307764034">
+                    </div>
+                </div>
+
+                <!-- Result Area -->
+                <div id="citationResultContainer" class="d-none">
+                    <label class="smaller fw-bold text-primary">Formatted Reference:</label>
+                    <div class="p-3 bg-primary-light rounded-3 border-start border-4 border-primary">
+                        <p id="citationText" class="smaller mb-0 font-monospace text-dark italic-title"></p>
+                    </div>
+                    <button class="btn btn-sm btn-link text-primary p-0 mt-2 smaller fw-bold" onclick="copyCitation()">
+                        <i class="fa-solid fa-copy me-1"></i> Copy to Clipboard
+                    </button>
+                </div>
+            </div>
+            <div class="modal-footer border-0">
+                <button class="btn btn-primary-gm w-100 py-3" onclick="generateCitation()">Generate APA Reference</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- ADD THIS LINE HERE: -->
+    <script src="auth.js"></script> 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="project.js"></script>
+</body>
+</html>

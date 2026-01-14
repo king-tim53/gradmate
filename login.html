@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | GradMate</title>
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+    
+    <!-- Background Mesh Blobs -->
+    <div class="mesh-blob-1"></div>
+    <div class="mesh-blob-2"></div>
+
+    <div class="login-container">
+        <div class="login-card shadow-lg">
+            
+            <!-- Back to Home Link (Always Visible) -->
+            <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-left me-2"></i> Back to Home</a>
+            
+            <!-- ==============================
+                 VIEW 1: LOGIN FORM (Default)
+                 ============================== -->
+            <div id="login-view">
+                <div class="text-center mb-4">
+                    <img src="/asset/EHSnV01.svg" alt="GradMate Logo" class="login-logo mb-3">
+                    <h3 class="fw-800">Welcome Back!</h3>
+                    <p class="text-muted small" id="loginSubtitle">Log in to track your SIWES & Project progress.</p>
+                </div>
+
+                <!-- ROLE TOGGLE SWITCH -->
+                <div class="role-toggle-container mb-4">
+                    <button type="button" class="role-btn active" data-role="student" onclick="setRole('student')">
+                        <i class="fa-solid fa-user-graduate me-2"></i>Student
+                    </button>
+                    <button type="button" class="role-btn" data-role="supervisor" onclick="setRole('supervisor')">
+                        <i class="fa-solid fa-chalkboard-user me-2"></i>Supervisor
+                    </button>
+                </div>
+
+                <form id="loginForm">
+                    <!-- Email -->
+                    <div class="mb-3">
+                        <label class="form-label fw-bold small">Email Address</label>
+                        <div class="input-group-modern">
+                            <i class="fa-regular fa-envelope"></i>
+                            <input type="email" class="form-control" placeholder="example@uni.edu.ng" required>
+                        </div>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="mb-3">
+                        <div class="d-flex justify-content-between">
+                            <label class="form-label fw-bold small">Password</label>
+                            <a href="#" class="forgot-link" onclick="toggleView('forgot')">Forgot Password?</a>
+                        </div>
+                        <div class="input-group-modern">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" id="passwordInput" class="form-control" placeholder="Enter your password" required>
+                            <i class="fa-regular fa-eye-slash toggle-password" id="togglePassword"></i>
+                        </div>
+                    </div>
+
+                    <!-- Remember Me -->
+                    <div class="mb-4 form-check">
+                        <input type="checkbox" class="form-check-input" id="rememberMe">
+                        <label class="form-check-label small text-muted" for="rememberMe">Keep me logged in</label>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-primary-gm w-100 mb-3">Login to Dashboard</button>
+
+                    <!-- Social Login -->
+                    <div class="text-center mb-3">
+                        <span class="text-muted small">or sign in with</span>
+                    </div>
+                    <button type="button" class="btn btn-outline-light text-dark w-100 border small">
+                        <img src="https://img.icons8.com/color/24/000000/google-logo.png" class="me-2" style="width:18px"> Google
+                    </button>
+                </form>
+
+                <div class="text-center mt-4">
+                    <p class="small text-muted">Don't have an account? <a href="signup.html" class="text-primary fw-bold">Sign Up Free</a></p>
+                </div>
+            </div>
+
+            <!-- ==========================================
+                 VIEW 2: FORGOT PASSWORD (Hidden Default)
+                 ========================================== -->
+            <div id="forgot-view" class="d-none">
+                <div class="text-center mb-4">
+                    <div class="icon-circle bg-soft-purple mx-auto mb-3" style="width:50px; height:50px; display:flex; align-items:center; justify-content:center; border-radius:50%; background:#f3f0ff;">
+                        <i class="fa-solid fa-key text-primary fs-4"></i>
+                    </div>
+                    <h3 class="fw-800">Reset Password</h3>
+                    <p class="text-muted small">Enter your email to receive a One-Time Password (OTP).</p>
+                </div>
+
+                <!-- Step 1: Input Email -->
+                <div id="fp-step-1">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold small">Registered Email</label>
+                        <div class="input-group-modern">
+                            <i class="fa-regular fa-envelope"></i>
+                            <input type="email" id="resetEmail" class="form-control" placeholder="example@uni.edu.ng">
+                        </div>
+                    </div>
+                    <button class="btn btn-primary-gm w-100 mb-3" onclick="sendOTP()">Send OTP Code</button>
+                </div>
+
+                <!-- Step 2: Input OTP (Hidden initially) -->
+                <div id="fp-step-2" class="d-none">
+                    <div class="alert alert-success small py-2 border-0 bg-soft-green text-center mb-3" style="background:#e8f5e9; color:#2e7d32;">
+                        <i class="fa-solid fa-paper-plane me-1"></i> OTP sent to your email!
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold small">Enter 4-Digit OTP</label>
+                        <div class="input-group-modern">
+                            <i class="fa-solid fa-shield-halved"></i>
+                            <input type="text" id="otpInput" class="form-control font-monospace" placeholder="e.g. 4092" maxlength="4">
+                        </div>
+                    </div>
+                    <button class="btn btn-primary-gm w-100 mb-3" onclick="verifyOTP()">Verify & Proceed</button>
+                </div>
+
+                <!-- Step 3: New Password (Hidden initially) -->
+                <div id="fp-step-3" class="d-none">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold small">New Password</label>
+                        <div class="input-group-modern">
+                            <i class="fa-solid fa-lock"></i>
+                            <input type="password" id="newPass" class="form-control" placeholder="New strong password">
+                        </div>
+                    </div>
+                    <button class="btn btn-primary-gm w-100 mb-3" onclick="finishReset()">Update Password</button>
+                </div>
+
+                <div class="text-center">
+                    <button class="btn btn-link text-muted small text-decoration-none" onclick="toggleView('login')">
+                        <i class="fa-solid fa-chevron-left me-1"></i> Back to Login
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+</html>

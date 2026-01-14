@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supervisor Guide | GradMate</title>
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Bootstrap 5 & AOS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="supervisor.css"> 
+    <link rel="stylesheet" href="info.css">
+</head>
+<body>
+
+    <!-- SUPERVISOR SIDEBAR -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="/asset/EHSnV01.svg" alt="GradMate" class="nav-logo" style="height: 25px;">
+            <span class="brand-text">GradMate <span class="badge bg-primary text-white" style="font-size: 0.5rem; vertical-align: top;">STAFF</span></span>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="supervisor.html"><i class="fa-solid fa-chart-pie"></i> Overview</a></li>
+            <li><a href="supervisor.html"><i class="fa-solid fa-users-viewfinder"></i> My Students</a></li>
+            <li><a href="supervisor.html"><i class="fa-solid fa-calendar-week"></i> Group Schedule</a></li>
+            <li><a href="supervisor.html"><i class="fa-solid fa-folder-open"></i> Shared Repository</a></li>
+            <li class="menu-divider"></li>
+            <li class="active"><a href="infosv.html"><i class="fa-solid fa-book"></i> User Manual</a></li>
+            <li><a href="supervisor.html"><i class="fa-solid fa-sliders"></i> Settings</a></li>
+            <li><a href="login.html" class="text-danger"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="content-area">
+        <div class="container-fluid px-lg-4">
+
+            <!-- HEADER -->
+            <section class="mb-5" data-aos="fade-down">
+                <div class="info-header-card p-5 rounded-5 position-relative overflow-hidden" style="background: linear-gradient(135deg, #1cc88a 0%, #13855c 100%);">
+                    <div class="position-relative z-2">
+                        <span class="badge bg-white text-success mb-3 px-3 py-2 fw-800 shadow-sm">SUPERVISOR MANUAL</span>
+                        <h1 class="fw-900 text-white mb-2 display-5">Staff Control Center</h1>
+                        <p class="text-white-50 lead mb-0" style="max-width: 600px;">
+                            Manage 100+ students efficiently. Learn how to use Batch Scheduling, Digital Approvals, and the Shared Repository.
+                        </p>
+                    </div>
+                    <!-- Decorative Background Circle -->
+                    <div class="neon-circle-bg"></div>
+                </div>
+            </section>
+
+            <!-- FEATURES GRID -->
+            <div class="row g-4 mb-5">
+                
+                <!-- Feature 1: SPID Identity -->
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="info-card h-100">
+                        <div class="card-icon-wrapper bg-soft-purple">
+                            <i class="fa-solid fa-fingerprint text-primary"></i>
+                        </div>
+                        <h4 class="fw-800 mt-4 mb-3">1. Your Unique SPID</h4>
+                        <p class="text-muted small">This ID is the key that links students to your dashboard. It combines your Title, Initials, and University.</p>
+                        
+                        <div class="step-box mt-3">
+                            <h6 class="fw-bold small text-uppercase text-secondary mb-2">How to Use:</h6>
+                            <ul class="info-list">
+                                <li>Locate your SPID at the top right of the Overview page.</li>
+                                <li>Click the <strong>Copy Icon</strong> to share it with your students via WhatsApp or Email.</li>
+                                <li>Once a student enters this ID, they appear in your list automatically (if Auto-Accept is ON).</li>
+                            </ul>
+                            <div class="example-pill mt-3">
+                                <i class="fa-solid fa-id-badge me-2 text-primary"></i>
+                                <span class="font-monospace">Example: SPID-DR-2356177-FA-OAU</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 2: Student Management -->
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="info-card h-100">
+                        <div class="card-icon-wrapper bg-soft-blue">
+                            <i class="fa-solid fa-users-gear text-info"></i>
+                        </div>
+                        <h4 class="fw-800 mt-4 mb-3">2. Student Action Console</h4>
+                        <p class="text-muted small">Perform quick actions on students without opening multiple tabs.</p>
+                        
+                        <div class="row g-2 mt-4">
+                            <div class="col-6">
+                                <div class="p-2 border rounded mb-2 bg-white">
+                                    <i class="fa-solid fa-sticky-note text-warning me-2"></i> <strong class="smaller">Private Memo</strong>
+                                    <p class="smaller text-muted mb-0">Add a hidden note only you can see.</p>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="p-2 border rounded mb-2 bg-white">
+                                    <i class="fa-solid fa-check text-success me-2"></i> <strong class="smaller">Approve</strong>
+                                    <p class="smaller text-muted mb-0">Instantly mark current chapter as done.</p>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="p-2 border rounded mb-2 bg-white">
+                                    <i class="fa-solid fa-person-walking-arrow-right text-danger me-2"></i> <strong class="smaller">Office Summons</strong>
+                                    <p class="smaller text-muted mb-0">Flag student to come for physical meeting.</p>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="p-2 border rounded mb-2 bg-white">
+                                    <i class="fa-solid fa-gavel text-dark me-2"></i> <strong class="smaller">Clearance</strong>
+                                    <p class="smaller text-muted mb-0">Final approval for defense.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 3: Batch Scheduling -->
+                <div class="col-lg-12" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="info-card border-neon-accent">
+                        <div class="row align-items-center">
+                            <div class="col-md-7">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="card-icon-wrapper bg-soft-orange me-3 mb-0">
+                                        <i class="fa-solid fa-layer-group text-warning"></i>
+                                    </div>
+                                    <h4 class="fw-800 mb-0">3. Batch Scheduling Tool</h4>
+                                </div>
+                                <p class="text-muted">
+                                    Stop messaging students one by one. Use the Matric Number Range tool to summon specific groups.
+                                </p>
+                                <div class="step-box">
+                                    <ul class="info-list">
+                                        <li>Go to the <strong>Group Schedule</strong> tab.</li>
+                                        <li>Enter Start Matric (e.g., ...005) and End Matric (e.g., ...015).</li>
+                                        <li>Set the Date & Time.</li>
+                                        <li>Click <strong>Broadcast</strong>. Only those 10 students will get the invite.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-5 text-center mt-4 mt-md-0">
+                                <div class="p-4 bg-light rounded-4 border border-warning border-opacity-25 shadow-sm">
+                                    <i class="fa-solid fa-calendar-check fa-3x text-warning opacity-50 mb-3"></i>
+                                    <h6 class="fw-bold text-dark">Efficiency Hack</h6>
+                                    <p class="smaller text-muted">Great for dividing 100 students into 5 groups of 20 for weekly checks.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 4: Broadcast System -->
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="info-card h-100">
+                        <div class="card-icon-wrapper" style="background: #e0f2f1;">
+                            <i class="fa-solid fa-bullhorn" style="color: #00897b;"></i>
+                        </div>
+                        <h5 class="fw-800 mt-4">4. Broadcast System</h5>
+                        <p class="text-muted smaller">Send a priority notification to ALL students at once.</p>
+                        <hr class="border-light">
+                        <div class="bg-primary text-white p-3 rounded-3 mb-3">
+                            <small class="d-block opacity-75 fw-bold">PREVIEW</small>
+                            <span class="fw-bold">"I will not be available on Monday. Meetings shifted."</span>
+                        </div>
+                        <p class="smaller text-muted">Located at the top of the <strong>Overview</strong> page. Ideal for sudden schedule changes.</p>
+                    </div>
+                </div>
+
+                <!-- Feature 5: Shared Repository -->
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="500">
+                    <div class="info-card h-100">
+                        <div class="card-icon-wrapper bg-soft-red">
+                            <i class="fa-solid fa-cloud-arrow-up text-danger"></i>
+                        </div>
+                        <h5 class="fw-800 mt-4">5. Shared Repository</h5>
+                        <p class="text-muted smaller">Upload once, distribute to everyone.</p>
+                        <hr class="border-light">
+                        <ul class="info-list smaller">
+                            <li>Navigate to <strong>Shared Repository</strong> in the sidebar.</li>
+                            <li>Upload files like <em>"Chapter 1 Template.docx"</em> or <em>"APA Guide.pdf"</em>.</li>
+                            <li>It instantly appears in the <strong>Resources</strong> folder of every student linked to you.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Feature 6: Gatekeeper Settings -->
+                <div class="col-lg-12" data-aos="fade-up">
+                    <div class="info-card">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fa-solid fa-gears text-secondary fa-2x me-3"></i>
+                            <h5 class="fw-800 mb-0">6. Gatekeeper Settings</h5>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-center p-3 border rounded-3 bg-light">
+                                    <div class="form-check form-switch me-3">
+                                        <input class="form-check-input" type="checkbox" checked disabled>
+                                    </div>
+                                    <div>
+                                        <h6 class="fw-bold mb-0 text-success">Auto-Accept ON</h6>
+                                        <small class="text-muted">Students join your list immediately after entering SPID.</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mt-2 mt-md-0">
+                                <div class="d-flex align-items-center p-3 border rounded-3 bg-light">
+                                    <div class="form-check form-switch me-3">
+                                        <input class="form-check-input" type="checkbox" disabled>
+                                    </div>
+                                    <div>
+                                        <h6 class="fw-bold mb-0 text-warning">Auto-Accept OFF</h6>
+                                        <small class="text-muted">Students go to "Pending Requests" card. You must approve each one.</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div> <!-- End Row -->
+
+            <!-- CTA -->
+            <div class="text-center pb-5" data-aos="fade-up">
+                <p class="text-muted mb-3">Ready to manage your students?</p>
+                <a href="supervisor.html" class="btn btn-primary-gm px-5 py-3 shadow fw-bold">
+                    <i class="fa-solid fa-users-viewfinder me-2"></i> Open Supervisor Dashboard
+                </a>
+            </div>
+
+        </div>
+
+        <div class="card border-0 shadow-sm mt-5" data-aos="fade-up">
+            <div class="card-body p-4">
+                <h5 class="fw-800 text-primary mb-3">
+                    <i class="fa-solid fa-shield-halved me-2"></i> Institutional-Grade Security
+                </h5>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="security-item">
+                            <h6 class="fw-bold mb-1 small">Encrypted Data</h6>
+                            <p class="text-muted smaller">All student records are stored via Supabase with AES-256 encryption, ensuring academic records remain private.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="security-item">
+                            <h6 class="fw-bold mb-1 small">Supervisor Sovereignty</h6>
+                            <p class="text-muted smaller">Timnex Tech staff cannot access student project files. Only the assigned supervisor has the decryption key to view submissions.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="security-item">
+                            <h6 class="fw-bold mb-1 small">Automated Backups</h6>
+                            <p class="text-muted smaller">Daily cloud backups ensure that SIWES logbooks and Project chapters are never lost, even if a device is damaged.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- SCRIPTS (Using existing info.js) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="info.js"></script>
+</body>
+</html>

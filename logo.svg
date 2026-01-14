@@ -1,0 +1,18 @@
+<svg width="250" height="80" viewBox="0 0 250 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Modern Graduation Cap Icon -->
+  <g id="CapIcon">
+    <path d="M15 35L45 20L75 35L45 50L15 35Z" fill="#3C4A6E" /> <!-- Cap Top -->
+    <path d="M25 40V46C25 48.2091 33.9543 50 45 50C56.0457 50 65 48.2091 65 46V40" fill="#3C4A6E" /> <!-- Cap Base -->
+    <path d="M75 35V48C75 49.1046 74.1046 50 73 50H72C70.8954 50 70 51.1046 70 52V55" stroke="#FF6F61" stroke-width="2" stroke-linecap="round"/> <!-- Tassel -->
+    <circle cx="70" cy="57" r="2" fill="#FF6F61" /> <!-- Tassel End -->
+  </g>
+
+  <!-- Typography: GradMate -->
+  <text x="85" y="52" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="34">
+    <tspan fill="#3C4A6E">G</tspan>
+    <tspan fill="#6C63FF">radMate</tspan>
+  </text>
+  
+  <!-- Subtle Modern Accent Line -->
+  <rect x="88" y="60" width="150" height="3" rx="1.5" fill="#FF6F61" opacity="0.3"/>
+</svg>

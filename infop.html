@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Module Guide | GradMate</title>
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Bootstrap 5 & AOS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="dashboard.css">
+    <!-- We include project.css to inherit variables, but info.css handles specific styling -->
+    <link rel="stylesheet" href="project.css"> 
+    <link rel="stylesheet" href="info.css">
+</head>
+<body>
+
+    <!-- SIDEBAR NAVIGATION (Exact Replica) -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <!-- Ensure image path is correct in your local folder -->
+            <img src="/asset/EHSnV01.svg" alt="GradMate" class="nav-logo" style="height: 25px;">
+            <span class="brand-text">GradMate</span>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="dashboard.html"><i class="fa-solid fa-house"></i> Overview</a></li>
+            <li><a href="siwes.html"><i class="fa-solid fa-briefcase"></i> SIWES Module</a></li>
+            <li><a href="project.html"><i class="fa-solid fa-graduation-cap"></i> Project Defense</a></li>
+            <li><a href="resource.html"><i class="fa-solid fa-book"></i> Resources</a></li>
+            <li><a href="chat.html"><i class="fa-solid fa-robot"></i> AI Assistant</a></li>
+            <li class="menu-divider"></li>
+            <!-- Active Class moved to Info -->
+            <li class="active"><a href="infop.html"><i class="fa-solid fa-book"></i> Info</a></li>
+            <li><a href="login.html" class="text-danger"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="content-area">
+        <div class="container-fluid px-lg-4">
+
+            <!-- HEADER -->
+            <section class="mb-5" data-aos="fade-down">
+                <div class="info-header-card p-5 rounded-5 position-relative overflow-hidden">
+                    <div class="position-relative z-2">
+                        <span class="badge bg-white text-primary mb-3 px-3 py-2 fw-800 shadow-sm">USER MANUAL</span>
+                        <h1 class="fw-900 text-white mb-2 display-5">Project Defense Module</h1>
+                        <p class="text-white-50 lead mb-0" style="max-width: 600px;">
+                            Master your final year research with this step-by-step guide. Learn how to track progress, simulate defenses, and generate citations.
+                        </p>
+                    </div>
+                    <!-- Decorative Background Circle -->
+                    <div class="neon-circle-bg"></div>
+                </div>
+            </section>
+
+            <!-- FEATURES GRID -->
+            <div class="row g-4 mb-5">
+                
+                <!-- Feature 1: Identity Setup -->
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="info-card h-100">
+                        <div class="card-icon-wrapper bg-soft-purple">
+                            <i class="fa-solid fa-pen-nib text-primary"></i>
+                        </div>
+                        <h4 class="fw-800 mt-4 mb-3">1. Project Identity Setup</h4>
+                        <p class="text-muted small">The control center for your research. Configure your topic, supervisor, and deadlines here.</p>
+                        
+                        <div class="step-box mt-3">
+                            <h6 class="fw-bold small text-uppercase text-secondary mb-2">How to Use:</h6>
+                            <ul class="info-list">
+                                <li>Click the <strong>"Project Setup"</strong> button at the top right.</li>
+                                <li>Enter your <strong>Topic</strong>, <strong>Supervisor Name</strong>, and <strong>Defense Date</strong>.</li>
+                                <li>Define your <strong>Sub-topics</strong> for Chapter 1 & 2 for better tracking.</li>
+                            </ul>
+                            <div class="example-pill mt-3">
+                                <i class="fa-solid fa-lightbulb me-2 text-warning"></i>
+                                <span><strong>Example:</strong> Setting a Defense Date automatically activates the "Days Left" countdown.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 2: Thesis Roadmap -->
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="info-card h-100">
+                        <div class="card-icon-wrapper bg-soft-blue">
+                            <i class="fa-solid fa-map-location-dot text-info"></i>
+                        </div>
+                        <h4 class="fw-800 mt-4 mb-3">2. Thesis Roadmap</h4>
+                        <p class="text-muted small">A neon-styled visual progress bar that tracks your journey from Chapter 1 to 5.</p>
+                        
+                        <div class="step-box mt-3">
+                            <h6 class="fw-bold small text-uppercase text-secondary mb-2">How to Use:</h6>
+                            <ul class="info-list">
+                                <li>Click on a <strong>Chapter Number (1-5)</strong> when you complete it.</li>
+                                <li>The neon pipeline will fill up, and your percentage (e.g., 20%, 40%) will update.</li>
+                                <li>The status badge changes phases (e.g., "Literature Review" to "Methodology").</li>
+                            </ul>
+                            <div class="example-pill mt-3">
+                                <i class="fa-solid fa-lightbulb me-2 text-warning"></i>
+                                <span><strong>Note:</strong> Progress is saved automatically. If you leave and come back, it remembers you are in Ch. 3.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 3: Anti-Loss Vault -->
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="info-card h-100">
+                        <div class="card-icon-wrapper bg-soft-green">
+                            <i class="fa-solid fa-cloud-arrow-up text-success"></i>
+                        </div>
+                        <h5 class="fw-800 mt-4">3. Anti-Loss Vault</h5>
+                        <p class="text-muted smaller">Cloud storage simulation to prevent file loss.</p>
+                        <hr class="border-light">
+                        <ul class="info-list smaller">
+                            <li>Click any <strong>Chapter Card</strong>.</li>
+                            <li>Use the popup to upload your <code>.docx</code> or <code>.pdf</code> file.</li>
+                            <li>The card turns green (<span class="text-success fw-bold">Synced</span>) once uploaded.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Feature 4: Consultation Log -->
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="info-card h-100">
+                        <div class="card-icon-wrapper bg-soft-orange">
+                            <i class="fa-solid fa-handshake text-warning"></i>
+                        </div>
+                        <h5 class="fw-800 mt-4">4. Consultation Log</h5>
+                        <p class="text-muted smaller">Keep receipts of what your supervisor said.</p>
+                        <hr class="border-light">
+                        <ul class="info-list smaller">
+                            <li>Click the <strong>(+)</strong> button.</li>
+                            <li>Log the <strong>Feedback</strong> (e.g., "Change the font size").</li>
+                            <li>Log <strong>Next Steps</strong>. It creates a searchable history.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Feature 5: Correction Tracker -->
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="500">
+                    <div class="info-card h-100">
+                        <div class="card-icon-wrapper bg-soft-red">
+                            <i class="fa-solid fa-list-check text-danger"></i>
+                        </div>
+                        <h5 class="fw-800 mt-4">5. Correction Tracker</h5>
+                        <p class="text-muted smaller">A To-Do list specifically for thesis corrections.</p>
+                        <hr class="border-light">
+                        <ul class="info-list smaller">
+                            <li>Type a task (e.g., "Fix margins").</li>
+                            <li>Select <strong>Chapter</strong> and toggle <strong>High Priority</strong> if urgent.</li>
+                            <li>Check the box to strike it through when done.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Feature 6: Defense Simulator (Wide) -->
+                <div class="col-lg-12" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="info-card position-relative overflow-hidden">
+                        <div class="row align-items-center">
+                            <div class="col-md-8 position-relative z-2">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="card-icon-wrapper bg-soft-purple me-3 mb-0">
+                                        <i class="fa-solid fa-robot text-primary"></i>
+                                    </div>
+                                    <h4 class="fw-800 mb-0">6. AI Defense Simulator</h4>
+                                </div>
+                                <p class="text-muted">
+                                    This is your secret weapon. It contains a bank of <strong class="text-primary">25+ Standard Nigerian University Defense Questions</strong>.
+                                </p>
+                                <div class="row mt-4">
+                                    <div class="col-md-6">
+                                        <div class="step-box h-100">
+                                            <h6 class="fw-bold small text-primary">Step A: Simulate</h6>
+                                            <p class="smaller text-muted mb-0">Click <strong>"Next Question"</strong> to get a random tough question like <em>"What is the gap in knowledge?"</em></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mt-3 mt-md-0">
+                                        <div class="step-box h-100">
+                                            <h6 class="fw-bold small text-warning">Step B: Use Hints</h6>
+                                            <p class="smaller text-muted mb-0">Stuck? Click <strong>"Reveal Hint"</strong>. It tells you exactly what the examiner wants to hear.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Illustration/Visual representation -->
+                            <div class="col-md-4 text-center mt-4 mt-md-0 z-2">
+                                <div class="p-3 bg-light rounded-4 border border-primary border-opacity-25 shadow-sm">
+                                    <small class="text-muted d-block mb-2 fw-bold text-uppercase">Preview</small>
+                                    <div class="bg-white p-2 rounded-3 mb-2 border-start border-4 border-primary text-start">
+                                        <span class="smaller fw-bold">Q: Why this methodology?</span>
+                                    </div>
+                                    <button class="btn btn-primary-gm btn-sm w-100 disabled">Next Question</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 7: Formatting Engine -->
+                <div class="col-lg-12" data-aos="fade-up">
+                    <div class="info-card border-neon-accent">
+                        <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+                            <div class="d-flex align-items-center">
+                                <div class="card-icon-wrapper bg-soft-orange me-3 mb-0">
+                                    <i class="fa-solid fa-quote-right text-warning"></i>
+                                </div>
+                                <div>
+                                    <h5 class="fw-800 mb-1">7. APA 7th Citation Generator</h5>
+                                    <p class="text-muted smaller mb-0">Generates accurate references for your bibliography.</p>
+                                </div>
+                            </div>
+                            <div class="d-flex gap-3">
+                                <div class="text-end d-none d-md-block">
+                                    <span class="d-block smaller fw-bold text-muted">Input</span>
+                                    <span class="badge bg-light text-dark border">Author + Year + Title</span>
+                                </div>
+                                <i class="fa-solid fa-arrow-right text-muted align-self-center"></i>
+                                <div>
+                                    <span class="d-block smaller fw-bold text-muted">Output</span>
+                                    <span class="badge bg-soft-purple text-primary border border-primary">Formatted Reference</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div> <!-- End Row -->
+
+            <!-- CTA -->
+            <div class="text-center pb-5" data-aos="fade-up">
+                <p class="text-muted mb-3">Ready to start your research?</p>
+                <a href="project.html" class="btn btn-primary-gm px-5 py-3 shadow fw-bold">
+                    <i class="fa-solid fa-rocket me-2"></i> Go to Project Dashboard
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="info.js"></script>
+</body>
+</html>

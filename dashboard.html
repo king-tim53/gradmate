@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | GradMate Hub</title>
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="/asset/EHSnV01.svg" alt="GradMate" class="nav-logo">
+            <span class="ms-2 fw-bold logo-text">
+                <span class="logo-g">G</span><span class="logo-rest">radMate</span>
+            </span>
+        </div>
+        <ul class="nav-menu">
+            <li class="active"><a href="dashboard.html"><i class="fa-solid fa-house"></i> Overview</a></li>
+            <li><a href="siwes.html"><i class="fa-solid fa-briefcase"></i> SIWES Module</a></li>
+            <li><a href="project.html"><i class="fa-solid fa-graduation-cap"></i> Project Defense</a></li>
+            <li ><a href="tp.html"><i class="fa-solid fa-chalkboard-user"></i> Teaching Practice</a></li>
+            <li class="menu-divider"></li>
+            <li><a href="#"><i class="fa-solid fa-user-gear"></i> Settings</a></li>
+            <li><a href="infod.html"><i class="fa-solid fa-book"></i> Info</a></li>
+            <li><a href="login.html" class="text-danger"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="content-area">
+        <!-- Top Navbar -->
+        <header class="top-nav d-flex justify-content-between align-items-center mb-4">
+            <button id="sidebarToggle" class="btn d-lg-none"><i class="fa-solid fa-bars"></i></button>
+            <div class="welcome-text">
+                <h4 class="fw-800 mb-0">Welcome back, <span class="text-primary">Timofe</span>!</h4>
+                <p class="text-muted small mb-0" id="dailyQuote">"Your hard work today is the foundation of your success tomorrow."</p>
+            </div>
+          
+
+   <!-- Peak Modern Student Profile Context Card -->
+<div class="profile-context-card modern-v2 mb-4" data-aos="fade-up">
+    <!-- Decorative background blob -->
+    <div class="glass-blob"></div>
+    
+    <div class="card-body p-4 position-relative">
+        <div class="row align-items-center">
+            <!-- Left Side: Profile Picture with Dynamic Badge -->
+            <div class="col-lg-2 text-center border-end-lg">
+                <div class="profile-ring-container">
+                    <!-- Added ID: profile-img (optional for future updates) -->
+                    <img src="https://ui-avatars.com/api/?name=Student&background=6C63FF&color=fff&size=100" class="profile-img-v2" alt="Student" id="profile-img">
+                    <!-- Added ID: profile-badge -->
+                    <span class="status-badge-v2 pulse-animation" id="profile-badge">--</span>
+                </div>
+            </div>
+
+            <!-- Middle: Academic Details (Expanded to col-lg-10) -->
+            <div class="col-lg-10 ps-lg-4 py-3 py-lg-0">
+                <div class="d-flex align-items-center flex-wrap gap-3 mb-3">
+                    <!-- Added IDs: profile-name, profile-matric, profile-level -->
+                    <h3 class="fw-800 mb-0 gradient-text" id="profile-name">Student Name</h3>
+                    <span class="badge bg-light text-muted border small" id="profile-matric">Matric No.</span>
+                    <span class="badge-glass" id="profile-level">Level</span>
+                </div>
+                <small class="d-block text-muted font-monospace mb-3" style="font-size: 0.75rem;">
+                    ID: <span id="profile-full-id" class="text-primary fw-bold">--</span>
+                </small>
+                <button class="btn btn-sm btn-light border ms-2 px-2 py-0 text-muted" onclick="openTrackManager()" style="font-size: 0.7rem; vertical-align: middle;">
+                    <i class="fa-solid fa-pen"></i> Change
+                </button> <br />
+                <!-- Meta Pills remain the same... -->
+                <div class="academic-meta-v2">
+                    <!-- ... existing pills ... -->
+                    <!-- Modern Meta Pills -->
+                <div class="academic-meta-v2">
+                    <div class="meta-pill">
+                        <i class="fa-solid fa-university"></i>
+                        <!-- Added ID: profile-uni -->
+                        <span id="profile-uni">University</span>
+                    </div>
+                    <div class="meta-pill">
+                        <i class="fa-solid fa-building-columns"></i>
+                        <!-- Added ID: profile-faculty -->
+                        <span id="profile-faculty">Faculty</span>
+                    </div>
+                    <div class="meta-pill">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <!-- Added ID: profile-course -->
+                        <span id="profile-course">Course</span>
+                    </div>
+                </div>
+                </div>
+            </div>
+                
+                
+            </div>
+
+            <!-- REMOVED RIGHT COLUMN AS REQUESTED -->
+        </div>
+    </div>
+</div>
+
+        </header>
+       
+        <!-- Feature 2: High-Level Progress Overview -->
+<div class="row g-4 mb-4">
+    
+    <!-- 1. SIWES Progress (Added ID: prog-siwes) -->
+    <div class="col-md-6 col-xl-3" id="prog-siwes">
+        <div class="stat-card h-100">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <p class="text-muted small fw-bold">SIWES PROGRESS</p>
+                    <h3 class="fw-800">65%</h3>
+                </div>
+                <div class="progress-circle p65"></div>
+            </div>
+            <div class="progress mt-3" style="height: 6px;">
+                <div class="progress-bar bg-primary" style="width: 65%"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Project Progress (Added ID: prog-project) -->
+    <div class="col-md-6 col-xl-3" id="prog-project">
+        <div class="stat-card h-100">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <p class="text-muted small fw-bold">PROJECT PROGRESS</p>
+                    <h3 class="fw-800">40%</h3>
+                </div>
+                <div class="progress-circle p40"></div>
+            </div>
+            <div class="progress mt-3" style="height: 6px;">
+                <div class="progress-bar bg-accent" style="width: 40%"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. NEW: Teaching Practice Progress (ID: prog-tp) -->
+    <div class="col-md-6 col-xl-3" id="prog-tp">
+        <div class="stat-card h-100">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <p class="text-muted small fw-bold">TEACHING PRAC.</p>
+                    <h3 class="fw-800">15%</h3>
+                </div>
+                <!-- Using a Warning/Orange color logic -->
+                <div class="progress-circle p15 border-warning"></div>
+            </div>
+            <div class="progress mt-3" style="height: 6px;">
+                <div class="progress-bar bg-warning" style="width: 15%"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. Quick Tip Card (Changed to col-xl-3 to fit the row) -->
+    <div class="col-md-6 col-xl-3">
+        <div class="tip-banner h-100">
+            <div class="d-flex align-items-center">
+                <div class="tip-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                <div class="ms-3">
+                    <h6 class="fw-bold mb-1">Naija Tip:</h6>
+                    <p class="mb-0 small" id="studentTip">Prepare 3 hard copies before defense!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Feature 1: Command Center (Module Entry) -->
+<div class="row g-4 mb-4">
+    
+    <!-- SIWES Module (Added ID: mod-siwes) -->
+    <div class="col-md-6 col-xl-4" id="mod-siwes">
+        <div class="module-card h-100">
+            <div class="module-img bg-soft-blue">
+                <i class="fa-solid fa-briefcase text-primary fa-2x"></i>
+            </div>
+            <div class="module-info">
+                <h5>SIWES Management</h5>
+                <p class="text-muted small">Manage IT logbook and reports.</p>
+                <div class="d-flex justify-content-between align-items-center mt-3">
+                    <span class="badge bg-soft-blue text-primary">Active</span>
+                    <a href="siwes.html" class="btn btn-sm btn-primary-gm">Enter</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Module (Added ID: mod-project) -->
+    <div class="col-md-6 col-xl-4" id="mod-project">
+        <div class="module-card h-100">
+            <div class="module-img bg-soft-purple">
+                <i class="fa-solid fa-graduation-cap text-primary fa-2x"></i>
+            </div>
+            <div class="module-info">
+                <h5>Project Defense</h5>
+                <p class="text-muted small">Chapter tracking & mock defense.</p>
+                <div class="d-flex justify-content-between align-items-center mt-3">
+                    <span class="badge bg-soft-purple text-primary">Ch. 2</span>
+                    <a href="project.html" class="btn btn-sm btn-primary-gm">Enter</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <!-- UPDATED: Teaching Practice Module with Live Subject Slot -->
+<div class="col-md-6 col-xl-4" id="mod-tp">
+    <div class="module-card h-100">
+        <div class="module-img bg-soft-orange" style="background-color: #fff8e1;">
+            <i class="fa-solid fa-chalkboard-user text-warning fa-2x"></i>
+        </div>
+        <div class="module-info">
+            <div class="d-flex justify-content-between align-items-start">
+                <h5>Teaching Practice</h5>
+                <!-- The Status Badge (NOW, FREE, or Week X) -->
+                <span class="badge bg-warning text-dark bg-opacity-25" id="tp-status-badge">Week 1</span>
+            </div>
+            
+            <!-- NEW: Live Subject Slot -->
+            <p class="text-muted small mb-0" id="tp-live-activity">Lesson notes & class management.</p>
+            
+            <div class="mt-3">
+                <a href="tp.html" class="btn btn-sm btn-primary-gm w-100">Enter Module</a>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+        <div class="row g-4">
+           <!-- Feature 4: Peak Master Timeline Hub -->
+<div class="col-lg-7" data-aos="fade-up">
+    <div class="card border-0 shadow-sm p-4 h-100 timeline-card-bg">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h6 class="fw-800 mb-0">
+                <i class="fa-solid fa-calendar-check text-primary me-2"></i> Master Timeline
+            </h6>
+            <button class="btn btn-sm btn-primary-gm px-3" data-bs-toggle="modal" data-bs-target="#addDeadlineModal">
+                <i class="fa-solid fa-plus me-1"></i> Add Task
+            </button>
+        </div>
+
+        <div class="timeline-container" id="timelineList">
+            <!-- Dynamic Timeline Items Injected Here -->
+            <div class="text-center py-5 empty-timeline d-none">
+                <i class="fa-solid fa-calendar-xmark fa-3x mb-3 opacity-25"></i>
+                <p class="text-muted small">No upcoming deadlines. You're all caught up!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal: Add Master Deadline -->
+<div class="modal fade" id="addDeadlineModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 p-3 shadow-lg rounded-4">
+            <div class="modal-header border-0 pb-0">
+                <h5 class="fw-800">New Deadline</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="small fw-bold">Task Title</label>
+                    <input type="text" id="dlTitle" class="form-control" placeholder="e.g. Submit Chapter 1">
+                </div>
+                <div class="row g-2 mb-3">
+                    <div class="col-6">
+                        <label class="small fw-bold">Date</label>
+                        <input type="date" id="dlDate" class="form-control">
+                    </div>
+                    <div class="col-6">
+                        <label class="small fw-bold">Category</label>
+                        <select id="dlCategory" class="form-select">
+                            <option value="project">Project Defense</option>
+                            <option value="siwes">SIWES (IT)</option>
+                            <option value="tp">Teaching Practice</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-0">
+                    <label class="small fw-bold">Short Note</label>
+                    <input type="text" id="dlNote" class="form-control" placeholder="Brief reminder...">
+                </div>
+            </div>
+            <div class="modal-footer border-0">
+                <button class="btn btn-primary-gm w-100" onclick="addNewDeadline()">Set Deadline</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+            <!-- Feature 3: Peak Knowledge Hub -->
+<div class="col-lg-5" data-aos="fade-up" data-aos-delay="100">
+    <div class="card border-0 shadow-sm p-4 h-100 hub-card">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h6 class="fw-800 mb-0">Academic Knowledge Hub</h6>
+            <i class="fa-solid fa-graduation-cap text-primary opacity-50"></i>
+        </div>
+
+        <!-- Live Search Bar -->
+        <div class="hub-search mb-4">
+            <div class="input-group input-group-sm">
+                <span class="input-group-text bg-light border-0"><i class="fa-solid fa-magnifying-glass smaller text-muted"></i></span>
+                <input type="text" id="hubSearch" class="form-control bg-light border-0 smaller" placeholder="Search topics (e.g. ITF, Defense)..." onkeyup="filterHub()">
+            </div>
+        </div>
+
+        <div class="accordion accordion-custom" id="knowledgeHub">
+            <!-- Item 1: SIWES Basics -->
+            <div class="accordion-item mb-2 border-0 overflow-hidden rounded-3 hub-item" data-topic="siwes itf">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed py-3" type="button" data-bs-toggle="collapse" data-bs-target="#kh1">
+                        <i class="fa-solid fa-circle-info me-2 text-primary smaller"></i> What exactly is SIWES?
+                    </button>
+                </h2>
+                <div id="kh1" class="accordion-collapse collapse" data-bs-parent="#knowledgeHub">
+                    <div class="accordion-body pt-0 smaller">
+                        <p class="text-muted">SIWES (Students Industrial Work Experience Scheme) exposes you to real-world industrial work. It bridges the gap between theory and practice.</p>
+                        <div class="pro-tip-box bg-soft-blue p-2 rounded">
+                            <small class="fw-bold text-primary"><i class="fa-solid fa-lightbulb"></i> Pro-Tip:</small>
+                            <p class="mb-0 smaller mt-1">Ensure your logbook is signed **daily** by your industry supervisor to avoid issues during clearance.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 2: Defense Panel -->
+            <div class="accordion-item mb-2 border-0 overflow-hidden rounded-3 hub-item" data-topic="defense project panel">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed py-3" type="button" data-bs-toggle="collapse" data-bs-target="#kh2">
+                        <i class="fa-solid fa-users-gear me-2 text-accent smaller"></i> The Defense Panel Structure
+                    </button>
+                </h2>
+                <div id="kh2" class="accordion-collapse collapse" data-bs-parent="#knowledgeHub">
+                    <div class="accordion-body pt-0 smaller">
+                        <p class="text-muted">Your panel usually has a Chairman, Internal Examiner, and your Supervisor. Sometimes an External Examiner joins for final results.</p>
+                        <div class="pro-tip-box bg-soft-coral p-2 rounded">
+                            <small class="fw-bold text-accent"><i class="fa-solid fa-shield-halved"></i> Pro-Tip:</small>
+                            <p class="mb-0 smaller mt-1">Examiners value **honesty**. If you don't know a technical answer, explain your logic rather than guessing blindly.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 3: ITF Form 8 -->
+            <div class="accordion-item mb-2 border-0 overflow-hidden rounded-3 hub-item" data-topic="itf form logbook">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed py-3" type="button" data-bs-toggle="collapse" data-bs-target="#kh3">
+                        <i class="fa-solid fa-file-contract me-2 text-success smaller"></i> Why is ITF Form 8 so important?
+                    </button>
+                </h2>
+                <div id="kh3" class="accordion-collapse collapse" data-bs-parent="#knowledgeHub">
+                    <div class="accordion-body pt-0 smaller">
+                        <p class="text-muted">Form 8 is the official document ITF uses to pay your SIWES allowance and verify your completion.</p>
+                        <p class="mb-0 fw-bold text-success smaller">Required for: IT Defense & Payment.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 4: Plagiarism -->
+            <div class="accordion-item mb-2 border-0 overflow-hidden rounded-3 hub-item" data-topic="project plagiarism writing">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed py-3" type="button" data-bs-toggle="collapse" data-bs-target="#kh4">
+                        <i class="fa-solid fa-spell-check me-2 text-warning smaller"></i> Avoiding Project Plagiarism
+                    </button>
+                </h2>
+                <div id="kh4" class="accordion-collapse collapse" data-bs-parent="#knowledgeHub">
+                    <div class="accordion-body pt-0 smaller text-muted">
+                        Most universities use Turnitin. Aim for a similarity score of **below 20%**. Always paraphrase and cite your sources correctly.
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Empty Result State -->
+        <div id="hubEmpty" class="text-center py-4 d-none">
+            <p class="smaller text-muted">No topics match your search.</p>
+        </div>
+    </div>
+</div>
+    </main>
+      
+    <!-- WELCOME ID MODAL -->
+<div class="modal fade" id="welcomeIdModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 p-4 text-center shadow-lg rounded-4">
+            <div class="modal-body">
+                <div class="mb-3">
+                    <div class="icon-circle bg-soft-purple text-primary mx-auto fs-3" style="width:60px; height:60px; display:flex; align-items:center; justify-content:center; border-radius:50%;">
+                        <i class="fa-solid fa-id-badge"></i>
+                    </div>
+                </div>
+                <h4 class="fw-800 mb-1">Welcome, <span id="modal-user-name" class="text-primary">Student</span>!</h4>
+                <p class="text-muted small mb-4">Your academic account has been successfully created.</p>
+                
+                <div class="p-3 bg-light rounded-3 border border-dashed mb-4">
+                    <small class="text-uppercase text-muted fw-bold" style="font-size:0.65rem;">Your Official GradMate ID</small>
+                    <h2 class="fw-800 mb-0 font-monospace text-dark" id="modal-user-id">---</h2>
+                </div>
+
+                <button type="button" class="btn btn-primary-gm w-100 py-2" data-bs-dismiss="modal">
+                    Get Started <i class="fa-solid fa-arrow-right ms-2"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+  <!-- TRACK MANAGER MODAL -->
+<div class="modal fade" id="trackManagerModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 p-3 shadow-lg">
+            <div class="modal-header border-0 pb-0">
+                <h5 class="fw-800">Manage Access Tracks</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p class="text-muted small">Select the modules you need active. Your ID Core will remain the same, but your access prefix will update.</p>
+                
+                <div class="d-grid gap-2">
+                    <!-- Option S -->
+                    <label class="p-3 border rounded-3 d-flex align-items-center cursor-pointer hover-bg-light">
+                        <input type="checkbox" id="manage-check-s" class="form-check-input me-3" value="S">
+                        <div>
+                            <span class="fw-bold d-block">SIWES (Industrial Training)</span>
+                            <span class="smaller text-muted">Logbook, Reports, Supervision</span>
+                        </div>
+                    </label>
+                    <!-- Option P -->
+                    <label class="p-3 border rounded-3 d-flex align-items-center cursor-pointer hover-bg-light">
+                        <input type="checkbox" id="manage-check-p" class="form-check-input me-3" value="P">
+                        <div>
+                            <span class="fw-bold d-block">Project Defense</span>
+                            <span class="smaller text-muted">Chapters, Vault, Simulator</span>
+                        </div>
+                    </label>
+                    <!-- Option T -->
+                    <label class="p-3 border rounded-3 d-flex align-items-center cursor-pointer hover-bg-light">
+                        <input type="checkbox" id="manage-check-t" class="form-check-input me-3" value="T">
+                        <div>
+                            <span class="fw-bold d-block">Teaching Practice</span>
+                            <span class="smaller text-muted">Lesson Plans, Class Mgt</span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer border-0">
+                <button class="btn btn-primary-gm w-100" onclick="saveTrackChanges()">Update My Profile</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- UPDATE SUCCESS MODAL -->
+<div class="modal fade" id="trackSuccessModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 p-4 text-center shadow-lg">
+            <div class="modal-body">
+                <div class="mb-3 text-success fs-1">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+                <h4 class="fw-800 mb-2">Update Successful!</h4>
+                <p class="text-muted small mb-4">Your dashboard permissions have been modified.</p>
+                
+                <div class="bg-light p-3 rounded border border-dashed mb-3">
+                    <small class="text-uppercase text-muted fw-bold" style="font-size:0.65rem;">YOUR NEW ID</small>
+                    <h3 class="fw-800 font-monospace text-primary mb-0" id="new-generated-id">---</h3>
+                </div>
+                
+                <button class="btn btn-dark w-100" onclick="location.reload()">Reload Dashboard</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- ADD THIS LINE HERE: -->
+    <script src="auth.js"></script> 
+    <script src="dashboard.js"></script>
+</body>
+</html>

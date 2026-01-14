@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teaching Practice Guide | GradMate</title>
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Bootstrap 5 & AOS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="dashboard.css">
+    <!-- Inherit TP variables -->
+    <link rel="stylesheet" href="tp.css"> 
+    <link rel="stylesheet" href="info.css">
+    <style>
+        /* Custom Override for TP Theme consistency */
+        :root {
+            --primary: #00b894; /* Match TP Orange/Green Theme if needed, or keep purple for consistency */
+        }
+        /* Overwrite header gradient for TP Identity */
+        .info-header-card {
+            background: linear-gradient(135deg, #00b894 0%, #0984e3 100%);
+            box-shadow: 0 10px 30px rgba(0, 184, 148, 0.2);
+        }
+        /* Match TP Icons */
+        .text-orange { color: #fd7e14 !important; }
+        .bg-soft-orange { background-color: #fff3e0 !important; }
+    </style>
+</head>
+<body>
+
+    <!-- SIDEBAR NAVIGATION -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="/asset/EHSnV01.svg" alt="GradMate" class="nav-logo" style="height: 25px;">
+            <span class="brand-text">GradMate</span>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="dashboard.html"><i class="fa-solid fa-house"></i> Overview</a></li>
+            <li><a href="siwes.html"><i class="fa-solid fa-briefcase"></i> SIWES Module</a></li>
+            <li><a href="project.html"><i class="fa-solid fa-graduation-cap"></i> Project Defense</a></li>
+            <li><a href="tp.html"><i class="fa-solid fa-chalkboard-user"></i> Teaching Practice</a></li>
+            <li><a href="resource.html"><i class="fa-solid fa-book"></i> Resources</a></li>
+            <li><a href="chat.html"><i class="fa-solid fa-robot"></i> AI Assistant</a></li>
+            <li class="menu-divider"></li>
+            <!-- Active Class on Info -->
+            <li class="active"><a href="infot.html"><i class="fa-solid fa-book"></i> Info</a></li>
+            <li><a href="login.html" class="text-danger"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="content-area">
+        <div class="container-fluid px-lg-4">
+
+            <!-- HEADER -->
+            <section class="mb-5" data-aos="fade-down">
+                <div class="info-header-card p-5 rounded-5 position-relative overflow-hidden">
+                    <div class="position-relative z-2">
+                        <span class="badge bg-white text-success mb-3 px-3 py-2 fw-800 shadow-sm">USER MANUAL</span>
+                        <h1 class="fw-900 text-white mb-2 display-5">Teaching Practice Module</h1>
+                        <p class="text-white-50 lead mb-0" style="max-width: 600px;">
+                            Your digital classroom assistant. Learn how to create lesson notes, mark attendance, track schemes of work, and manage your finances.
+                        </p>
+                    </div>
+                    <!-- Decorative Background Circle -->
+                    <div class="neon-circle-bg"></div>
+                </div>
+            </section>
+
+            <!-- FEATURES GRID -->
+            <div class="row g-4 mb-5">
+                
+                <!-- Feature 1: Placement Setup -->
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="info-card h-100">
+                        <div class="card-icon-wrapper bg-soft-orange">
+                            <i class="fa-solid fa-school text-orange"></i>
+                        </div>
+                        <h4 class="fw-800 mt-4 mb-3">1. Placement Profile Setup</h4>
+                        <p class="text-muted small">Configure your school details, mentor, and teaching subjects to activate the dashboard.</p>
+                        
+                        <div class="step-box mt-3">
+                            <h6 class="fw-bold small text-uppercase text-secondary mb-2">How to Use:</h6>
+                            <ul class="info-list">
+                                <li>Click the <strong>"Setup Placement"</strong> button at the top right of the TP page.</li>
+                                <li>Enter your <strong>School Name</strong> (e.g., Kings College) and <strong>Assigned Subject</strong>.</li>
+                                <li>Set your <strong>Start & End Dates</strong> to activate the countdown timer.</li>
+                            </ul>
+                            <div class="example-pill mt-3">
+                                <i class="fa-solid fa-lightbulb me-2 text-warning"></i>
+                                <span><strong>Tip:</strong> This initializes your "School Board Card" and Credit Load.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 2: Digital Lesson Note -->
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="info-card h-100">
+                        <div class="card-icon-wrapper bg-soft-blue">
+                            <i class="fa-solid fa-pen-fancy text-primary"></i>
+                        </div>
+                        <h4 class="fw-800 mt-4 mb-3">2. Digital Lesson Note Wizard</h4>
+                        <p class="text-muted small">Create standard Nigerian lesson notes (Ed. 2025 Format) in 4 simple steps.</p>
+                        
+                        <div class="step-box mt-3">
+                            <h6 class="fw-bold small text-uppercase text-secondary mb-2">How to Use:</h6>
+                            <ul class="info-list">
+                                <li>Click <strong>"Create New Note"</strong> in the Lesson Architect section.</li>
+                                <li><strong>Step 1:</strong> Enter Topic & Duration. <strong>Step 2:</strong> Define measurable Objectives.</li>
+                                <li><strong>Step 3:</strong> Fill the "Teacher Activity" vs "Student Activity" table.</li>
+                                <li><strong>Finish:</strong> Save it. You can print it or export as PDF for your supervisor.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 3: Live Timetable -->
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="info-card h-100">
+                        <div class="card-icon-wrapper bg-soft-green">
+                            <i class="fa-solid fa-calendar-day text-success"></i>
+                        </div>
+                        <h5 class="fw-800 mt-4">3. Live Timetable</h5>
+                        <p class="text-muted smaller">Manage your teaching schedule dynamically.</p>
+                        <hr class="border-light">
+                        <ul class="info-list smaller">
+                            <li>Click <strong>(+) Add Class</strong> to schedule a lesson.</li>
+                            <li>Select the Day, Start/End Time, and Subject.</li>
+                            <li>The dashboard highlights the current active class or shows "Free Period".</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Feature 4: Wallet Manager -->
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="info-card h-100">
+                        <div class="card-icon-wrapper bg-dark text-white">
+                            <i class="fa-solid fa-wallet"></i>
+                        </div>
+                        <h5 class="fw-800 mt-4">4. Allowance Tracker</h5>
+                        <p class="text-muted smaller">Track transport costs and stipend spending.</p>
+                        <hr class="border-light">
+                        <ul class="info-list smaller">
+                            <li>Click <strong>"Spend"</strong> to log an expense (e.g., Bus Fare, Lunch).</li>
+                            <li>Click <strong>"Add"</strong> to log income (e.g., Pocket money, Stipend).</li>
+                            <li>View your balance and export your spending history.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Feature 5: Scheme of Work -->
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="500">
+                    <div class="info-card h-100">
+                        <div class="card-icon-wrapper bg-soft-orange">
+                            <i class="fa-solid fa-list-ol text-orange"></i>
+                        </div>
+                        <h5 class="fw-800 mt-4">5. Scheme Tracker</h5>
+                        <p class="text-muted smaller">Track NERDC syllabus coverage week by week.</p>
+                        <hr class="border-light">
+                        <ul class="info-list smaller">
+                            <li>Click the <strong>Menu (⋮)</strong> to "Auto-Fill" 12 weeks or "Add Topic".</li>
+                            <li>Check the box next to a topic when taught.</li>
+                            <li>The progress bar updates to show term coverage %.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Feature 6: Attendance Register (Wide) -->
+                <div class="col-lg-12" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="info-card position-relative overflow-hidden">
+                        <div class="row align-items-center">
+                            <div class="col-md-8 position-relative z-2">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="card-icon-wrapper bg-soft-blue me-3 mb-0">
+                                        <i class="fa-solid fa-clipboard-user text-primary"></i>
+                                    </div>
+                                    <h4 class="fw-800 mb-0">6. Class Attendance Register</h4>
+                                </div>
+                                <p class="text-muted">
+                                    Replace the physical register. Create classes, add student names, and mark daily attendance digitally.
+                                </p>
+                                <div class="row mt-4">
+                                    <div class="col-md-6">
+                                        <div class="step-box h-100">
+                                            <h6 class="fw-bold small text-primary">Step A: Create Class</h6>
+                                            <p class="smaller text-muted mb-0">Use the dropdown to <strong>"Manage Classes"</strong>. Create "SS 2 Gold" and add student names (e.g., "Musa", "Chidinma").</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mt-3 mt-md-0">
+                                        <div class="step-box h-100">
+                                            <h6 class="fw-bold small text-success">Step B: Mark Daily</h6>
+                                            <p class="smaller text-muted mb-0">Select a date. Click the circle to toggle status: <span class="text-success fw-bold">P (Present)</span>, <span class="text-warning fw-bold">L (Late)</span>, or <span class="text-danger fw-bold">A (Absent)</span>.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Visual Representation -->
+                            <div class="col-md-4 text-center mt-4 mt-md-0 z-2">
+                                <div class="p-3 bg-light rounded-4 border border-primary border-opacity-25 shadow-sm">
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span class="badge bg-success">Present: 15</span>
+                                        <span class="badge bg-danger">Absent: 2</span>
+                                    </div>
+                                    <div class="bg-white p-2 rounded-3 mb-2 border-start border-4 border-success text-start">
+                                        <span class="smaller fw-bold">1. Adebayo Kunle</span>
+                                        <i class="fa-solid fa-check-circle text-success float-end"></i>
+                                    </div>
+                                    <div class="bg-white p-2 rounded-3 border-start border-4 border-danger text-start">
+                                        <span class="smaller fw-bold">2. Obi Chinaza</span>
+                                        <i class="fa-solid fa-xmark-circle text-danger float-end"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 7: Weekly Logbook -->
+                <div class="col-lg-12" data-aos="fade-up">
+                    <div class="info-card border-neon-accent">
+                        <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+                            <div class="d-flex align-items-center">
+                                <div class="card-icon-wrapper bg-soft-purple me-3 mb-0">
+                                    <i class="fa-solid fa-book-journal-whills text-primary"></i>
+                                </div>
+                                <div>
+                                    <h5 class="fw-800 mb-1">7. Weekly Logbook & Report</h5>
+                                    <p class="text-muted smaller mb-0">The digital version of your physical logbook.</p>
+                                </div>
+                            </div>
+                            <div class="d-flex gap-3 align-items-center">
+                                <div class="text-end d-none d-md-block">
+                                    <span class="d-block smaller fw-bold text-muted">Input</span>
+                                    <span class="badge bg-light text-dark border">Topics + Challenges + Mood</span>
+                                </div>
+                                <i class="fa-solid fa-arrow-right text-muted"></i>
+                                <div>
+                                    <span class="d-block smaller fw-bold text-muted">Output</span>
+                                    <span class="badge bg-soft-purple text-primary border border-primary">Supervisor Report</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div> <!-- End Row -->
+
+            <!-- CTA -->
+            <div class="text-center pb-5" data-aos="fade-up">
+                <p class="text-muted mb-3">Ready to enter the classroom?</p>
+                <a href="tp.html" class="btn btn-primary-gm px-5 py-3 shadow fw-bold" style="background-color: #00b894; border-color: #00b894;">
+                    <i class="fa-solid fa-chalkboard-user me-2"></i> Go to TP Dashboard
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="info.js"></script>
+</body>
+</html>

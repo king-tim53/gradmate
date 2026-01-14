@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Guide | GradMate</title>
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Bootstrap 5 & AOS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="dashboard.css">
+    <!-- We include project.css to inherit variables -->
+    <link rel="stylesheet" href="project.css"> 
+    <link rel="stylesheet" href="info.css">
+</head>
+<body>
+
+    <!-- SIDEBAR NAVIGATION -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="/asset/EHSnV01.svg" alt="GradMate" class="nav-logo" style="height: 25px;">
+            <span class="brand-text">GradMate</span>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="dashboard.html"><i class="fa-solid fa-house"></i> Overview</a></li>
+            <li><a href="siwes.html"><i class="fa-solid fa-briefcase"></i> SIWES Module</a></li>
+            <li><a href="project.html"><i class="fa-solid fa-graduation-cap"></i> Project Defense</a></li>
+            <li><a href="tp.html"><i class="fa-solid fa-chalkboard-user"></i> Teaching Practice</a></li>
+            <li class="menu-divider"></li>
+            <!-- Active Class on Info -->
+            <li class="active"><a href="infod.html"><i class="fa-solid fa-book"></i> Info</a></li>
+            <li><a href="login.html" class="text-danger"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="content-area">
+        <div class="container-fluid px-lg-4">
+
+            <!-- HEADER -->
+            <section class="mb-5" data-aos="fade-down">
+                <div class="info-header-card p-5 rounded-5 position-relative overflow-hidden">
+                    <div class="position-relative z-2">
+                        <span class="badge bg-white text-primary mb-3 px-3 py-2 fw-800 shadow-sm">USER MANUAL</span>
+                        <h1 class="fw-900 text-white mb-2 display-5">Dashboard & Overview</h1>
+                        <p class="text-white-50 lead mb-0" style="max-width: 600px;">
+                            Your central command center. Learn how to manage your identity, track global progress, and access specific academic modules.
+                        </p>
+                    </div>
+                    <!-- Decorative Background Circle -->
+                    <div class="neon-circle-bg"></div>
+                </div>
+            </section>
+
+            <!-- FEATURES GRID -->
+            <div class="row g-4 mb-5">
+                
+                <!-- Feature 1: Smart Profile & ID -->
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="info-card h-100">
+                        <div class="card-icon-wrapper bg-soft-purple">
+                            <i class="fa-solid fa-id-card text-primary"></i>
+                        </div>
+                        <h4 class="fw-800 mt-4 mb-3">1. Smart Profile & Identity</h4>
+                        <p class="text-muted small">Your generated ID (e.g., <code>S-2025-001</code>) tells the system which modules you have access to.</p>
+                        
+                        <div class="step-box mt-3">
+                            <h6 class="fw-bold small text-uppercase text-secondary mb-2">How to Modify Access:</h6>
+                            <ul class="info-list">
+                                <li>Locate your Profile Card at the top of the dashboard.</li>
+                                <li>Click the small <strong>"Change"</strong> button next to your ID.</li>
+                                <li>Select/Deselect checkboxes (SIWES, Project, Teaching Practice) to update your track.</li>
+                            </ul>
+                            <div class="example-pill mt-3">
+                                <i class="fa-solid fa-lightbulb me-2 text-warning"></i>
+                                <span><strong>Tip:</strong> An ID starting with <strong>"S-P"</strong> means you have both SIWES and Project active.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 2: Module Command Center -->
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="info-card h-100">
+                        <div class="card-icon-wrapper bg-soft-blue">
+                            <i class="fa-solid fa-cubes text-info"></i>
+                        </div>
+                        <h4 class="fw-800 mt-4 mb-3">2. Module Command Center</h4>
+                        <p class="text-muted small">The gateway to your specific tasks. Each card represents a distinct academic phase.</p>
+                        
+                        <div class="step-box mt-3">
+                            <h6 class="fw-bold small text-uppercase text-secondary mb-2">How to Use:</h6>
+                            <ul class="info-list">
+                                <li>View the <strong>"Quick Status"</strong> badge (e.g., "Active", "Week 1") on the card.</li>
+                                <li>Click the <strong>"Enter"</strong> button to jump to that module's full page.</li>
+                                <li>If a module is locked, use the Profile "Change" button to enable it.</li>
+                            </ul>
+                            <div class="example-pill mt-3">
+                                <i class="fa-solid fa-lightbulb me-2 text-warning"></i>
+                                <span><strong>Note:</strong> The Dashboard gives a summary; the Module page handles the work.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 3: Progress Analytics -->
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="info-card h-100">
+                        <div class="card-icon-wrapper bg-soft-green">
+                            <i class="fa-solid fa-chart-pie text-success"></i>
+                        </div>
+                        <h5 class="fw-800 mt-4">3. Progress Analytics</h5>
+                        <p class="text-muted smaller">Visual indicators of how close you are to completion.</p>
+                        <hr class="border-light">
+                        <ul class="info-list smaller">
+                            <li><strong>SIWES %:</strong> Increases as you fill your logbook weeks.</li>
+                            <li><strong>Project %:</strong> Increases as you complete chapters (1-5).</li>
+                            <li><strong>TP %:</strong> Tracks your lesson notes and weeks covered.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Feature 4: Master Timeline -->
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="info-card h-100">
+                        <div class="card-icon-wrapper bg-soft-orange">
+                            <i class="fa-solid fa-calendar-check text-warning"></i>
+                        </div>
+                        <h5 class="fw-800 mt-4">4. Master Timeline</h5>
+                        <p class="text-muted smaller">One calendar to rule them all. Consolidates dates from all modules.</p>
+                        <hr class="border-light">
+                        <ul class="info-list smaller">
+                            <li>Click the <strong>"Add Task"</strong> button.</li>
+                            <li>Select a category (Project or SIWES).</li>
+                            <li>The system sorts them automatically by date (Next up appears first).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Feature 5: Naija Tips -->
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="500">
+                    <div class="info-card h-100">
+                        <div class="card-icon-wrapper bg-soft-red">
+                            <i class="fa-solid fa-lightbulb text-danger"></i>
+                        </div>
+                        <h5 class="fw-800 mt-4">5. Naija Tips</h5>
+                        <p class="text-muted smaller">Localized advice for Nigerian students.</p>
+                        <hr class="border-light">
+                        <ul class="info-list smaller">
+                            <li>Updates every time you refresh the dashboard.</li>
+                            <li>Provides practical advice like <em>"Prepare 3 hard copies"</em> or <em>"Buy snacks for your supervisor"</em>.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Feature 6: Knowledge Hub (Wide) -->
+                <div class="col-lg-12" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="info-card position-relative overflow-hidden">
+                        <div class="row align-items-center">
+                            <div class="col-md-8 position-relative z-2">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="card-icon-wrapper bg-soft-purple me-3 mb-0">
+                                        <i class="fa-solid fa-book-open-reader text-primary"></i>
+                                    </div>
+                                    <h4 class="fw-800 mb-0">6. Academic Knowledge Hub</h4>
+                                </div>
+                                <p class="text-muted">
+                                    An intelligent FAQ system built right into your dashboard. Stop asking peers rumors; get facts about ITF, Defense, and Plagiarism.
+                                </p>
+                                <div class="row mt-4">
+                                    <div class="col-md-6">
+                                        <div class="step-box h-100">
+                                            <h6 class="fw-bold small text-primary">Step A: Search</h6>
+                                            <p class="smaller text-muted mb-0">Type keywords like <strong>"ITF"</strong> or <strong>"Defense"</strong> in the search bar. The list filters instantly.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mt-3 mt-md-0">
+                                        <div class="step-box h-100">
+                                            <h6 class="fw-bold small text-warning">Step B: Expand</h6>
+                                            <p class="smaller text-muted mb-0">Click the arrow to read details. Includes <strong>"Pro-Tips"</strong> highlighted in colored boxes.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Visual Representation -->
+                            <div class="col-md-4 text-center mt-4 mt-md-0 z-2">
+                                <div class="p-3 bg-light rounded-4 border border-primary border-opacity-25 shadow-sm">
+                                    <div class="input-group input-group-sm mb-2">
+                                        <span class="input-group-text border-0"><i class="fa-solid fa-search"></i></span>
+                                        <input type="text" class="form-control border-0" placeholder="Search topics..." disabled>
+                                    </div>
+                                    <div class="bg-white p-2 rounded-3 mb-2 border-start border-4 border-success text-start opacity-50">
+                                        <span class="smaller fw-bold">ITF Form 8 Guide</span>
+                                    </div>
+                                    <div class="bg-white p-2 rounded-3 border-start border-4 border-primary text-start">
+                                        <span class="smaller fw-bold">Defense Etiquette</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 7: Track Manager Logic -->
+                <div class="col-lg-12" data-aos="fade-up">
+                    <div class="info-card border-neon-accent">
+                        <div class="d-flex align-items-center justify-content-between flex-wrap gap-3">
+                            <div class="d-flex align-items-center">
+                                <div class="card-icon-wrapper bg-soft-orange me-3 mb-0">
+                                    <i class="fa-solid fa-sliders text-warning"></i>
+                                </div>
+                                <div>
+                                    <h5 class="fw-800 mb-1">7. Track Manager Logic</h5>
+                                    <p class="text-muted smaller mb-0">How your dashboard determines your generated ID.</p>
+                                </div>
+                            </div>
+                            <div class="d-flex gap-3 align-items-center">
+                                <div class="text-end d-none d-md-block">
+                                    <span class="d-block smaller fw-bold text-muted">Selection</span>
+                                    <span class="badge bg-light text-dark border">SIWES (S) + Project (P)</span>
+                                </div>
+                                <i class="fa-solid fa-arrow-right text-muted"></i>
+                                <div>
+                                    <span class="d-block smaller fw-bold text-muted">Resulting ID</span>
+                                    <span class="badge bg-soft-purple text-primary border border-primary">S-P-202X-ID</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div> <!-- End Row -->
+
+            <!-- CTA -->
+            <div class="text-center pb-5" data-aos="fade-up">
+                <p class="text-muted mb-3">Mastered the overview?</p>
+                <a href="dashboard.html" class="btn btn-primary-gm px-5 py-3 shadow fw-bold">
+                    <i class="fa-solid fa-house me-2"></i> Return to Dashboard
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="info.js"></script>
+</body>
+</html>

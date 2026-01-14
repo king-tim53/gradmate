@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GradMate | The Ultimate SIWES & Project Assistant</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background Mesh Blobs -->
+    <div class="mesh-gradient"></div>
+    <div class="mesh-blob-1"></div>
+    <div class="mesh-blob-2"></div>
+
+    <!-- Glassmorphic Navbar -->
+    <!-- Modern Floating Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+        <div class="container navbar-container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="/asset/EHSnV01.svg" alt="GradMate Logo" class="nav-logo">
+                <span class="ms-2 fw-bold logo-text">
+                    <span class="logo-g">G</span><span class="logo-rest">radMate</span>
+                </span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="fa-solid fa-bars-staggered"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="#siwes">SIWES</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#project">Project Defense</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#tp">Teaching Practice</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#pricing">Pricing</a></li>
+                    <li class="nav-item"><a class="nav-link login-link" href="login.html">Login</a></li>
+                    <li class="nav-item">
+                        <a class="btn btn-nav-cta ms-lg-3" href="signup.html">Get Started</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+   <!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <!-- Left Side: Content -->
+            <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1000">
+                <span class="badge-tag">🎓 #1 Platform for Nigerian Undergraduates</span>
+                <h1 class="hero-title mt-3">Stay Organized. <br><span class="gradient-text">Defend with Confidence.</span></h1>
+                <p class="hero-subtitle my-4">The smart assistant for SIWES tracking and project preparation. Built to ensure a corrupted flash drive never ruins your degree.</p>
+                
+                <div class="hero-btns d-flex align-items-center flex-wrap gap-3">
+                    <a href="signup.html" class="btn btn-primary-gm">Get Started Free <i class="fa-solid fa-arrow-right ms-2"></i></a>
+                    <a href="#story" class="btn-play-wrapper d-flex align-items-center">
+                        <div class="play-btn-circle">
+                            <i class="fa-solid fa-play"></i>
+                        </div>
+                        <span class="ms-3 fw-bold">Watch the Story</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Side: Animated Image & Floating Cards -->
+            <div class="col-lg-6 mt-5 mt-lg-0" data-aos="zoom-in" data-aos-duration="1200">
+                <div class="hero-img-wrapper">
+                    <!-- Floating Card 1 -->
+                    <div class="floating-card card-1 shadow-lg">
+                        <div class="icon-circle bg-soft-blue">
+                            <i class="fa-solid fa-cloud-arrow-up text-primary"></i>
+                        </div>
+                        <div>
+                            <p class="mb-0 small fw-bold">Cloud Sync</p>
+                            <small class="text-muted">Chapter 3 Saved</small>
+                        </div>
+                    </div>
+
+                    <!-- Floating Card 2 -->
+                    <div class="floating-card card-2 shadow-lg">
+                        <div class="icon-circle bg-soft-coral">
+                            <i class="fa-solid fa-triangle-exclamation text-accent"></i>
+                        </div>
+                        <div>
+                            <p class="mb-0 small fw-bold">Defense Alert</p>
+                            <small class="text-muted">48 Hours Left</small>
+                        </div>
+                    </div>
+
+                    <!-- Main Illustration -->
+                    <img src="https://illustrations.popsy.co/purple/success.svg" alt="Student Success Illustration" class="img-fluid main-hero-img">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- University Ticker Section (Social Proof) -->
+    <div class="uni-ticker py-4">
+        <div class="container">
+            <p class="text-center text-uppercase small fw-bold text-muted mb-4">Empowering Students From</p>
+            <div class="ticker-wrapper">
+                <div class="ticker-content">
+                    <span>UNIVERSITY OF LAGOS</span>
+                    <span>UNN</span>
+                    <span>OAU ILE-IFE</span>
+                    <span>AHMADU BELLO UNIVERSITY</span>
+                    <span>UI IBADAN</span>
+                    <span>FUTA</span>
+                    <span>UNIBEN</span>
+                    <span>LASU</span>
+                    <span>LAUTECH</span>
+                    <span>UNIZIK</span>
+                    <span>UNIPORT</span>
+                    <span>OOU</span>
+                    <!-- Repeat for seamless loop -->
+                    <span>UNIVERSITY OF LAGOS</span>
+                    <span>UNN</span>
+                    <span>OAU ILE-IFE</span>
+                    <span>AHMADU BELLO UNIVERSITY</span>
+                    <span>UI IBADAN</span>
+                    <span>FUTA</span>
+                    <span>UNIBEN</span>
+                    <span>LASU</span>
+                    <span>LAUTECH</span>
+                    <span>UNIZIK</span>
+                    <span>UNIPORT</span>
+                    <span>OOU</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- The Problem (Flash Drive Story) -->
+    <section id="story" class="py-5">
+        <div class="container py-5">
+            <div class="story-box p-5 border-radius-lg" data-aos="fade-up">
+                <div class="row align-items-center">
+                    <div class="col-lg-7">
+                        <h2 class="section-title mb-4">Don't be the student who had to "Restart from Chapter 1"</h2>
+                        <p class="lead">We’ve all heard the horror stories. A lost flash drive, a crashed laptop, or a supervisor who "lost" your hard copy. GradMate was built to solve the systemic gap in the Nigerian academic journey.</p>
+                        <div class="d-flex mt-4">
+                            <div class="me-4">
+                                <h3 class="gradient-text fw-800">0%</h3>
+                                <p class="small text-muted">File Loss Rate</p>
+                            </div>
+                            <div>
+                                <h3 class="gradient-text fw-800">100%</h3>
+                                <p class="small text-muted">Defense Readiness</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 text-center">
+                        <img src="https://illustrations.popsy.co/purple/falling.svg" alt="Problem" class="img-fluid" style="max-height: 250px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SIWES Companion Section -->
+    <section id="siwes" class="py-5 section-alt">
+        <div class="container py-5">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <span class="badge-tag">Industry Experience</span>
+                <h2 class="section-title">The SIWES Companion</h2>
+                <p class="text-muted">Master your Industrial Training from Day 1 to the Final Report.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-card glass-card">
+                        <div class="feature-icon bg-soft-blue"><i class="fa-solid fa-book-open"></i></div>
+                        <h4>Digital Logbook</h4>
+                        <p>Draft your daily reports on the go. Export to PDF when you're ready to print your physical book.</p>
+                        <button class="btn btn-sm btn-outline-primary border-radius-sm">Try Demo</button>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-card glass-card">
+                        <div class="feature-icon bg-soft-purple"><i class="fa-solid fa-hard-hat"></i></div>
+                        <h4>Placement Prep</h4>
+                        <p>Department-specific checklists. Know exactly what PPE or software tools you need for your industry.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-card glass-card">
+                        <div class="feature-icon bg-soft-coral"><i class="fa-solid fa-building-user"></i></div>
+                        <h4>Employer Insights</h4>
+                        <p>See reviews of IT placements from previous students. Know the "allowance" and "work culture" beforehand.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+       
+
+        <!-- Teaching Practice Section (New Addition) -->
+    <section id="tp" class="py-5 bg-light-section position-relative overflow-hidden">
+        <!-- Decorative Background Blob specific for TP -->
+        <div class="position-absolute top-0 start-0 translate-middle rounded-circle bg-soft-orange" style="width: 300px; height: 300px; filter: blur(80px); opacity: 0.4; z-index: 0;"></div>
+
+        <div class="container py-5 position-relative z-2">
+            <div class="row align-items-center">
+                
+                <!-- Left: Visual Feature Showcase (Stacked Cards) -->
+                <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-right">
+                    <div class="position-relative ps-lg-4">
+                        
+                        <!-- Main Visual: Lesson Note Architect -->
+                        <div class="bg-white p-4 rounded-4 shadow-lg border border-light position-relative z-2">
+                            <div class="d-flex align-items-center justify-content-between mb-3 border-bottom pb-2">
+                                <div class="d-flex align-items-center">
+                                    <div class="icon-circle bg-soft-orange me-2" style="width: 35px; height: 35px;">
+                                        <i class="fa-solid fa-pen-ruler text-orange" style="font-size: 0.9rem;"></i>
+                                    </div>
+                                    <span class="fw-800 small text-secondary">Lesson Note Wizard</span>
+                                </div>
+                                <span class="badge bg-success small">Saved</span>
+                            </div>
+                            <!-- Mock UI for Lesson Note -->
+                            <div class="p-3 bg-light rounded-3 mb-2">
+                                <small class="text-muted fw-bold d-block mb-1" style="font-size: 0.65rem;">TOPIC</small>
+                                <span class="fw-bold text-dark small">Photosynthesis in Plants</span>
+                            </div>
+                            <div class="p-3 bg-light rounded-3">
+                                <small class="text-muted fw-bold d-block mb-1" style="font-size: 0.65rem;">BEHAVIORAL OBJECTIVE</small>
+                                <span class="fw-bold text-dark small">Students should be able to <span class="text-success">define</span>...</span>
+                            </div>
+                        </div>
+
+                        <!-- Floating Card: Wallet/Allowance -->
+                        <div class="position-absolute bottom-0 end-0 translate-middle-y bg-white p-3 rounded-4 shadow-lg border-start border-4 border-success d-none d-md-block" style="right: -30px !important; bottom: -50px !important; z-index: 3; animation: floatVertical 6s ease-in-out infinite;">
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="icon-circle bg-soft-green" style="width: 45px; height: 45px;">
+                                    <i class="fa-solid fa-wallet text-success"></i>
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-0 small text-secondary">Allowance Tracker</h6>
+                                    <small class="fw-bold text-success">+₦30,000.00</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Floating Card: Class Control -->
+                        <div class="position-absolute top-0 start-0 translate-middle bg-white p-3 rounded-4 shadow-lg border border-light d-none d-md-block" style="z-index: 1; animation: floatVertical 7s ease-in-out infinite reverse;">
+                            <div class="d-flex align-items-center gap-2">
+                                <i class="fa-solid fa-users-viewfinder text-primary"></i>
+                                <small class="fw-bold text-secondary">SS 2 Attendance: <span class="text-primary">98%</span></small>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Right: Text Content -->
+                <div class="col-lg-6 ps-lg-5" data-aos="fade-left">
+                    <span class="badge-tag bg-soft-orange text-orange">For Education Students</span>
+                    <h2 class="section-title mt-3">Teaching Practice <br><span class="gradient-text">Simplified.</span></h2>
+                    <p class="text-muted lead my-4">
+                        Forget the stress of handwritten lesson notes and messy registers. GradMate gives student teachers the superpower to manage their classroom like a pro.
+                    </p>
+                    
+                    <!-- Feature Points List -->
+                    <div class="d-flex flex-column gap-4">
+                        
+                        <!-- Feature 1 -->
+                        <div class="d-flex">
+                            <div class="me-3 mt-1">
+                                <i class="fa-solid fa-wand-magic-sparkles text-orange fs-4"></i>
+                            </div>
+                            <div>
+                                <h5 class="fw-bold mb-1">Instant Lesson Notes</h5>
+                                <p class="small text-muted mb-0">Generate standard Nigerian (NERDC) lesson notes in minutes. Auto-suggests objectives and teaching aids.</p>
+                            </div>
+                        </div>
+
+                        <!-- Feature 2 -->
+                        <div class="d-flex">
+                            <div class="me-3 mt-1">
+                                <i class="fa-solid fa-clipboard-user text-success fs-4"></i>
+                            </div>
+                            <div>
+                                <h5 class="fw-bold mb-1">Digital Class Register</h5>
+                                <p class="small text-muted mb-0">Mark attendance on your phone. Track latecomers and absentees without carrying a heavy book.</p>
+                            </div>
+                        </div>
+
+                        <!-- Feature 3 -->
+                        <div class="d-flex">
+                            <div class="me-3 mt-1">
+                                <i class="fa-solid fa-coins text-primary fs-4"></i>
+                            </div>
+                            <div>
+                                <h5 class="fw-bold mb-1">Smart Wallet</h5>
+                                <p class="small text-muted mb-0">Track your transport expenses and stipend. Know exactly how much you spend weekly.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+     
+    <!-- Project Defense Mastery Section -->
+    <section id="project" class="py-5">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-5" data-aos="fade-right">
+                    <span class="badge-tag">Academic Excellence</span>
+                    <h2 class="section-title">Project Defense Mastery</h2>
+                    <p class="text-muted my-4">Preparation is 90% of the grade. We give you the tools to dominate your defense panel.</p>
+                    
+                    <div class="defense-step mb-4">
+                        <div class="d-flex align-items-center mb-2">
+                            <span class="step-num">1</span>
+                            <h5 class="mb-0 ms-3">AI Mock Defense</h5>
+                        </div>
+                        <p class="ms-5 text-muted">Generate likely questions based on your specific project topic and department.</p>
+                    </div>
+
+                    <div class="defense-step mb-4">
+                        <div class="d-flex align-items-center mb-2">
+                            <span class="step-num">2</span>
+                            <h5 class="mb-0 ms-3">Chapter Progress Bar</h5>
+                        </div>
+                        <div class="progress ms-5" style="height: 10px;">
+                            <div class="progress-bar bg-primary" style="width: 75%"></div>
+                        </div>
+                        <p class="ms-5 mt-2 small text-muted">Visually track from Chapter 1 to Conclusion.</p>
+                    </div>
+                </div>
+                <div class="col-lg-7" data-aos="fade-left">
+                    <div class="defense-simulator-ui p-4 shadow-lg border-radius-lg bg-white">
+                        <div class="ui-header d-flex justify-content-between border-bottom pb-3 mb-3">
+                            <span class="fw-bold">Defense Prep: <span class="text-primary">Eng. Students</span></span>
+                            <span class="badge bg-soft-purple text-primary">Live Simulator</span>
+                        </div>
+                        <div class="ui-body">
+                            <p class="small text-muted mb-2">AI Generated Question:</p>
+                            <h5 class="mb-4">"How does your design account for the voltage fluctuations common in the Nigerian power grid?"</h5>
+                            <textarea class="form-control mb-3" rows="3" placeholder="Type your practice answer here..."></textarea>
+                            <button class="btn btn-primary-gm w-100">Get AI Feedback</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="pricing" class="py-5">
+        <div class="container py-5">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <span class="badge-tag">Simple Pricing</span>
+                <h2 class="section-title">Built for Students, Priced for Students</h2>
+                <p class="text-muted">No hidden fees. Just 100% focus on your academic success.</p>
+            </div>
+    
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-6" data-aos="zoom-in">
+                    <div class="pricing-card glass-card p-5 text-center highlighted-card">
+                        <div class="pricing-badge">MOST POPULAR</div>
+                        <h4 class="fw-800 mb-3">Academic Pass</h4>
+                        <div class="price-display mb-4">
+                            <span class="currency">₦</span>
+                            <span class="amount">400</span>
+                            <span class="duration">/ Every 3 Months</span>
+                        </div>
+                        
+                        <ul class="list-unstyled mb-4 text-start">
+                            <li class="mb-3"><i class="fa-solid fa-check text-success me-2"></i> <strong>First 3 Months FREE</strong></li>
+                            <li class="mb-3"><i class="fa-solid fa-check text-success me-2"></i> Unlimited Cloud Storage</li>
+                            <li class="mb-3"><i class="fa-solid fa-check text-success me-2"></i> Technical Report Generator</li>
+                            <li class="mb-3"><i class="fa-solid fa-check text-success me-2"></i> Supervisor Dashboard Access</li>
+                            <li class="mb-3"><i class="fa-solid fa-check text-success me-2"></i> Digital Clearance Vault</li>
+                        </ul>
+    
+                        <a href="payment.html" class="btn btn-primary-gm w-100 py-3">Start 3-Month Free Trial</a>
+                        <p class="small text-muted mt-3">Cancel anytime. No questions asked.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advanced Feature Packs (Modern Bento Grid) -->
+<section id="features" class="py-5 bg-light-section">
+    <div class="container py-5">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <span class="badge-tag">Power Tools</span>
+            <h2 class="section-title">Everything Else You Need</h2>
+            <p class="text-muted">Professional tools designed for the Nigerian academic ecosystem.</p>
+        </div>
+        
+        <div class="row g-4">
+            <!-- Feature 1: Supervisor Log (Wide Card) -->
+            <div class="col-lg-7" data-aos="fade-up">
+                <div class="neon-card h-100 bento-purple">
+                    <div class="card-content">
+                        <div class="neon-icon"><i class="fa-solid fa-person-chalkboard"></i></div>
+                        <div>
+                            <h4>Supervisor Log</h4>
+                            <p>Keep a digital timeline of every correction your supervisor makes. Never get caught repeating a mistake they already pointed out.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 2: Smart Formatting -->
+            <div class="col-lg-5" data-aos="fade-up" data-aos-delay="100">
+                <div class="neon-card h-100 bento-accent">
+                    <div class="neon-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                    <h4>Smart Formatting</h4>
+                    <p>One-click citations and formatting for Nigerian University standards (APA/MLA).</p>
+                </div>
+            </div>
+
+            <!-- Feature 3: Peer Community -->
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="neon-card h-100 bento-green">
+                    <div class="neon-icon"><i class="fa-solid fa-people-group"></i></div>
+                    <h4>Peer Community</h4>
+                    <p>Connect with students in your department across 50+ Nigerian universities.</p>
+                </div>
+            </div>
+
+            <!-- Feature 4: Deadline Alerts -->
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="neon-card h-100 bento-blue">
+                    <div class="neon-icon"><i class="fa-solid fa-circle-exclamation"></i></div>
+                    <h4>Deadline Nag</h4>
+                    <p>Smart alerts that get louder as your defense date or IT submission approaches.</p>
+                </div>
+            </div>
+
+            <!-- Feature 5: Security Vault -->
+            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="400">
+                <div class="neon-card h-100 bento-coral">
+                    <div class="neon-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h4>The Anti-Loss Vault</h4>
+                    <p>Bank-grade encryption for your project files. Corrupted flash drives are a thing of the past.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    
+ <!-- Supervisor Command Center Section -->
+<section id="supervisors" class="py-5 position-relative overflow-hidden">
+    
+
+    <div class="container py-5">
+        <div class="row align-items-center">
+            <!-- Left Side: Text Content -->
+            <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-right">
+                <span class="badge-tag bg-soft-purple text-primary">For Lecturers & Staff</span>
+                <h2 class="section-title mt-3">The Supervisor's <br><span class="gradient-text">Command Center.</span></h2>
+                <p class="text-muted lead my-4">
+                    Managing 100+ final year students shouldn't require 100+ emails. GradMate gives you a dedicated dashboard to track, approve, and schedule with zero friction.
+                </p>
+                
+                <!-- Feature List -->
+                <div class="d-flex flex-column gap-3 mb-5">
+                    <div class="d-flex align-items-start">
+                        <div class="icon-circle bg-soft-blue me-3 flex-shrink-0"><i class="fa-solid fa-users-viewfinder"></i></div>
+                        <div>
+                            <h5 class="fw-bold mb-1">Batch Management</h5>
+                            <p class="small text-muted mb-0">Use Matric Number ranges to schedule physical meetings for groups (e.g., Ends in 005-020).</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-start">
+                        <div class="icon-circle bg-soft-green me-3 flex-shrink-0"><i class="fa-solid fa-share-nodes"></i></div>
+                        <div>
+                            <h5 class="fw-bold mb-1">Shared Repository</h5>
+                            <p class="small text-muted mb-0">Upload a correction guide or template once; it instantly appears on all your students' dashboards.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CTA Buttons -->
+                <div class="d-flex gap-3">
+                    <a href="signup.html" class="btn btn-primary-gm shadow-lg">Lecturer Sign Up</a>
+                    <a href="login.html" class="btn btn-outline-primary border-radius-sm px-4 fw-bold">Staff Login</a>
+                </div>
+            </div>
+
+            <!-- Right Side: Visual Mockup (CSS Only Dashboard) -->
+            <div class="col-lg-6" data-aos="fade-left">
+                <div class="position-relative">
+                    <!-- Main Card: Overview Stats -->
+                    <div class="bg-white p-4 rounded-4 shadow-lg border border-light position-relative z-2">
+                        <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-3">
+                            <div>
+                                <h6 class="fw-800 text-secondary mb-0">Supervisor Dashboard</h6>
+                                <small class="text-muted">Dr. F. Adebayo</small>
+                            </div>
+                            <span class="badge bg-success">ACTIVE</span>
+                        </div>
+                        
+                        <div class="row g-3">
+                            <div class="col-6">
+                                <div class="p-3 rounded-3" style="background: linear-gradient(135deg, #6C63FF 0%, #4834d4 100%); color: white;">
+                                    <h3 class="fw-800 mb-0">142</h3>
+                                    <small class="opacity-75">Total Students</small>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="p-3 rounded-3" style="background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%); color: white;">
+                                    <h3 class="fw-800 mb-0">18</h3>
+                                    <small class="opacity-75">Cleared for Defense</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4">
+                            <h6 class="fw-bold small text-muted text-uppercase mb-3">Recent Activity</h6>
+                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="rounded-circle bg-light d-flex align-items-center justify-content-center fw-bold text-primary me-3" style="width: 40px; height: 40px;">TS</div>
+                                    <div>
+                                        <h6 class="fw-bold mb-0 small">Timofe Segun-Ojo</h6>
+                                        <small class="text-muted" style="font-size: 0.7rem;">Uploaded Chapter 3</small>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-outline-primary" style="font-size: 0.7rem;">Review</button>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div class="d-flex align-items-center">
+                                    <div class="rounded-circle bg-light d-flex align-items-center justify-content-center fw-bold text-accent me-3" style="width: 40px; height: 40px;">SA</div>
+                                    <div>
+                                        <h6 class="fw-bold mb-0 small">Sarah Alabi</h6>
+                                        <small class="text-muted" style="font-size: 0.7rem;">Requested Meeting</small>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-outline-danger" style="font-size: 0.7rem;">Accept</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Floating Badge: Broadcast -->
+                    <div class="position-absolute top-0 end-0 translate-middle-y bg-white p-3 rounded-4 shadow-lg border-start border-4 border-warning d-none d-md-block" style="right: -20px !important; z-index: 3; animation: floatVertical 6s ease-in-out infinite;">
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="icon-circle bg-soft-purple" style="width: 40px; height: 40px;"><i class="fa-solid fa-bullhorn text-primary"></i></div>
+                            <div>
+                                <h6 class="fw-bold mb-0 small">Broadcast Sent</h6>
+                                <small class="text-muted">"Meeting shifted to 2PM"</small>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+  <!-- Founder & Vision Section -->
+<section id="vision" class="py-5 bg-light-section">
+    <div class="container py-5">
+        <div class="row g-5 align-items-center">
+            <!-- Left: Founder Bio -->
+            <div class="col-lg-5" data-aos="fade-right">
+                <div class="founder-card p-4 bg-white shadow-lg border-radius-lg">
+                    <div class="d-flex align-items-center mb-4">
+                        <!-- Replace with actual image -->
+                        <div class="founder-img-circle me-3">
+                            <img src="https://ui-avatars.com/api/?name=Timofe+Segun-ojo&background=6C63FF&color=fff&size=128" alt="Timofe Segun-ojo" class="img-fluid rounded-circle">
+                        </div>
+                        <div>
+                            <h4 class="mb-0 fw-800">Timofe Segun-ojo</h4>
+                            <p class="text-primary fw-bold mb-0">Founder & Lead Developer</p>
+                        </div>
+                    </div>
+                    <p class="text-muted">
+                        As a <strong>Project Manager</strong> and <strong>Front-end Developer</strong>, Timofe envisions a Nigeria where technology is not just a luxury, but a high-impact necessity accessible to everyone. 
+                    </p>
+                    <p class="text-muted small">
+                        GradMate is the result of that vision—bridging the gap between academic theory and real-world industrial readiness.
+                    </p>
+                    <div class="mt-4 pt-3 border-top">
+                        <div class="social-icons">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fa-solid fa-envelope"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Vision & Mission -->
+            <div class="col-lg-7">
+                <div class="ps-lg-4">
+                    <span class="badge-tag">Our Purpose</span>
+                    <h2 class="section-title mt-3 mb-5">Making Technology a <span class="gradient-text">Necessity for All.</span></h2>
+
+                    <!-- Mission Card -->
+                    <div class="vm-card mb-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="vm-icon bg-soft-blue">
+                            <i class="fa-solid fa-person-chalkboard"></i>
+                        </div>
+                        <div class="vm-content">
+                            <h5 class="fw-bold">Our Mission</h5>
+                            <p class="text-muted">To simplify academic milestones and empower Nigerian students to graduate with confidence.</p>
+                        </div>
+                    </div>
+
+                    <!-- Vision Card -->
+                    <div class="vm-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="vm-icon bg-soft-purple">
+                            <i class="fa-solid fa-eye"></i>
+                        </div>
+                        <div class="vm-content">
+                            <h5 class="fw-bold">Our Vision</h5>
+                            <p class="text-muted">To empower every Nigerian student with the tools, structure, and confidence to excel in SIWES and project defense, bridging the gap between academic theory and real-world readiness.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+   <!-- Footer -->
+<footer class="modern-footer">
+    <div class="container">
+        <div class="row gy-5">
+            <!-- Brand Column -->
+            <div class="col-lg-4 col-md-12">
+                <a href="#" class="d-inline-block mb-4">
+                    <img src="/asset/EHSnV01.svg" alt="GradMate Logo" class="footer-logo">
+                </a>
+                <p class="footer-text pe-lg-5">
+                    Building a future where tech is a necessity for every Nigerian student. Bridge the gap between theory and industry with GradMate.
+                </p>
+                <div class="social-row mt-4">
+                    <a href="#" class="social-circle"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" class="social-circle"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#" class="social-circle"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="social-circle"><i class="fa-brands fa-github"></i></a>
+                </div>
+            </div>
+
+            <!-- Platform Links -->
+            <div class="col-6 col-lg-2 ms-auto">
+                <h6 class="footer-heading">Platform</h6>
+                <ul class="footer-links">
+                    <li><a href="#siwes">SIWES Tracker</a></li>
+                    <li><a href="#project">Defense Prep</a></li>
+                    <li><a href="#features">Formatting Engine</a></li>
+                    <li><a href="#">Knowledge Hub</a></li>
+                </ul>
+            </div>
+
+            <!-- Support Links -->
+            <div class="col-6 col-lg-2">
+                <h6 class="footer-heading">Support</h6>
+                <ul class="footer-links">
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#vision">About the Founder</a></li>
+                </ul>
+            </div>
+
+            <!-- Newsletter Column -->
+            <div class="col-lg-3">
+                <h6 class="footer-heading">Stay Updated</h6>
+                <p class="small text-muted mb-3">Get the latest tips on SIWES and Project Defense.</p>
+                <div class="newsletter-box">
+                    <input type="email" placeholder="Email address">
+                    <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom mt-5 pt-4">
+            <div class="row align-items-center">
+                <!-- Left Side: Copyright & Powered By -->
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="copyright mb-0">
+                        &copy; 2026 GradMate. Powered by <span class="fw-bold text-primary">Timnex Tech</span>.
+                    </p>
+                </div>
+                <!-- Right Side: Design Credit -->
+                <div class="col-md-6 text-center text-md-end mt-3 mt-md-0">
+                    <p class="copyright mb-0">Designed by the <span class="fw-bold text-dark">GradMate Team</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <!-- JS Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

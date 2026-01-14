@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIWES Module Guide | GradMate</title>
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Bootstrap 5 & AOS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="dashboard.css">
+    <!-- We include siwes.css to inherit module-specific variables -->
+    <link rel="stylesheet" href="siwes.css"> 
+    <link rel="stylesheet" href="info.css">
+</head>
+<body>
+
+    <!-- SIDEBAR NAVIGATION (Exact Replica from siwes.html) -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="/asset/EHSnV01.svg" alt="GradMate" class="nav-logo" style="height: 25px;">
+            <span class="brand-text">GradMate</span>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="dashboard.html"><i class="fa-solid fa-house"></i> Overview</a></li>
+            <li><a href="siwes.html"><i class="fa-solid fa-briefcase"></i> SIWES Module</a></li>
+            <li><a href="project.html"><i class="fa-solid fa-graduation-cap"></i> Project Defense</a></li>
+            <li><a href="resource.html"><i class="fa-solid fa-book"></i> Resources</a></li>
+            <li><a href="chat.html"><i class="fa-solid fa-robot"></i> AI Assistant</a></li>
+            <li class="menu-divider"></li>
+            <!-- Active Class on Info Page -->
+            <li class="active"><a href="infos.html"><i class="fa-solid fa-book"></i> Info</a></li>
+            <li><a href="login.html" class="text-danger"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="content-area">
+        <div class="container-fluid px-lg-4">
+
+            <!-- HEADER -->
+            <section class="mb-5" data-aos="fade-down">
+                <div class="info-header-card p-5 rounded-5 position-relative overflow-hidden" style="background: linear-gradient(135deg, #0984e3 0%, #74b9ff 100%);">
+                    <div class="position-relative z-2">
+                        <span class="badge bg-white text-primary mb-3 px-3 py-2 fw-800 shadow-sm">USER MANUAL</span>
+                        <h1 class="fw-900 text-white mb-2 display-5">SIWES Companion</h1>
+                        <p class="text-white-50 lead mb-0" style="max-width: 600px;">
+                            Your complete industrial training toolkit. Manage logbooks, track supervisor visits, and auto-generate reports.
+                        </p>
+                    </div>
+                    <!-- Decorative Background Circle -->
+                    <div class="neon-circle-bg"></div>
+                </div>
+            </section>
+
+            <!-- FEATURES GRID -->
+            <div class="row g-4 mb-5">
+                
+                <!-- Feature 1: Placement Configuration -->
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="info-card h-100">
+                        <div class="card-icon-wrapper bg-soft-blue">
+                            <i class="fa-solid fa-building text-primary"></i>
+                        </div>
+                        <h4 class="fw-800 mt-4 mb-3">1. Placement Profile</h4>
+                        <p class="text-muted small">Set up your industrial training details to start the countdown timer and progress tracking.</p>
+                        
+                        <div class="step-box mt-3">
+                            <h6 class="fw-bold small text-uppercase text-secondary mb-2">How to Use:</h6>
+                            <ul class="info-list">
+                                <li>Click <strong>"Setup Placement"</strong> (top right).</li>
+                                <li>Input your <strong>Company Name</strong>, <strong>Job Role</strong>, and Dates.</li>
+                                <li>The system automatically calculates your total weeks (e.g., 24 Weeks).</li>
+                            </ul>
+                            <div class="example-pill mt-3">
+                                <i class="fa-solid fa-lightbulb me-2 text-warning"></i>
+                                <span><strong>Tip:</strong> Ensure dates match your official SCAF letter.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 2: Daily Logbook -->
+                <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="info-card h-100">
+                        <div class="card-icon-wrapper bg-soft-purple">
+                            <i class="fa-solid fa-book-open text-primary"></i>
+                        </div>
+                        <h4 class="fw-800 mt-4 mb-3">2. Daily Logbook System</h4>
+                        <p class="text-muted small">A digital replacement for your physical logbook. Never forget what you did on Monday.</p>
+                        
+                        <div class="step-box mt-3">
+                            <h6 class="fw-bold small text-uppercase text-secondary mb-2">How to Use:</h6>
+                            <ul class="info-list">
+                                <li>Click <strong>"New Entry"</strong>.</li>
+                                <li>Describe work done (Technical) and Lessons Learned (Soft Skills).</li>
+                                <li>Use the <strong>Search Bar</strong> to find specific entries later (e.g., search "Networking").</li>
+                            </ul>
+                            <div class="example-pill mt-3">
+                                <i class="fa-solid fa-check-circle me-2 text-success"></i>
+                                <span><strong>Goal:</strong> Keeps your "Logbook Health" at 100%.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 3: Supervisor Tracker -->
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="info-card h-100">
+                        <div class="card-icon-wrapper bg-soft-red">
+                            <i class="fa-solid fa-user-check text-danger"></i>
+                        </div>
+                        <h5 class="fw-800 mt-4">3. Supervisor Tracker</h5>
+                        <p class="text-muted smaller">Record official school visitations.</p>
+                        <hr class="border-light">
+                        <ul class="info-list smaller">
+                            <li>Click <strong>"Log New Visit"</strong> when your lecturer arrives.</li>
+                            <li>The status icon turns <span class="text-success fw-bold">Green</span>.</li>
+                            <li>View "Visitation History" to prove attendance.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Feature 4: Industry Toolbag -->
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="info-card h-100">
+                        <div class="card-icon-wrapper bg-soft-orange">
+                            <i class="fa-solid fa-screwdriver-wrench text-warning"></i>
+                        </div>
+                        <h5 class="fw-800 mt-4">4. Industry Toolbag</h5>
+                        <p class="text-muted smaller">Showcase the software & tools you mastered.</p>
+                        <hr class="border-light">
+                        <ul class="info-list smaller">
+                            <li>Click <strong>"Add Skill"</strong>.</li>
+                            <li>Add tools like <em>AutoCAD, Python, VS Code</em>.</li>
+                            <li>Builds a competency profile for your CV.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Feature 5: Document Vault -->
+                <div class="col-lg-4" data-aos="fade-up" data-aos-delay="500">
+                    <div class="info-card h-100">
+                        <div class="card-icon-wrapper bg-soft-green">
+                            <i class="fa-solid fa-file-shield text-success"></i>
+                        </div>
+                        <h5 class="fw-800 mt-4">5. Document Vault</h5>
+                        <p class="text-muted smaller">Safe storage for ITF forms.</p>
+                        <hr class="border-light">
+                        <ul class="info-list smaller">
+                            <li>Upload <strong>SCAF Form</strong>, <strong>Form 8</strong>, or <strong>Acceptance Letter</strong>.</li>
+                            <li>Access them anywhere (e.g., at the cyber cafe).</li>
+                            <li>Prevent losing physical papers.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Feature 6: Report Auto-Builder (Wide) -->
+                <div class="col-lg-12" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="info-card border-neon-accent position-relative overflow-hidden">
+                        <div class="row align-items-center">
+                            <div class="col-md-8 position-relative z-2">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="card-icon-wrapper bg-primary me-3 mb-0 text-white">
+                                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                    </div>
+                                    <h4 class="fw-800 mb-0">6. Automatic Technical Report Builder</h4>
+                                </div>
+                                <p class="text-muted">
+                                    Stop stressing about writing your final report from scratch. GradMate uses your <strong>Daily Logs</strong> to generate a structured 6-month Technical Report outline automatically.
+                                </p>
+                                <div class="d-flex gap-3 mt-4">
+                                    <span class="badge bg-soft-blue text-primary border border-primary p-2">Compiles Weekly Activities</span>
+                                    <span class="badge bg-soft-purple text-primary border border-primary p-2">Formats Technical Experience</span>
+                                </div>
+                            </div>
+                            <!-- Visual representation -->
+                            <div class="col-md-4 text-center mt-4 mt-md-0 z-2">
+                                <button class="btn btn-primary-gm btn-lg shadow-sm" disabled>
+                                    <i class="fa-solid fa-file-pdf me-2"></i> Generate PDF
+                                </button>
+                                <p class="smaller text-muted mt-2">Available at the bottom of the SIWES Dashboard</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div> <!-- End Row -->
+
+            <!-- CTA -->
+            <div class="text-center pb-5" data-aos="fade-up">
+                <p class="text-muted mb-3">Ready to log today's work?</p>
+                <a href="siwes.html" class="btn btn-primary-gm px-5 py-3 shadow fw-bold">
+                    <i class="fa-solid fa-briefcase me-2"></i> Go to SIWES Dashboard
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- References the shared info.js file -->
+    <script src="info.js"></script>
+</body>
+</html>
