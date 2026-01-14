@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Resources | GradMate</title>
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="dashboard.css" />
+    <!-- Inheriting sidebar styles -->
+    <link rel="stylesheet" href="resoS.css" /> 
+    <!-- Specific styles for Project Resources -->
+    <link rel="stylesheet" href="resoP.css" /> 
+</head>
+<body>
+
+    <!-- SIDEBAR NAVIGATION -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="/asset/EHSnV01.svg" alt="GradMate" class="nav-logo" style="height: 25px;">
+            <span class="ms-2 fw-bold logo-text">
+                <span class="logo-g">G</span><span class="logo-rest">radMate</span>
+            </span>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="dashboard.html"><i class="fa-solid fa-house"></i> Overview</a></li>
+            <li><a href="siwes.html"><i class="fa-solid fa-briefcase"></i> SIWES Module</a></li>
+            <li><a href="project.html"><i class="fa-solid fa-graduation-cap"></i> Project Defense</a></li>
+            <!-- Active State -->
+            <li class="active"><a href="resoP.html"><i class="fa-solid fa-book"></i> Resources</a></li>
+            <li class="menu-divider"></li>
+            <li><a href="login.html" class="text-danger"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="content-area">
+        <div class="container-fluid">
+            
+            <!-- HEADER with Pidgin Toggle -->
+            <header class="top-nav d-flex justify-content-between align-items-center mb-4 pt-2">
+                <button id="sidebarToggle" class="btn d-lg-none"><i class="fa-solid fa-bars"></i></button>
+                <div>
+                    <h4 class="fw-800 mb-0" id="headerTitle">Project Resource Library</h4>
+                    <p class="text-muted small mb-0" id="headerSub">The ultimate guide to crushing your thesis.</p>
+                </div>
+                
+                <!-- PIDGIN TOGGLE SWITCH -->
+                <div class="d-flex align-items-center gap-3">
+                    <div class="language-toggle-wrapper">
+                        <span class="lang-label small fw-bold text-muted me-2">ENG</span>
+                        <div class="form-check form-switch custom-switch-lg">
+                            <input class="form-check-input cursor-pointer" type="checkbox" id="pidginToggle">
+                        </div>
+                        <span class="lang-label small fw-bold text-success ms-2">PIDGIN 🇳🇬</span>
+                    </div>
+                    <div class="d-none d-md-block">
+                        <img src="https://ui-avatars.com/api/?name=User&background=6C63FF&color=fff&size=40" class="rounded-circle shadow-sm" alt="User">
+                    </div>
+                </div>
+            </header>
+
+            <!-- TABS NAVIGATION -->
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-header bg-white border-bottom-0 pt-4 px-4">
+                    <ul class="nav nav-tabs nav-fill gm-tabs" id="projectTabs" role="tablist">
+                        <li class="nav-item">
+                            <button class="nav-link active" id="tab-anatomy" data-bs-toggle="tab" data-bs-target="#anatomy-pane" type="button">
+                                <i class="fa-solid fa-layer-group me-2"></i><span id="label-anatomy">Anatomy of Thesis</span>
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link" id="tab-method" data-bs-toggle="tab" data-bs-target="#method-pane" type="button">
+                                <i class="fa-solid fa-flask me-2"></i><span id="label-method">Methodology Lab</span>
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link" id="tab-survival" data-bs-toggle="tab" data-bs-target="#survival-pane" type="button">
+                                <i class="fa-solid fa-shield-halved me-2"></i><span id="label-survival">Defense Survival</span>
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link" id="tab-vocab" data-bs-toggle="tab" data-bs-target="#vocab-pane" type="button">
+                                <i class="fa-solid fa-spell-check me-2"></i><span id="label-vocab">Research Vocab</span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card-body p-4 bg-light-gradient">
+                    <div class="tab-content">
+                        
+                        <!-- TAB 1: ANATOMY OF A THESIS -->
+                        <div class="tab-pane fade show active" id="anatomy-pane">
+                            <div class="row">
+                                <!-- Chapter Selector -->
+                                <div class="col-lg-4 mb-4 mb-lg-0">
+                                    <div class="list-group shadow-sm border-0 rounded-4 overflow-hidden" id="chapterList">
+                                        <!-- JS Injected -->
+                                    </div>
+                                </div>
+                                <!-- Content Display -->
+                                <div class="col-lg-8">
+                                    <div class="card h-100 border-0 shadow-sm rounded-4 position-relative overflow-hidden">
+                                        <div class="card-body p-4" id="chapterDetail">
+                                            <!-- JS Injected -->
+                                            <div class="text-center py-5 opacity-50">
+                                                <i class="fa-solid fa-book-open fa-3x mb-3"></i>
+                                                <p>Select a chapter to see the breakdown.</p>
+                                            </div>
+                                        </div>
+                                        <div class="neon-line-bottom"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TAB 2: METHODOLOGY LAB -->
+                        <div class="tab-pane fade" id="method-pane">
+                            <div class="row g-4">
+                                <!-- Taro Yamane Calculator -->
+                                <div class="col-lg-5">
+                                    <div class="card bg-dark text-white border-0 shadow rounded-4 overflow-hidden">
+                                        <div class="card-body p-4 position-relative z-1">
+                                            <div class="d-flex align-items-center mb-3">
+                                                <i class="fa-solid fa-calculator text-accent fs-3 me-3"></i>
+                                                <div>
+                                                    <h5 class="fw-800 mb-0" id="taroTitle">Taro Yamane Calc</h5>
+                                                    <small class="text-white-50" id="taroSub">Calculate Sample Size</small>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="small fw-bold text-uppercase text-white-50">Population (N)</label>
+                                                <input type="number" id="popInput" class="form-control bg-white-10 border-0 text-white" placeholder="Total people">
+                                            </div>
+                                            <div class="mb-4">
+                                                <label class="small fw-bold text-uppercase text-white-50">Error Margin (e)</label>
+                                                <select id="errorInput" class="form-select bg-white-10 border-0 text-white">
+                                                    <option value="0.05">5% (Standard)</option>
+                                                    <option value="0.01">1% (Precision)</option>
+                                                    <option value="0.10">10% (Loose)</option>
+                                                </select>
+                                            </div>
+                                            <button class="btn btn-accent-gm w-100 fw-bold mb-3" onclick="calculateTaro()">Calculate Sample</button>
+                                            
+                                            <div id="taroResult" class="text-center d-none animate__animated animate__fadeIn">
+                                                <span class="d-block small text-white-50">Sample Size (n):</span>
+                                                <h2 class="display-4 fw-800 text-white mb-0" id="resultValue">0</h2>
+                                            </div>
+                                        </div>
+                                        <!-- BG Decoration -->
+                                        <div class="circle-decoration-1"></div>
+                                        <div class="circle-decoration-2"></div>
+                                    </div>
+                                </div>
+                                <!-- Method Types -->
+                                <div class="col-lg-7">
+                                    <h5 class="fw-800 mb-3 text-secondary" id="methodHeader">Choose Your Weapon (Methodology)</h5>
+                                    <div class="row g-3" id="methodContainer">
+                                        <!-- JS Injected -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TAB 3: DEFENSE SURVIVAL -->
+                        <div class="tab-pane fade" id="survival-pane">
+                            <div class="row g-4">
+                                <!-- Etiquette Guide -->
+                                <div class="col-lg-6">
+                                    <div class="p-4 bg-white rounded-4 shadow-sm border-start border-5 border-primary h-100">
+                                        <h5 class="fw-800 mb-3 text-primary"><i class="fa-solid fa-user-tie me-2"></i><span id="protTitle">Protocol & Greeting</span></h5>
+                                        <p class="text-muted small mb-3" id="protDesc">How to respect the elders without looking weak.</p>
+                                        
+                                        <div class="script-box p-3 bg-soft-blue rounded-3 mb-3">
+                                            <small class="fw-bold text-primary d-block mb-1">OPENING SCRIPT:</small>
+                                            <p class="fst-italic mb-0" id="scriptText">"The Chairman of the Panel, The Head of Department, My Supervisor, Distinguished Academic Staff, and my fellow students. Good Morning/Afternoon..."</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Slide Structure -->
+                                <div class="col-lg-6">
+                                    <div class="p-4 bg-white rounded-4 shadow-sm border-start border-5 border-accent h-100">
+                                        <h5 class="fw-800 mb-3 text-accent"><i class="fa-solid fa-panorama me-2"></i><span id="slideTitle">The 15-Slide Rule</span></h5>
+                                        <ul class="list-unstyled survival-list" id="slideList">
+                                            <!-- JS Injected -->
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- Pro Tips -->
+                                <div class="col-12">
+                                    <div class="d-flex align-items-center p-3 bg-dark text-white rounded-3 shadow">
+                                        <i class="fa-solid fa-lightbulb text-warning fs-2 me-3"></i>
+                                        <div>
+                                            <h6 class="fw-bold mb-1" id="tipTitle">Golden Rule of Defense:</h6>
+                                            <p class="mb-0 small opacity-75" id="tipText">If you don't know the answer, do not lie. Say "I will look into that for my final correction."</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- TAB 4: RESEARCH VOCAB -->
+                        <div class="tab-pane fade" id="vocab-pane">
+                            <div class="input-group mb-4 shadow-sm">
+                                <span class="input-group-text bg-white border-0 ps-3"><i class="fa-solid fa-magnifying-glass text-muted"></i></span>
+                                <input type="text" id="vocabSearch" class="form-control border-0 py-3" placeholder="Search terms (e.g. Abstract, Null Hypothesis)...">
+                            </div>
+                            <div class="glossary-grid-p" id="glossaryContainer">
+                                <!-- JS Injected Neon Cards -->
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="auth.js"></script>
+    <script src="resoP.js"></script>
+    
+</body>
+</html>

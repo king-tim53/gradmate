@@ -1,0 +1,167 @@
+/* --- resoT.css --- */
+
+:root {
+    --primary-t: #00b894; /* Teal - Growth/Education */
+    --primary-t-dark: #00a180;
+    --primary-t-light: rgba(0, 184, 148, 0.1);
+    --bg-soft-teal: #f0fdf9;
+    --text-dark: #2d3436;
+}
+
+/* --- Global Overrides --- */
+.text-teal { color: var(--primary-t) !important; }
+.bg-teal { background-color: var(--primary-t) !important; }
+.btn-teal {
+    background-color: var(--primary-t);
+    color: white;
+    border: none;
+    transition: 0.3s;
+}
+.btn-teal:hover { background-color: var(--primary-t-dark); color: white; }
+.btn-outline-teal {
+    border-color: var(--primary-t);
+    color: var(--primary-t);
+}
+.btn-outline-teal.active, .btn-outline-teal:hover {
+    background-color: var(--primary-t);
+    color: white;
+}
+
+.bg-soft-teal { background-color: var(--bg-soft-teal); }
+
+/* --- Tab 1: Lesson Note Timeline --- */
+.timeline-wrapper {
+    position: relative;
+    padding-left: 20px;
+}
+
+.timeline-item {
+    position: relative;
+    padding-left: 40px;
+    margin-bottom: 30px;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    background: #dfe6e9;
+}
+
+.timeline-item:last-child::before { display: none; }
+
+.timeline-marker {
+    position: absolute;
+    left: -9px;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: white;
+    border: 4px solid var(--primary-t);
+    z-index: 1;
+}
+
+.ln-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+    border: 1px solid #f1f1f1;
+    transition: 0.3s;
+}
+.ln-card:hover { transform: translateX(5px); border-color: var(--primary-t); }
+
+/* --- Tab 2: War Room Cards --- */
+.war-card {
+    background: white;
+    border-radius: 16px;
+    padding: 25px;
+    text-align: center;
+    border-bottom: 5px solid var(--primary-t);
+    height: 100%;
+    transition: 0.3s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.war-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 184, 148, 0.15);
+}
+
+.war-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--primary-t-light);
+    color: var(--primary-t);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+    font-size: 1.5rem;
+}
+
+.war-solution {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: #555;
+    border-left: 3px solid #ff9f43; /* Solution accent */
+}
+
+/* --- Tab 3: Scorecard --- */
+.checklist-item {
+    cursor: pointer;
+    transition: 0.2s;
+    border-left: 4px solid transparent;
+}
+.checklist-item:hover { background-color: #f9f9f9; }
+.checklist-item.checked {
+    background-color: var(--primary-t-light);
+    border-left-color: var(--primary-t);
+}
+.checklist-item.checked .fa-circle-check { color: var(--primary-t); }
+.checklist-item .fa-circle-check { color: #ddd; transition: 0.3s; }
+
+/* --- Tab 4: Style Cards --- */
+.style-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    height: 100%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+}
+
+.style-header {
+    padding: 20px;
+    text-align: center;
+}
+
+.male-card .style-header { background: #e3f2fd; color: #1e88e5; }
+.female-card .style-header { background: #ffebee; color: #e53935; }
+
+.style-list {
+    list-style: none;
+    padding: 20px;
+    margin: 0;
+}
+.style-list li {
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+    color: #555;
+    display: flex;
+    align-items: start;
+}
+.style-list li i { margin-top: 3px; margin-right: 10px; }
+.male-card li i { color: #1e88e5; }
+.female-card li i { color: #e53935; }
+
+.border-dashed-teal {
+    border: 2px dashed var(--primary-t);
+}

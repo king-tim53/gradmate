@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supervisor Portal | GradMate</title>
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Bootstrap 5 & AOS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="supervisor.css">
+</head>
+<body>
+
+    <!-- SIDEBAR NAVIGATION -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="/asset/EHSnV01.svg" alt="GradMate" class="nav-logo" style="height: 25px;">
+            <span class="brand-text">GradMate <span class="badge bg-primary text-white" style="font-size: 0.5rem; vertical-align: top;">STAFF</span></span>
+        </div>
+        <ul class="nav-menu">
+            <li class="active nav-item" onclick="switchSection('overview')">
+                <a href="#"><i class="fa-solid fa-chart-pie"></i> Overview</a>
+            </li>
+            <li class="nav-item" onclick="switchSection('students')">
+                <a href="#"><i class="fa-solid fa-users-viewfinder"></i> My Students</a>
+            </li>
+            <li class="nav-item" onclick="switchSection('schedule')">
+                <a href="#"><i class="fa-solid fa-calendar-week"></i> Group Schedule</a>
+            </li>
+            <!-- ADD TO SIDEBAR in supervisor.html -->
+<li class="nav-item" onclick="switchSection('siwes-admin')">
+    <a href="#"><i class="fa-solid fa-hard-hat"></i> SIWES Supervision</a>
+</li>
+            <!-- ADD THIS TO SIDEBAR MENU -->
+<li class="nav-item" onclick="switchSection('repository')">
+    <a href="#"><i class="fa-solid fa-folder-open"></i> Shared Repository</a>
+</li>
+            <li class="menu-divider"></li>
+            <li><a href="infosv.html"><i class="fa-solid fa-book"></i> User Manual</a></li>
+            <li class="nav-item" onclick="switchSection('settings')">
+                <a href="#"><i class="fa-solid fa-sliders"></i> Settings</a>
+            </li>
+            <li><a href="login.html" class="text-danger"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="content-area">
+        <div class="container-fluid px-lg-4">
+
+            <!-- Header -->
+            <div class="d-flex justify-content-between align-items-center mb-4 pt-2">
+                <div>
+                    <h3 class="fw-800 mb-0 text-secondary">Supervisor Dashboard</h3>
+                    <p class="text-muted small">Manage Supervision, Approvals & Clearances</p>
+                </div>
+                <div class="spid-badge" onclick="copySPID()">
+                    <span class="text-muted small me-2">My SPID:</span>
+                    <span class="fw-bold font-monospace text-primary" id="displaySPID">SPID-DR-2356177-FA-OAU</span>
+                    <i class="fa-regular fa-copy ms-2 text-muted"></i>
+                </div>
+            </div>
+
+            <!-- SECTION 1: OVERVIEW (Stats) -->
+            <div id="section-overview" class="view-section" data-aos="fade-up">
+               <!-- SUPERVISOR IDENTITY PROFILE -->
+<div class="sup-card p-4 mb-4 border-start-4-primary" data-aos="fade-down">
+    <div class="row align-items-center">
+        <!-- Left: Avatar & Title -->
+        <div class="col-lg-8 d-flex align-items-center">
+            <div class="staff-avatar me-4">
+                <i class="fa-solid fa-user-tie fa-2x text-white"></i>
+            </div>
+            <div>
+                <span class="badge bg-soft-blue text-primary fw-bold mb-2">
+                    <i class="fa-solid fa-building-columns me-1"></i> <span id="supUni">UNIVERSITY OF LAGOS</span>
+                </span>
+                <h3 class="fw-800 text-secondary mb-1">
+                    <span id="supTitle">Dr.</span> <span id="supName">Femi Adebayo</span>
+                </h3>
+                <p class="text-muted mb-0 fw-bold">
+                    <i class="fa-solid fa-laptop-code me-2 text-primary opacity-50"></i>
+                    Department of <span id="supDept" class="text-dark">Computer Engineering</span>
+                </p>
+            </div>
+        </div>
+        
+        <!-- Right: Status & Staff ID -->
+        <div class="col-lg-4 mt-3 mt-lg-0 border-start-lg ps-lg-5">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <small class="text-muted fw-bold text-uppercase">Staff Status</small>
+                <span class="badge bg-success"><i class="fa-solid fa-circle-check me-1"></i> ACTIVE</span>
+            </div>
+            <div class="p-2 bg-light rounded border d-flex align-items-center justify-content-between">
+                <div>
+                    <small class="d-block text-muted" style="font-size: 0.65rem;">STAFF ID NO.</small>
+                    <span class="fw-bold font-monospace text-dark" id="supStaffId">STF-00921</span>
+                </div>
+                <i class="fa-solid fa-id-card text-secondary opacity-25 fa-2x"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+                <div class="row g-4 mb-4">
+                    <!-- Stat Card 1 -->
+                    <div class="col-md-4">
+                        <div class="sup-card stat-card-blue h-100">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h2 class="fw-800 mb-0 text-white" id="statTotal">0</h2>
+                                    <span class="text-white-50 small fw-bold">Total Students</span>
+                                </div>
+                                <div class="icon-circle bg-white-20"><i class="fa-solid fa-users text-white"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Stat Card 2 -->
+                    <div class="col-md-4">
+                        <div class="sup-card stat-card-green h-100">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h2 class="fw-800 mb-0 text-white" id="statCleared">0</h2>
+                                    <span class="text-white-50 small fw-bold">Cleared for Defense</span>
+                                </div>
+                                <div class="icon-circle bg-white-20"><i class="fa-solid fa-check-double text-white"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Stat Card 3 -->
+                    <div class="col-md-4">
+                        <div class="sup-card stat-card-orange h-100">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h2 class="fw-800 mb-0 text-white" id="statPending">0</h2>
+                                    <span class="text-white-50 small fw-bold">Pending Actions</span>
+                                </div>
+                                <div class="icon-circle bg-white-20"><i class="fa-solid fa-clock text-white"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                   
+                <!-- PENDING REQUESTS CARD (Only visible if there are requests) -->
+<div id="pendingRequestsContainer" class="sup-card p-4 mb-4 border-start-4-warning d-none" data-aos="fade-up">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div>
+            <h6 class="fw-800 mb-0 text-dark">
+                <i class="fa-solid fa-user-clock text-warning me-2"></i>Pending Registrations
+            </h6>
+            <p class="text-muted smaller mb-0">Students requesting to join your supervision group.</p>
+        </div>
+        <span class="badge bg-warning text-dark fw-bold" id="pendingCountBadge">0 Pending</span>
+    </div>
+
+    <!-- The List -->
+    <div id="pendingList" class="pending-list-wrapper">
+        <!-- Items injected via JS -->
+    </div>
+</div>
+
+                <!-- Recent Activity Preview -->
+                <div class="sup-card p-4">
+                    <h6 class="fw-800 mb-3">Recent Submissions</h6>
+                    <div id="recentActivityList">
+                        <!-- Injected via JS -->
+                    </div>
+                </div>
+            </div>
+            
+   <!-- SECTION 2: MY STUDENTS (Smart List) -->
+            <div id="section-students" class="view-section d-none" data-aos="fade-up">
+                <div class="sup-card p-0 overflow-hidden">
+                    <!-- Toolbar -->
+                    <div class="p-4 border-bottom bg-light d-flex flex-wrap gap-3 align-items-center justify-content-between">
+                        <h6 class="fw-800 mb-0">Student Management Console</h6>
+                        <div class="search-box position-relative">
+                            <i class="fa-solid fa-magnifying-glass position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"></i>
+                            <input type="text" id="studentSearch" class="form-control ps-5 border-0 shadow-sm" placeholder="Search Name or Matric..." onkeyup="filterStudents()">
+                        </div>
+                    </div>
+
+                    <!-- The List Header -->
+                    <div class="d-none d-md-flex bg-white px-4 py-2 border-bottom text-muted small fw-bold text-uppercase">
+                        <div class="col-4">Student Identity</div>
+                        <div class="col-3">Current Status</div>
+                        <div class="col-5 text-end">Quick Actions</div>
+                    </div>
+
+                    <!-- The List Body -->
+                    <div id="studentListContainer" class="student-list-body">
+                        <!-- Dynamic Rows Here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 3: GROUP SCHEDULE (Matric Range) -->
+            <div id="section-schedule" class="view-section d-none" data-aos="fade-up">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="sup-card p-5">
+                            <div class="text-center mb-4">
+                                <div class="icon-circle bg-soft-purple mx-auto mb-3 text-primary fs-4">
+                                    <i class="fa-solid fa-layer-group"></i>
+                                </div>
+                                <h5 class="fw-800">Batch Scheduling Tool</h5>
+                                <p class="text-muted small">Schedule physical meetings for a specific range of Matric Numbers.</p>
+                            </div>
+
+                            <div class="row g-3 mb-4">
+                                <div class="col-md-6">
+                                    <label class="small fw-bold text-uppercase text-muted">Start Matric No.</label>
+                                    <input type="text" id="rangeStart" class="form-control fw-bold" placeholder="e.g. 2403200005">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="small fw-bold text-uppercase text-muted">End Matric No.</label>
+                                    <input type="text" id="rangeEnd" class="form-control fw-bold" placeholder="e.g. 2403200020">
+                                </div>
+                            </div>
+
+                            <div class="bg-light p-3 rounded-3 mb-4">
+                                <h6 class="fw-bold small mb-3"><i class="fa-solid fa-calendar-check me-2 text-primary"></i>Meeting Details</h6>
+                                <div class="row g-2">
+                                    <div class="col-md-7">
+                                        <input type="text" id="meetNote" class="form-control form-control-sm" placeholder="Purpose (e.g. Chapter 1 Physical Review)">
+                                    </div>
+                                    <div class="col-md-5">
+                                        <input type="datetime-local" id="meetTime" class="form-control form-control-sm">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button class="btn btn-primary-gm w-100 py-3 fw-bold" onclick="scheduleBatchMeeting()">
+                                <i class="fa-solid fa-paper-plane me-2"></i> Broadcast Meeting Invite
+                            </button>
+
+                            <div id="batchResult" class="mt-3 text-center d-none">
+                                <span class="badge bg-soft-green text-success py-2 px-3">
+                                    <i class="fa-solid fa-check me-1"></i> Sent to <span id="batchCount">0</span> students
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+                        <!-- FEATURE 3: BROADCAST ANNOUNCEMENT CARD -->
+<div class="sup-card p-4 mb-4 broadcast-card-bg text-white position-relative overflow-hidden" data-aos="fade-up">
+    <!-- Decorative Circle -->
+    <div class="position-absolute top-0 end-0 p-5 rounded-circle bg-white opacity-10 translate-middle-y me-n5 mt-n5" style="width:200px;height:200px;"></div>
+    
+    <div class="position-relative z-1">
+        <div class="d-flex align-items-center mb-3">
+            <div class="icon-circle bg-white text-primary me-3"><i class="fa-solid fa-bullhorn"></i></div>
+            <div>
+                <h5 class="fw-800 mb-0">Student Announcement Board</h5>
+                <p class="text-white-50 small mb-0">Send a priority notification to all linked students instantly.</p>
+            </div>
+        </div>
+        
+        <div class="bg-white-10 p-1 rounded-3 d-flex">
+            <input type="text" id="broadcastInput" class="form-control border-0 bg-transparent text-white placeholder-white-50" placeholder="Type your message here (e.g., 'Chapter 3 deadline extended to Friday')...">
+            <button class="btn btn-light fw-bold text-primary px-4 rounded-3" onclick="sendBroadcast()">
+                Send <i class="fa-solid fa-paper-plane ms-2"></i>
+            </button>
+        </div>
+    </div>
+</div>
+         
+
+            <!-- SECTION 4: SETTINGS (Gatekeeper) -->
+            <div id="section-settings" class="view-section d-none" data-aos="fade-up">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="sup-card p-4 h-100">
+                            <h6 class="fw-800 mb-4">Gatekeeper Configuration</h6>
+                            
+                            <div class="d-flex justify-content-between align-items-center mb-4 pb-4 border-bottom">
+                                <div>
+                                    <h6 class="fw-bold mb-1">SPID Auto-Accept</h6>
+                                    <p class="text-muted smaller mb-0">Automatically add students who enter your SPID to your list.</p>
+                                </div>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="toggleAutoAccept" checked onchange="saveSettings()">
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="fw-bold mb-1">Defense Clearance Mode</h6>
+                                    <p class="text-muted smaller mb-0">Allow system to suggest clearance based on progress.</p>
+                                </div>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="toggleSmartClear" onchange="saveSettings()">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             
+
+            <!-- INSERT IN supervisor.html (Main Content Area) -->
+<!-- SECTION: SIWES MANAGEMENT -->
+<div id="section-siwes-admin" class="view-section d-none" data-aos="fade-up">
+    <div class="sup-card p-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h5 class="fw-800 mb-0"><i class="fa-solid fa-industry text-primary me-2"></i>Industrial Supervision</h5>
+                <p class="text-muted small mb-0">Manage visits and verify logbooks for interns linked to your SPID.</p>
+            </div>
+            <!-- Feature: Group Broadcast Button -->
+            <button class="btn btn-outline-primary fw-bold" onclick="openBatchSiwesModal()">
+                <i class="fa-solid fa-bullhorn me-2"></i> Notify All Interns
+            </button>
+        </div>
+
+        <!-- Intern List Table -->
+        <div class="table-responsive">
+            <table class="table align-middle">
+                <thead class="bg-light">
+                    <tr>
+                        <th class="small text-muted text-uppercase">Student</th>
+                        <th class="small text-muted text-uppercase">Placement</th>
+                        <th class="small text-muted text-uppercase">Visit Status</th>
+                        <th class="text-end small text-muted text-uppercase">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="siwesInternList">
+                    <!-- Dynamic Content via JS -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL: Schedule/Verify Visit -->
+<div class="modal fade" id="siwesVisitModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 p-3">
+            <div class="modal-header border-0 pb-0">
+                <h6 class="fw-800" id="visitModalTitle">Manage Visitation</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="visitStudentId">
+                
+                <!-- Step 1: Schedule -->
+                <div class="mb-4">
+                    <label class="small fw-bold text-muted">Set Visitation Date</label>
+                    <div class="input-group">
+                        <input type="date" id="visitDate" class="form-control">
+                        <button class="btn btn-primary-gm" onclick="confirmSchedule()">Schedule</button>
+                    </div>
+                    <small class="text-muted smaller">This will appear on the student's dashboard.</small>
+                </div>
+
+                <hr>
+
+                <!-- Step 2: Verification (The Loophole Closer) -->
+                <div class="p-3 bg-soft-green rounded-3 border-start-4-primary">
+                    <h6 class="fw-bold text-dark small mb-2">Verification Zone</h6>
+                    <p class="smaller text-muted mb-3">Only click this AFTER you have physically visited the student at their workplace.</p>
+                    <button class="btn btn-success w-100 fw-bold" onclick="markVerified()">
+                        <i class="fa-solid fa-check-double me-2"></i> Confirm I Have Visited
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+            <!-- FEATURE 1: SHARED REPOSITORY SECTION -->
+<div id="section-repository" class="view-section d-none" data-aos="fade-up">
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="sup-card p-4 h-100">
+                <h5 class="fw-800 mb-4 text-secondary">
+                    <i class="fa-solid fa-cloud-arrow-up text-primary me-2"></i>Document Center
+                </h5>
+                
+                <!-- Upload Zone -->
+                <div class="upload-zone mb-4 text-center p-5 rounded-4 border-dashed cursor-pointer" onclick="document.getElementById('repoFile').click()">
+                    <div class="mb-3">
+                        <i class="fa-solid fa-file-arrow-up fa-3x text-primary opacity-50"></i>
+                    </div>
+                    <h6 class="fw-bold text-dark">Click to Upload Material</h6>
+                    <p class="text-muted small">Share Templates, APA Guides, or Datasets with all students.</p>
+                    <input type="file" id="repoFile" class="d-none" onchange="handleRepoUpload(this)">
+                </div>
+
+                <!-- File List -->
+                <h6 class="fw-bold small text-muted text-uppercase mb-3">Shared Files</h6>
+                <div id="repoList">
+                    <!-- Dynamic Files go here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Repository Info Side -->
+        <div class="col-lg-4">
+            <div class="sup-card bg-primary text-white p-4 h-100">
+                <h6 class="fw-800 mb-3">How this works</h6>
+                <p class="small opacity-75 mb-4">Files uploaded here automatically appear in the "Resources" tab of every student registered under your SPID.</p>
+                <hr class="border-white opacity-25">
+                <div class="d-flex align-items-center">
+                    <h2 class="fw-800 mb-0 me-3" id="fileCount">0</h2>
+                    <span class="small fw-bold opacity-75">Active Files<br>Shared</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <!-- REPLACE IN supervisor.html (Bottom of page) -->
+<!-- MODAL: Push Correction to Student -->
+<div class="modal fade" id="pushTaskModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg">
+            <div class="modal-header border-0 bg-soft-purple">
+                <h6 class="fw-800 mb-0 text-primary" id="pushModalTitle">Assign Correction</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-4">
+                <input type="hidden" id="pushStudentId">
+                
+                <div class="row g-2 mb-3">
+                    <div class="col-8">
+                        <label class="small fw-bold text-muted">Chapter / Section</label>
+                        <select id="pushChapter" class="form-select bg-light border-0">
+                            <option value="Ch. 1">Chapter 1</option>
+                            <option value="Ch. 2">Chapter 2</option>
+                            <option value="Ch. 3">Chapter 3</option>
+                            <option value="Ch. 4">Chapter 4</option>
+                            <option value="Ch. 5">Chapter 5</option>
+                            <option value="General">General Formatting</option>
+                            <option value="Abstract">Abstract Review</option>
+                        </select>
+                    </div>
+                    <div class="col-4">
+                        <label class="small fw-bold text-danger">Priority</label>
+                        <div class="form-check form-switch mt-2">
+                            <input class="form-check-input" type="checkbox" id="pushPriority">
+                            <label class="form-check-label small" for="pushPriority">High</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="small fw-bold text-muted">Correction Instruction</label>
+                    <textarea id="pushText" class="form-control bg-light border-0" rows="4" placeholder="e.g. Redo the citation style in paragraph 3..."></textarea>
+                </div>
+                
+                <div class="alert alert-info border-0 py-2 d-flex align-items-center">
+                    <i class="fa-solid fa-bolt me-2"></i>
+                    <span class="smaller">This will appear instantly on the student's dashboard.</span>
+                </div>
+            </div>
+            <div class="modal-footer border-0 pt-0">
+                <button class="btn btn-primary-gm w-100 py-2" onclick="sendPushCorrection()">
+                    <i class="fa-solid fa-paper-plane me-2"></i> Push to Student
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+        </div>
+    </main>
+
+    <!-- Modal: Confirmation Toast -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="actionToast" class="toast align-items-center text-white bg-primary border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    <i class="fa-solid fa-circle-check me-2"></i> <span id="toastMsg">Action Successful</span>
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="supervisor.js"></script>
+</body>
+</html>

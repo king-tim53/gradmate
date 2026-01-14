@@ -1,0 +1,815 @@
+:root {
+    --primary: #6C63FF;     
+    --primary-light: #f0efff;
+    --secondary: #3C4A6E;   
+    --accent: #FF6F61;      
+    --bg-light: #F5F7FA;    
+    --text-main: #2D3436;
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.4);
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: var(--text-main);
+    background-color: #ffffff;
+    overflow-x: hidden;
+}
+
+/* Mesh Gradients */
+.mesh-gradient {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at 10% 20%, rgba(108, 99, 255, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(255, 111, 97, 0.03) 0%, transparent 50%);
+    z-index: -2;
+}
+
+.mesh-blob-1, .mesh-blob-2 {
+    position: fixed;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    filter: blur(100px);
+    z-index: -1;
+    opacity: 0.15;
+    animation: move 20s infinite alternate;
+}
+
+.mesh-blob-1 { background: var(--primary); top: -100px; right: -100px; }
+.mesh-blob-2 { background: var(--accent); bottom: -100px; left: -100px; animation-delay: -5s; }
+
+@keyframes move {
+    from { transform: translate(0, 0); }
+    to { transform: translate(100px, 100px); }
+}
+
+/* ============================
+   MODERN NAVBAR STYLES
+   ============================ */
+   .navbar {
+    padding: 1.5rem 0;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* Scrolled State - The "Floating Pill" Look */
+.navbar.scrolled {
+    padding: 0.8rem 0;
+    background: transparent;
+}
+
+.navbar.scrolled .navbar-container {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 50px;
+    padding: 10px 30px;
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    margin-top: 15px;
+    max-width: 95%; /* Prevents it from touching edges on wide screens */
+}
+
+/* Logo Text Colors */
+.logo-g {
+    color: var(--primary); /* Purple - Matches 'Defend with' */
+}
+
+.logo-rest {
+    color: var(--accent);  /* Coral - Matches 'Confidence' */
+}
+
+.nav-logo {
+    height: 30px;
+    width: auto;
+    transition: 0.3s ease;
+}
+
+/* Navigation Links */
+.nav-link {
+    color: var(--secondary) !important;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 8px 16px !important;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    margin: 0 2px;
+}
+
+.nav-link:hover {
+    color: var(--primary) !important;
+    background: rgba(108, 99, 255, 0.08); /* Subtle purple background on hover */
+    transform: translateY(-1px);
+}
+
+.login-link {
+    color: var(--secondary) !important;
+}
+
+/* 'Get Started' Button in Nav */
+.btn-nav-cta {
+    background: var(--primary);
+    color: white;
+    padding: 10px 24px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 15px rgba(108, 99, 255, 0.25);
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.btn-nav-cta:hover {
+    background: var(--secondary);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(60, 74, 110, 0.2);
+}
+
+/* Mobile Toggler adjustments */
+.navbar-toggler {
+    border: none;
+    outline: none;
+    box-shadow: none !important;
+    color: var(--secondary);
+    font-size: 1.5rem;
+}
+
+/* Mobile Menu styling tweak */
+@media (max-width: 991px) {
+    .navbar.scrolled .navbar-container {
+        border-radius: 20px; /* Less rounded on mobile for more space */
+        padding: 15px;
+        margin-top: 0;
+        max-width: 100%;
+    }
+    
+    .navbar-collapse {
+        background: white;
+        margin-top: 15px;
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+
+    .btn-nav-cta {
+        margin-top: 15px;
+        width: 100%;
+    }
+}
+
+/* Hero Section Setup */
+.hero-section {
+    padding-top: 140px; /* Safe distance from the fixed navbar */
+    padding-bottom: 80px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Typography */
+.badge-tag {
+    background: rgba(108, 99, 255, 0.1);
+    color: var(--primary);
+    padding: 8px 18px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.85rem;
+}
+
+.hero-title {
+    font-size: 4.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -2px;
+    color: var(--secondary);
+}
+
+.gradient-text {
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+    font-size: 1.15rem;
+    color: #636e72;
+    max-width: 520px;
+}
+
+/* Play Button Styling */
+.btn-play-wrapper {
+    text-decoration: none;
+    color: var(--secondary);
+    transition: 0.3s;
+}
+
+.play-btn-circle {
+    width: 50px;
+    height: 50px;
+    background: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    color: var(--primary);
+    transition: 0.3s;
+}
+
+.btn-play-wrapper:hover .play-btn-circle {
+    background: var(--primary);
+    color: #fff;
+    transform: scale(1.1);
+}
+
+/* Hero Image & Floating Cards */
+.hero-img-wrapper {
+    position: relative;
+    padding: 20px;
+    text-align: center;
+}
+
+.main-hero-img {
+    max-width: 90%;
+    z-index: 1;
+    position: relative;
+}
+
+.floating-card {
+    position: absolute;
+    background: #ffffff;
+    padding: 12px 20px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 10;
+    border: 1px solid rgba(0,0,0,0.03);
+    text-align: left;
+    min-width: 200px;
+}
+
+.icon-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+}
+
+
+/* Founder & Vision/Mission Styles */
+.founder-card {
+    border-radius: 30px;
+    border: 1px solid #f0f0f0;
+    position: relative;
+}
+
+.founder-img-circle {
+    width: 80px;
+    height: 80px;
+    padding: 5px;
+    border: 2px solid var(--primary);
+    border-radius: 50%;
+}
+
+.vm-card {
+    display: flex;
+    align-items: flex-start;
+    padding: 30px;
+    background: #fff;
+    border-radius: 20px;
+    transition: 0.3s;
+    border: 1px solid #f0f0f0;
+}
+
+.vm-card:hover {
+    transform: translateX(10px);
+    border-color: var(--primary);
+    box-shadow: 0 10px 30px rgba(108, 99, 255, 0.08);
+}
+
+.vm-icon {
+    min-width: 55px;
+    height: 55px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin-right: 20px;
+    color: var(--primary);
+}
+
+.bg-soft-purple { background: #f3f0ff; color: #6C63FF; }
+
+.vm-content h5 {
+    margin-bottom: 8px;
+    color: var(--secondary);
+}
+
+.vm-content p {
+    margin-bottom: 0;
+    line-height: 1.6;
+}
+
+/* Make Vision and Mission stand out on mobile */
+@media (max-width: 991px) {
+    .vm-card {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+    .vm-icon {
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+    .founder-card {
+        margin-bottom: 30px;
+    }
+}
+
+/* Positioning & Animations */
+.card-1 {
+    top: 10%;
+    left: -20px;
+    animation: floatVertical 5s ease-in-out infinite;
+}
+
+.card-2 {
+    bottom: 15%;
+    right: -10px;
+    animation: floatVertical 5s ease-in-out infinite reverse;
+}
+
+@keyframes floatVertical {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+/* Responsive Fixes */
+@media (max-width: 1200px) {
+    .hero-title { font-size: 3.5rem; }
+}
+
+@media (max-width: 991px) {
+    .hero-section {
+        padding-top: 120px;
+        text-align: center;
+    }
+    .hero-subtitle { margin-inline: auto; }
+    .hero-btns { justify-content: center; }
+    .floating-card {
+        display: none; /* Recommended for mobile to keep clean UI */
+    }
+    .hero-title { font-size: 2.8rem; }
+}
+
+.btn-primary-gm {
+    background: var(--primary);
+    color: white;
+    padding: 16px 32px;
+    border-radius: 14px;
+    font-weight: 700;
+    border: none;
+    transition: 0.3s;
+    box-shadow: 0 10px 20px rgba(108, 99, 255, 0.2);
+}
+
+.btn-primary-gm:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(108, 99, 255, 0.3);
+    color: white;
+}
+
+/* Glassmorphic Cards */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 40px;
+    transition: 0.4s ease;
+}
+
+.glass-card:hover {
+    background: #fff;
+    transform: translateY(-10px);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.05);
+}
+
+/* Ticker */
+.ticker-wrapper {
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    padding: 20px 0;
+}
+
+.ticker-content {
+    display: inline-block;
+    animation: ticker 30s linear infinite;
+}
+
+.ticker-content span {
+    margin-right: 50px;
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: #e0e0e0;
+    transition: 0.3s;
+}
+
+.ticker-content span:hover { color: var(--primary); }
+
+@keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Defense Mastery UI */
+.defense-simulator-ui {
+    border: 1px solid #f0f0f0;
+    position: relative;
+}
+
+.step-num {
+    width: 35px;
+    height: 35px;
+    background: var(--primary);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: 700;
+}
+/* Modern Footer Styles */
+.modern-footer {
+    background-color: #fafbff;
+    padding-top: 80px;
+    padding-bottom: 40px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.footer-logo {
+    height: 30px; /* As requested */
+    width: auto;
+}
+
+.footer-text {
+    color: #636e72;
+    line-height: 1.8;
+    font-size: 0.95rem;
+}
+
+.footer-heading {
+    font-weight: 800;
+    color: var(--secondary);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 25px;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 15px;
+}
+
+.footer-links a {
+    text-decoration: none;
+    color: #636e72;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--primary);
+    padding-left: 5px;
+}
+
+/* Social Icons */
+.social-circle {
+    width: 38px;
+    height: 38px;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--secondary);
+    margin-right: 10px;
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+.social-circle:hover {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+    transform: translateY(-3px);
+}
+
+/* Newsletter Sleek Input */
+.newsletter-box {
+    display: flex;
+    background: #fff;
+    padding: 6px;
+    border-radius: 12px;
+    border: 1px solid #eee;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+}
+
+.newsletter-box input {
+    border: none;
+    padding: 10px 15px;
+    flex-grow: 1;
+    font-size: 0.9rem;
+    outline: none;
+}
+
+.newsletter-box button {
+    background: var(--primary);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.newsletter-box button:hover {
+    background: var(--secondary);
+}
+
+/* Bottom Bar */
+.footer-bottom {
+    border-top: 1px solid #eee;
+}
+
+.copyright {
+    font-size: 0.85rem;
+    color: #b2bec3;
+}
+
+@media (max-width: 768px) {
+    .modern-footer {
+        text-align: center;
+        padding-top: 60px;
+    }
+    .footer-text {
+        padding-right: 0 !important;
+    }
+    .footer-heading {
+        margin-top: 20px;
+    }
+    .social-row {
+        justify-content: center;
+        display: flex;
+    }
+}
+
+/* Supervisor Section Specifics */
+.bg-soft-green { background-color: #e8f5e9; color: #2ecc71; }
+
+/* Dashboard Mockup Tweaks */
+#supervisors .shadow-lg {
+    box-shadow: 0 20px 50px rgba(0,0,0,0.08) !important;
+}
+
+#supervisors .btn-outline-primary:hover {
+    background-color: var(--primary);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+/* Story Box */
+.story-box {
+    background: linear-gradient(135deg, var(--primary-light) 0%, #fff 100%);
+    border-radius: 30px;
+}
+
+/* Bento Grid & Neon Card Styles */
+.bg-light-section {
+    background-color: #fcfcfd;
+}
+
+.neon-card {
+    background: #ffffff;
+    border: 1px solid #f0f0f0;
+    padding: 2rem;
+    border-radius: 24px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Wide Card Layout for Bento Effect */
+.card-content {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.neon-icon {
+    width: 60px;
+    height: 60px;
+    background: #f8f9fa;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 1.2rem;
+    transition: 0.3s;
+}
+
+/* Neon Glow Colors */
+.bento-purple:hover { 
+    border-color: #6C63FF;
+    box-shadow: 0 10px 40px rgba(108, 99, 255, 0.15);
+    transform: translateY(-10px);
+}
+.bento-purple:hover .neon-icon { background: rgba(108, 99, 255, 0.1); color: #6C63FF; }
+
+.bento-accent:hover { 
+    border-color: #FF6F61;
+    box-shadow: 0 10px 40px rgba(255, 111, 97, 0.15);
+    transform: translateY(-10px);
+}
+.bento-accent:hover .neon-icon { background: rgba(255, 111, 97, 0.1); color: #FF6F61; }
+
+.bento-green:hover { 
+    border-color: #2ecc71;
+    box-shadow: 0 10px 40px rgba(46, 204, 113, 0.15);
+    transform: translateY(-10px);
+}
+.bento-green:hover .neon-icon { background: rgba(46, 204, 113, 0.1); color: #2ecc71; }
+
+.bento-blue:hover { 
+    border-color: #3498db;
+    box-shadow: 0 10px 40px rgba(52, 152, 219, 0.15);
+    transform: translateY(-10px);
+}
+.bento-blue:hover .neon-icon { background: rgba(52, 152, 219, 0.1); color: #3498db; }
+
+.bento-coral:hover { 
+    border-color: #e67e22;
+    box-shadow: 0 10px 40px rgba(230, 126, 34, 0.15);
+    transform: translateY(-10px);
+}
+.bento-coral:hover .neon-icon { background: rgba(230, 126, 34, 0.1); color: #e67e22; }
+
+/* Typography inside cards */
+.neon-card h4 {
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-bottom: 0.8rem;
+    color: var(--secondary);
+}
+
+.neon-card p {
+    font-size: 0.95rem;
+    color: #636e72;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+@media (max-width: 991px) {
+    .card-content { flex-direction: column; align-items: flex-start; }
+}
+.text-accent { color: var(--accent); }
+
+/* Responsive */
+@media (max-width: 991px) {
+    .hero-title { font-size: 3rem; }
+    .hero-img-wrapper { display: none; }
+}
+
+/* Teaching Practice Section Specifics */
+.bg-soft-orange { background-color: #fff3e0 !important; }
+.text-orange { color: #fd7e14 !important; }
+.bg-soft-green { background-color: #e8f5e9 !important; }
+.text-success { color: #2ecc71 !important; }
+
+/* Ensure Badge Tag supports orange background override */
+.badge-tag.bg-soft-orange {
+    background: #fff3e0;
+    color: #fd7e14;
+}
+
+.pricing-card {
+    position: relative;
+    border: 2px solid var(--primary);
+    transition: transform 0.3s ease;
+}
+
+.pricing-card:hover {
+    transform: translateY(-10px);
+}
+
+.pricing-badge {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--primary);
+    color: white;
+    padding: 5px 20px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 800;
+}
+
+.price-display .amount {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--dark);
+}
+
+.price-display .currency {
+    font-size: 1.5rem;
+    vertical-align: top;
+    font-weight: 700;
+}
+
+.price-display .duration {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.vault-slot {
+    min-height: 140px;
+    border: 2px dashed #e0e6ed;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    background: #fcfdff;
+    position: relative;
+    padding: 15px;
+    text-align: center;
+}
+
+.vault-slot.has-file {
+    border: 1px solid var(--primary-light);
+    background: white;
+    box-shadow: 0 10px 20px rgba(108, 99, 255, 0.05);
+}
+
+.vault-upload-label {
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #a0aec0;
+    font-size: 0.85rem;
+}
+
+.vault-upload-label i { font-size: 1.8rem; }
+
+.vault-file-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.vault-file-card i { color: var(--primary); font-size: 2rem; }
+
+.vault-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.btn-vault {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    transition: 0.2s;
+}
+
+.btn-download { background: var(--primary-light); color: var(--primary); }
+.btn-delete { background: #fff1f0; color: #ff4d4f; }

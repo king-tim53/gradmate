@@ -1,0 +1,236 @@
+/* ==========================================================================
+   1. GLOBAL VARIABLES & UTILITIES
+   ========================================================================== */
+   :root {
+    --primary: #6C63FF;
+    --primary-dark: #5a52d5;
+    --primary-light: rgba(108, 99, 255, 0.1);
+    --accent: #FF6B6B;
+    --text-main: #2b3452;
+    --text-muted: #64748b;
+    --bg-light: #f8faff;
+    --shadow-sm: 0 4px 6px rgba(0,0,0,0.02);
+    --shadow-md: 0 10px 25px rgba(108, 99, 255, 0.15);
+}
+
+.bg-soft-blue { background-color: var(--primary-light) !important; }
+.text-primary { color: var(--primary) !important; }
+.fw-800 { font-weight: 800; }
+
+/* ==========================================================================
+   2. TAB NAVIGATION (Top)
+   ========================================================================== */
+.gm-tabs {
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.gm-tabs .nav-link {
+    color: var(--text-muted);
+    font-weight: 700;
+    border: none;
+    border-bottom: 3px solid transparent;
+    padding: 1.2rem 1rem;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.gm-tabs .nav-link i {
+    font-size: 1.1rem;
+}
+
+.gm-tabs .nav-link:hover {
+    color: var(--primary);
+    background-color: rgba(108, 99, 255, 0.03);
+}
+
+.gm-tabs .nav-link.active {
+    color: var(--primary);
+    background-color: transparent;
+    border-bottom-color: var(--primary);
+}
+/* Logo Text Colors */
+.logo-g {
+    color: var(--primary); /* Purple - Matches 'Defend with' */
+}
+
+.logo-rest {
+    color: var(--accent);  /* Coral - Matches 'Confidence' */
+}
+
+.nav-logo {
+    height: 30px;
+    width: auto;
+    transition: 0.3s ease;
+}
+/* ==========================================================================
+   3. COURSE ELIGIBILITY CARDS (Objective 1)
+   ========================================================================== */
+.course-card {
+    background: #fff;
+    border: 1px solid #edf2f9;
+    border-radius: 20px;
+    padding: 20px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    height: 100%;
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary);
+}
+
+.course-icon {
+    width: 45px;
+    height: 45px;
+    background: var(--primary-light);
+    color: var(--primary);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+/* ==========================================================================
+   4. INDUSTRY ACCORDION (Objective 2)
+   ========================================================================== */
+.accordion-item {
+    border: 1px solid #f0f0f0 !important;
+    border-radius: 12px !important;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.accordion-button {
+    font-weight: 700;
+    color: var(--text-main);
+    padding: 18px;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: var(--primary-light);
+    color: var(--primary);
+    box-shadow: none;
+}
+
+.accordion-button:focus {
+    box-shadow: none;
+    border-color: var(--primary-light);
+}
+
+/* ==========================================================================
+   5. GLOSSARY NEON CARDS (Objective 3)
+   ========================================================================== */
+.glossary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 15px;
+    max-height: 500px; /* Prevents overlap with FAQ section below */
+    overflow-y: auto;
+    padding: 10px;
+    scrollbar-width: thin;
+}
+
+.glossary-card {
+    background: #fff;
+    border: 1px solid #edf2f9;
+    border-left: 5px solid var(--primary);
+    border-radius: 16px;
+    padding: 20px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    height: 100%;
+    box-shadow: var(--shadow-sm);
+}
+
+.glossary-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(108, 99, 255, 0.2); /* Neon Glow */
+    border-color: var(--primary-light);
+}
+
+.glossary-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--primary-light);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+}
+
+.glossary-card h6 {
+    font-weight: 800;
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+    color: var(--text-main);
+}
+
+.glossary-card p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 0;
+}
+
+/* ==========================================================================
+   6. DOWNLOADS & BUTTONS
+   ========================================================================== */
+.list-group-item {
+    transition: background 0.2s;
+    border: 1px solid #f0f0f0;
+}
+
+.list-group-item:hover {
+    background-color: #fcfcff;
+}
+
+.btn-primary-gm {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    font-weight: 700;
+    padding: 10px 20px;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+.btn-primary-gm:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    color: white;
+}
+
+/* ==========================================================================
+   7. ANIMATIONS
+   ========================================================================== */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-glossary-entry {
+    animation: fadeInUp 0.5s ease forwards;
+    opacity: 0;
+}
+
+/* ==========================================================================
+   8. RESPONSIVE ADJUSTMENTS
+   ========================================================================== */
+@media (max-width: 768px) {
+    .gm-tabs .nav-link {
+        padding: 0.8rem 0.5rem;
+        font-size: 0.8rem;
+    }
+    
+    .glossary-grid {
+        grid-template-columns: 1fr; /* Single column on mobile */
+    }
+
+    .content-area {
+        padding: 15px;
+    }
+}

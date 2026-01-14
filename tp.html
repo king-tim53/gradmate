@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teaching Practice | GradMate</title>
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Bootstrap 5 & AOS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="siwes.css"> <!-- Reusing SIWES styles for consistency -->
+    <link rel="stylesheet" href="tp.css"> <!-- Specific TP styles -->
+</head>
+<body>
+    <div class="mesh-gradient"></div>
+
+    <!-- SIDEBAR NAVIGATION -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="/asset/EHSnV01.svg" alt="GradMate" class="nav-logo" style="height: 25px;">
+            <span class="ms-2 fw-bold logo-text">
+                <span class="logo-g">G</span><span class="logo-rest">radMate</span>
+            </span>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="dashboard.html"><i class="fa-solid fa-house"></i> Overview</a></li>
+            <li><a href="siwes.html"><i class="fa-solid fa-briefcase"></i> SIWES Module</a></li>
+            <!-- New TP Link -->
+            <li class="active"><a href="tp.html"><i class="fa-solid fa-chalkboard-user"></i> Teaching Practice</a></li>
+            <li><a href="project.html"><i class="fa-solid fa-graduation-cap"></i> Project Defense</a></li>
+            <li><a href="resoT.html"><i class="fa-solid fa-book"></i> Resources</a></li>
+            
+            <li class="menu-divider"></li>
+            <li><a href="infot.html"><i class="fa-solid fa-book"></i> Info</a></li>
+            <li><a href="login.html" class="text-danger"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="content-area">
+        <div class="container-fluid px-lg-4">
+            
+            <!-- SECTION 1: Page Header -->
+            <header class="d-flex justify-content-between align-items-center mb-4 pt-2">
+                <div data-aos="fade-down">
+                    <h3 class="fw-800 mb-0">Teaching Practice</h3>
+                    <p class="text-muted small">Academic Session 2025/2026</p>
+                </div>
+                <button class="btn btn-primary-gm" data-bs-toggle="modal" data-bs-target="#setupTpModal">
+                    <i class="fa-solid fa-school me-2"></i> Setup Placement
+                </button>
+            </header>
+
+           <!-- SECTION 2: Placement Profile & Progress -->
+<div class="row g-4 mb-4">
+    
+    <!-- 1. School Board Card (Main Profile) -->
+    <div class="col-lg-8" data-aos="fade-right">
+        <div class="siwes-card tp-card-accent h-100">
+            <div class="d-flex justify-content-between align-items-start">
+                
+                <!-- Left Side: School Information -->
+                <div>
+                    <span class="badge bg-soft-orange text-orange mb-2">
+                        <i class="fa-solid fa-circle-check me-1"></i>Active Posting
+                    </span>
+                    <h4 class="fw-800 mb-1" id="displaySchool">Kings College, Lagos</h4>
+                    <!-- Subject & Class Tags -->
+                    <div class="d-flex align-items-center gap-2 mt-2">
+                        <span class="subject-tag" id="displaySubject">Mathematics</span>
+                        <span class="class-tag" id="displayClass">SS 2 Science</span>
+                    </div>
+                </div>
+
+                <!-- Right Side: Units & Mentor (Hidden on Mobile) -->
+                <div class="text-end d-none d-md-block">
+                    <!-- Unit Display Section -->
+                    <div class="mb-3">
+                        <p class="mb-0 small fw-bold text-muted" style="font-size: 0.65rem; letter-spacing: 0.5px;">CREDIT LOAD</p>
+                        <h4 class="fw-800 text-orange" id="displayUnits">3 Units</h4>
+                    </div>
+                    
+                    <!-- Mentor Display Section -->
+                    <div>
+                        <p class="mb-0 small fw-bold text-muted" style="font-size: 0.65rem; letter-spacing: 0.5px;">MENTOR</p>
+                        <h5 class="fw-bold text-dark mb-0" id="displayMentor">Mr. Okonjo</h5>
+                        <small class="text-muted" style="font-size: 0.75rem;">Cooperating Teacher</small>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- Bottom Row: Dates & Countdown -->
+            <div class="row g-3 mt-1">
+                <div class="col-6 col-md-3">
+                    <small class="text-muted d-block">Start Date</small>
+                    <span class="fw-bold" id="displayStart">Jan 10, 2026</span>
+                </div>
+                <div class="col-6 col-md-3">
+                    <small class="text-muted d-block">End Date</small>
+                    <span class="fw-bold" id="displayEnd">Apr 10, 2026</span>
+                </div>
+                <div class="col-md-6">
+                    <div class="countdown-mini bg-light p-2 rounded d-flex align-items-center justify-content-between px-3">
+                        <div>
+                            <small class="text-muted d-block">Teaching Duration</small>
+                            <span class="fw-800 text-dark">
+                                <i class="fa-regular fa-clock me-1 text-orange"></i> 
+                                <span id="daysRemaining">90</span> Days Left
+                            </span>
+                        </div>
+                        <!-- Mobile-Only Mentor View (Since the right side is hidden on mobile) -->
+                        <div class="d-md-none text-end">
+                            <small class="text-muted d-block">Mentor</small>
+                            <span class="fw-bold small" id="displayMentorMobile">Mr. Okonjo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Teaching Stats Circle (Right Column) -->
+    <div class="col-lg-4" data-aos="fade-left">
+        <div class="siwes-card h-100 text-center d-flex flex-column justify-content-center position-relative overflow-hidden">
+            <!-- Decorative Background Element -->
+            <div class="chalk-dust-bg"></div> 
+            
+            <h6 class="text-muted fw-bold small text-uppercase mb-3 position-relative z-2">Term Progress</h6>
+            
+            <!-- Orange Progress Circle -->
+            <div class="week-counter-circle border-orange mb-3 mx-auto position-relative z-2">
+                <span class="current-week text-orange">6</span>
+                <small>of 12 Weeks</small>
+            </div>
+            
+            <!-- Lesson Note Health Meter -->
+            <div class="health-meter-container px-2 position-relative z-2">
+                <div class="d-flex justify-content-between small mb-1">
+                    <span>Lesson Note Status</span>
+                    <span class="text-orange fw-bold">Up to Date</span>
+                </div>
+                <div class="progress" style="height: 8px;">
+                    <div class="progress-bar bg-orange" style="width: 50%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        </div> 
+
+        <!-- SECTION 3: The Teacher's Cockpit -->
+<div class="row g-4 mb-5">
+      
+        
+
+<div class="row g-4 mb-5">
+    <!-- FEATURE 6: Timetable (Keep existing code here) -->
+    <div class="col-lg-8" id="timetableSection"> ... </div>
+
+    
+</div>
+
+     <!-- FEATURE 6: Dynamic Timetable & Free Period Alert -->
+<div class="col-lg-8" data-aos="fade-up" data-aos-delay="100">
+    <div class="tp-card-widget h-100 d-flex flex-column">
+        
+        <!-- Header & Controls -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <div>
+                <h6 class="fw-800 mb-0"><i class="fa-solid fa-calendar-day text-orange me-2"></i>Live Timetable</h6>
+                <small class="text-muted" id="realTimeClock">--:--</small>
+            </div>
+            <button class="btn btn-sm btn-orange-soft fw-bold" onclick="openTimetableModal()">
+                <i class="fa-solid fa-plus"></i> Add Class
+            </button>
+        </div>
+
+        <!-- Day Navigation Tabs -->
+        <div class="day-tabs-wrapper mb-3">
+            <div class="nav nav-pills day-tabs flex-nowrap" id="dayTabs" role="tablist">
+                <!-- JS generates Mon-Fri here -->
+            </div>
+        </div>
+        
+        <!-- The Live Timeline (Scrollable) -->
+        <div class="timetable-scroller flex-grow-1">
+            <div class="d-flex gap-3" id="timetableContainer">
+                <!-- Javascript will inject cards here -->
+                <div class="text-center w-100 py-5 text-muted">
+                    <i class="fa-solid fa-calendar-xmark fa-2x mb-2 opacity-50"></i>
+                    <p class="small">No classes scheduled for this day.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Smart Status Banner -->
+        <div id="statusBanner" class="mt-3 rounded-3 p-3 d-flex align-items-center animate__animated animate__fadeIn">
+            <!-- JS updates this based on time -->
+            <div class="spinner-border spinner-border-sm text-secondary mx-auto"></div>
+        </div>
+    </div>
+</div>
+
+     <!-- FEATURE: THE ACADEMIC REGISTRY (Integrated Assignments & Register) -->
+     <div class="row g-4 mb-5">
+        <div class="col-lg-12" data-aos="fade-up">
+            <div class="tp-card-widget h-100 d-flex flex-column p-0 overflow-hidden shadow-sm border-0">
+                
+                <div class="p-4 border-bottom bg-white">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div>
+                            <h5 class="fw-800 mb-0 text-dark">Academic Registry</h5>
+                            <p class="text-muted small mb-0">Cross-subject student management</p>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-sm btn-light fw-bold border" onclick="openClassManager()">
+                                <i class="fa-solid fa-users-gear me-1"></i> Master List
+                            </button>
+                            <button class="btn btn-sm btn-orange-solid shadow-sm" data-bs-toggle="modal" data-bs-target="#assignmentModal">
+                                <i class="fa-solid fa-plus me-1"></i> New Subject
+                            </button>
+                        </div>
+                    </div>
+    
+                    <div class="assignment-scroller d-flex gap-3 pb-2" id="assignmentGrid">
+                        </div>
+                </div>
+    
+                <div class="p-4 flex-grow-1 bg-light bg-opacity-50">
+                    <div id="registerView" class="d-none animate__animated animate__fadeIn"> 
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <div>
+                                <h6 class="fw-800 mb-0" id="activeRegisterTitle">--</h6>
+                                <small class="text-orange fw-bold" id="activeRegisterStats">0 Students Enrolled</small>
+                            </div>
+                            <div class="d-flex align-items-center gap-3">
+                                <input type="date" id="attDate" class="form-control form-control-sm border-0 shadow-sm fw-bold" onchange="loadAttendanceData()">
+                                <div class="attendance-stats-pill bg-dark text-white rounded-pill px-3 py-1">
+                                    <small class="fw-bold"><span id="statPresent">0</span> P</small>
+                                    <span class="mx-2 opacity-25">|</span>
+                                    <small class="fw-bold"><span id="statAbsent">0</span> A</small>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="attendance-container mb-4" id="attendanceContainer">
+                            </div>
+    
+                        <div class="d-flex gap-2">
+                            <button class="btn btn-sm btn-white border flex-grow-1 fw-bold" onclick="markAll('present')">All Present</button>
+                            <button class="btn btn-sm btn-white border flex-grow-1 fw-bold" onclick="markAll('absent')">All Absent</button>
+                            <button class="btn btn-sm btn-outline-orange fw-bold" onclick="exportAttendance()"><i class="fa-solid fa-file-csv"></i></button>
+                        </div>
+                    </div>
+    
+                    <div id="registerEmptyState" class="text-center py-5">
+                        <i class="fa-solid fa-id-card-clip fa-3x text-muted opacity-25 mb-3"></i>
+                        <h6 class="text-muted fw-bold">Select a Subject Pill above to load the register</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="row g-4 mb-5">
+     <!-- FEATURE 10: Fintech-Style Transport & Allowance Manager -->
+<div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+    <div class="tp-card-widget h-100 p-0 overflow-hidden d-flex flex-column">
+        
+        <!-- Header / Digital Card Area -->
+        <div class="wallet-header p-4 position-relative">
+            <div class="d-flex justify-content-between align-items-start mb-3 position-relative z-2">
+                <div>
+                    <small class="text-white-50 text-uppercase fw-bold letter-spacing-1" style="font-size: 0.7rem;">Total Balance</small>
+                    <h2 class="fw-900 text-white mb-0 display-6">₦<span id="walletBalance">0.00</span></h2>
+                </div>
+                <button class="btn btn-sm btn-white-glass rounded-circle" onclick="toggleWalletView()">
+                    <i class="fa-solid fa-eye" id="walletEye"></i>
+                </button>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="row g-2 position-relative z-2 mt-2">
+                <div class="col-6">
+                    <button class="btn btn-light w-100 py-2 shadow-sm fw-bold text-danger" onclick="openTransactionModal('expense')">
+                        <i class="fa-solid fa-arrow-up-right-from-square me-2"></i>Spend
+                    </button>
+                </div>
+                <div class="col-6">
+                    <button class="btn btn-light w-100 py-2 shadow-sm fw-bold text-success" onclick="openTransactionModal('income')">
+                        <i class="fa-solid fa-arrow-down-long me-2"></i>Add
+                    </button>
+                </div>
+            </div>
+
+            <div class="deco-circle-1"></div>
+            <div class="deco-circle-2"></div>
+        </div>
+
+        <!-- Recent Transactions List (Preview) -->
+        <div class="bg-white flex-grow-1 p-3 d-flex flex-column">
+            <h6 class="fw-bold text-muted small mb-2 text-uppercase">Recent Activity</h6>
+            
+            <div class="transaction-list custom-scrollbar flex-grow-1 mb-2" id="transactionList">
+                <!-- JS Injected Preview -->
+            </div>
+
+            <!-- NEW: Footer with View/Export Button -->
+            <div class="mt-auto pt-2 border-top">
+                <button class="btn btn-sm btn-link text-decoration-none w-100 text-secondary fw-bold" onclick="openExportModal()">
+                    View All & Export History <i class="fa-solid fa-chevron-right ms-1"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+  <!-- FEATURE 1: Advanced NERDC Scheme of Work Tracker -->
+<div class="col-lg-4" data-aos="fade-up">
+    <div class="tp-card-widget h-100 d-flex flex-column">
+        
+        <!-- Header with Action Menu -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <div>
+                <h6 class="fw-800 mb-0">Scheme of Work</h6>
+                <p class="text-muted small mb-0 lh-1">Term Coverage</p>
+            </div>
+            <div class="dropdown">
+                <button class="btn btn-sm btn-light rounded-circle" data-bs-toggle="dropdown">
+                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg">
+                    <li><a class="dropdown-item small fw-bold" href="#" onclick="openSyllabusModal()"><i class="fa-solid fa-plus text-success me-2"></i>Add Topic</a></li>
+                    <li><a class="dropdown-item small fw-bold" href="#" onclick="generateSchemeTemplate()"><i class="fa-solid fa-magic text-orange me-2"></i>Auto-Fill Wk 1-12</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item small fw-bold text-danger" href="#" onclick="clearSyllabus()"><i class="fa-solid fa-trash me-2"></i>Reset All</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Visual Stats -->
+        <div class="bg-soft-orange rounded-3 p-3 mb-3 d-flex align-items-center justify-content-between">
+            <div>
+                <h3 class="fw-900 text-orange mb-0" id="syllabusPercent">0%</h3>
+                <small class="fw-bold text-muted" style="font-size: 0.7rem;">COMPLETION</small>
+            </div>
+            <div class="text-end">
+                <div class="d-block fw-bold text-dark small"><span id="topicsCovered">0</span>/<span id="topicsTotal">12</span> Weeks</div>
+                <div class="progress mt-1 bg-white" style="height: 6px; width: 100px;">
+                    <div class="progress-bar bg-orange" id="syllabusProgress" style="width: 0%"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scrollable List -->
+        <div class="syllabus-list custom-scrollbar flex-grow-1" id="syllabusContainer">
+            <!-- Content Injected via JS -->
+            <div class="text-center py-5">
+                <i class="fa-solid fa-clipboard-list text-light fa-3x mb-3"></i>
+                <p class="small text-muted mb-2">No scheme found.</p>
+                <button class="btn btn-sm btn-orange-outline" onclick="generateSchemeTemplate()">Generate Template</button>
+            </div>
+        </div>
+        
+        <!-- Floating Add Button (Mobile Friendly) -->
+        <button class="btn btn-orange-solid w-100 mt-3 py-2 shadow-sm" onclick="openSyllabusModal()">
+            <i class="fa-solid fa-plus me-2"></i>Add Week Topic
+        </button>
+    </div>
+</div>
+
+    <!-- FEATURE 8: Professional Weekly Logbook -->
+<div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+    <div class="tp-card-widget h-100 d-flex flex-column">
+        
+        <!-- Header -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <div>
+                <h6 class="fw-800 mb-0">Weekly Logbook</h6>
+                <p class="text-muted small mb-0 lh-1">Track your progress</p>
+            </div>
+            <button class="btn btn-sm btn-light border" onclick="exportLogbook()" title="Download Report">
+                <i class="fa-solid fa-file-export text-dark"></i>
+            </button>
+        </div>
+        
+        <!-- Current Week CTA -->
+        <div class="bg-soft-blue p-3 rounded-3 mb-3 text-center border-dashed-blue">
+            <small class="text-primary fw-bold text-uppercase d-block mb-1">Current Status</small>
+            <h5 class="fw-900 text-dark mb-2">Week <span id="autoWeekNum">1</span></h5>
+            <button class="btn btn-primary-gm w-100 btn-sm shadow-sm" onclick="openDiaryModal()">
+                <i class="fa-solid fa-pen-fancy me-2"></i>Fill Log for this Week
+            </button>
+        </div>
+
+        <!-- Timeline History -->
+        <div class="diary-timeline-container custom-scrollbar flex-grow-1" id="diaryHistory">
+            <!-- JS Injects Timeline Here -->
+            <div class="text-center py-4 opacity-50">
+                <i class="fa-solid fa-book-open fa-2x mb-2"></i>
+                <p class="small">No logs yet.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</div>
+ 
+
+
+    <!-- FEATURE 2: Professional Digital Lesson Note Manager -->
+<div class="row mb-5" data-aos="fade-up">
+    <div class="col-12">
+        <div class="tp-card-widget bg-white p-0 overflow-hidden d-flex flex-column flex-lg-row h-100 shadow-sm border">
+            
+            <!-- Left: Action & Info -->
+            <div class="col-lg-4 p-4 bg-pattern-dots d-flex flex-column justify-content-center border-end">
+                <div class="mb-4">
+                    <span class="badge bg-orange text-white mb-2">Lesson Architect</span>
+                    <h4 class="fw-800 mb-2">Digital Note Creator</h4>
+                    <p class="text-muted small">Build standard Nigerian lesson notes (Ed. 2025 Format) in minutes. Auto-saves to your device.</p>
+                </div>
+                <button class="btn btn-orange-solid py-3 shadow-lg hover-scale w-100" onclick="openNoteWizard()">
+                    <i class="fa-solid fa-plus-circle me-2"></i> Create New Note
+                </button>
+            </div>
+
+            <!-- Right: Recent Drafts Slider -->
+            <div class="col-lg-8 p-4 bg-light">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h6 class="fw-bold text-secondary mb-0">Recent Drafts</h6>
+                    <small class="text-muted"><span id="noteCount">0</span> Notes Saved</small>
+                </div>
+                
+                <!-- Notes Grid -->
+                <div class="row g-3" id="recentNotesGrid">
+                    <!-- JS Injects Notes Here -->
+                    <div class="col-12 text-center py-5 opacity-50">
+                        <i class="fa-solid fa-file-circle-question fa-3x mb-2 text-muted"></i>
+                        <p class="small fw-bold">No notes yet. Start creating!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </main>
+
+    <!-- MODAL: Setup Placement -->
+    <div class="modal fade" id="setupTpModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 p-3">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="fw-800"><i class="fa-solid fa-school me-2 text-orange"></i>Setup School Posting</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form id="setupTpForm">
+                    <div class="modal-body">
+                        <!-- School Details -->
+                        <div class="mb-3">
+                            <label class="small fw-bold text-muted">Name of School</label>
+                            <input type="text" id="schoolIn" class="form-control fw-bold" placeholder="e.g. Kings College, Lagos" required>
+                        </div>
+                        
+                        <!-- Teaching Assignment -->
+                        <div class="row g-2 mb-3">
+                            <div class="col-6">
+                                <label class="small fw-bold text-muted">Subject Assigned</label>
+                                <input type="text" id="subjectIn" class="form-control" placeholder="e.g. Biology" required>
+                            </div>
+                            <div class="col-6">
+                                <label class="small fw-bold text-muted">Class Level</label>
+                                <input type="text" id="classIn" class="form-control" placeholder="e.g. SS 2A" required>
+                            </div>
+                        </div>
+                           
+                         <!-- NEW: Course Units Dropdown -->
+        <div class="mb-3">
+            <label class="small fw-bold text-muted">Course Units</label>
+            <select id="unitsIn" class="form-select fw-bold text-dark">
+                <option value="3">3 Units (NCE/Short Term)</option>
+                <option value="4">4 Units (Standard Semester)</option>
+                <option value="6">6 Units (Full Session)</option>
+            </select>
+        </div>
+                        <!-- Mentor Details -->
+                        <div class="mb-3">
+                            <label class="small fw-bold text-muted">Cooperating Teacher (Mentor)</label>
+                            <input type="text" id="mentorIn" class="form-control" placeholder="e.g. Mrs. Adebayo" required>
+                        </div>
+
+                        <!-- Duration -->
+                        <div class="row g-2 mb-0">
+                            <div class="col-6">
+                                <label class="small fw-bold text-muted">Start Date</label>
+                                <input type="date" id="startIn" class="form-control" required>
+                            </div>
+                            <div class="col-6">
+                                <label class="small fw-bold text-muted">End Date</label>
+                                <input type="date" id="endIn" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0">
+                        <button type="submit" class="btn btn-primary-gm w-100 btn-orange-gradient">Save Placement Profile</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ================= MODALS ================= -->
+
+<!-- MODAL FOR FEATURE 2: Lesson Note Builder -->
+<!-- 1. WIZARD MODAL (Create/Edit) -->
+<div class="modal fade" id="noteWizardModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content border-0">
+            <div class="modal-header border-0 pb-0">
+                <div>
+                    <h5 class="fw-800 mb-0" id="wizardTitle">New Lesson Note</h5>
+                    <p class="small text-muted mb-0">Step <span id="currentStepNum">1</span> of 4</p>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            
+            <!-- Progress Bar -->
+            <div class="progress mt-3 mx-3" style="height: 4px;">
+                <div class="progress-bar bg-orange" id="wizardProgress" style="width: 25%"></div>
+            </div>
+
+            <div class="modal-body p-4">
+                <form id="noteForm">
+                    <input type="hidden" id="noteEditId">
+
+                    <!-- STEP 1: THE BASICS -->
+                    <div class="wizard-step" id="step1">
+                        <h6 class="fw-bold text-orange mb-3">The Basics</h6>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="small fw-bold">Subject</label>
+                                <input type="text" id="lnSubject" class="form-control" placeholder="e.g. Basic Science">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="small fw-bold">Topic</label>
+                                <input type="text" id="lnTopic" class="form-control" placeholder="e.g. Living Things">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="small fw-bold">Class</label>
+                                <input type="text" id="lnClass" class="form-control" placeholder="JSS 1A">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="small fw-bold">Duration</label>
+                                <input type="text" id="lnDuration" class="form-control" placeholder="40 Mins">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="small fw-bold">Date</label>
+                                <input type="date" id="lnDate" class="form-control">
+                            </div>
+                            <div class="col-12">
+                                <label class="small fw-bold">Instructional Materials</label>
+                                <input type="text" id="lnMat" class="form-control" placeholder="e.g. Charts, Realia, Whiteboard">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STEP 2: OBJECTIVES -->
+                    <div class="wizard-step d-none" id="step2">
+                        <h6 class="fw-bold text-orange mb-3">Objectives & Entry Behavior</h6>
+                        
+                        <div class="mb-3">
+                            <label class="small fw-bold">Entry Behavior (Previous Knowledge)</label>
+                            <textarea id="lnEntry" class="form-control" rows="2" placeholder="Students are already familiar with..."></textarea>
+                        </div>
+
+                        <label class="small fw-bold">Behavioral Objectives</label>
+                        <p class="smaller text-muted mb-2">By the end of the lesson, students should be able to:</p>
+                        <textarea id="lnObj" class="form-control" rows="4" placeholder="1. Define...&#10;2. List...&#10;3. Explain..."></textarea>
+                    </div>
+
+                    <!-- STEP 3: PROCEDURE (The 4 Steps) -->
+                    <div class="wizard-step d-none" id="step3">
+                        <h6 class="fw-bold text-orange mb-3">Presentation Procedure</h6>
+                        <div class="accordion" id="stepsAccordion">
+                            <!-- Step I -->
+                            <div class="accordion-item border-0 mb-2 shadow-sm rounded">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed fw-bold small" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                                        Step I: Introduction
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#stepsAccordion">
+                                    <div class="accordion-body bg-light">
+                                        <div class="row g-2">
+                                            <div class="col-6"><textarea id="lnStep1T" class="form-control form-control-sm" rows="2" placeholder="Teacher's Activity"></textarea></div>
+                                            <div class="col-6"><textarea id="lnStep1S" class="form-control form-control-sm" rows="2" placeholder="Student's Activity"></textarea></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Step II -->
+                            <div class="accordion-item border-0 mb-2 shadow-sm rounded">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button fw-bold small" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                        Step II: Content Delivery (Main)
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse show" data-bs-parent="#stepsAccordion">
+                                    <div class="accordion-body bg-light">
+                                        <div class="row g-2">
+                                            <div class="col-6"><textarea id="lnStep2T" class="form-control form-control-sm" rows="3" placeholder="Teacher's Activity"></textarea></div>
+                                            <div class="col-6"><textarea id="lnStep2S" class="form-control form-control-sm" rows="3" placeholder="Student's Activity"></textarea></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Step III -->
+                            <div class="accordion-item border-0 mb-2 shadow-sm rounded">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed fw-bold small" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                                        Step III: Evaluation (In-class)
+                                    </button>
+                                </h2>
+                                <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#stepsAccordion">
+                                    <div class="accordion-body bg-light">
+                                        <div class="row g-2">
+                                            <div class="col-6"><textarea id="lnStep3T" class="form-control form-control-sm" rows="2" placeholder="Teacher asks..."></textarea></div>
+                                            <div class="col-6"><textarea id="lnStep3S" class="form-control form-control-sm" rows="2" placeholder="Students answer..."></textarea></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                             <!-- Step IV -->
+                             <div class="accordion-item border-0 mb-2 shadow-sm rounded">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed fw-bold small" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour">
+                                        Step IV: Conclusion
+                                    </button>
+                                </h2>
+                                <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#stepsAccordion">
+                                    <div class="accordion-body bg-light">
+                                        <div class="row g-2">
+                                            <div class="col-6"><textarea id="lnStep4T" class="form-control form-control-sm" rows="2" placeholder="Teacher summarizes..."></textarea></div>
+                                            <div class="col-6"><textarea id="lnStep4S" class="form-control form-control-sm" rows="2" placeholder="Students copy note..."></textarea></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- STEP 4: CONCLUSION -->
+                    <div class="wizard-step d-none" id="step4">
+                        <h6 class="fw-bold text-orange mb-3">Evaluation & Assignment</h6>
+                        
+                        <div class="mb-3">
+                            <label class="small fw-bold">Evaluation Questions</label>
+                            <textarea id="lnEval" class="form-control" rows="2" placeholder="1. _________? 2. _________?"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="small fw-bold">Take Home Assignment</label>
+                            <textarea id="lnAssign" class="form-control" rows="2" placeholder="Draw/Read page..."></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer border-0 bg-light justify-content-between">
+                <button type="button" class="btn btn-outline-secondary" id="prevBtn" onclick="changeStep(-1)" disabled>Previous</button>
+                <div class="d-flex gap-2">
+                    <button type="button" class="btn btn-danger d-none" id="noteDeleteBtn" onclick="deleteNote()">Delete</button>
+                    <button type="button" class="btn btn-orange-solid" id="nextBtn" onclick="changeStep(1)">Next Step</button>
+                    <button type="button" class="btn btn-success fw-bold d-none" id="finishBtn" onclick="saveNote()">Save & Finish</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 2. PRINT PREVIEW MODAL -->
+<div class="modal fade" id="printModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="fw-bold">Print Preview</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body bg-secondary">
+                <!-- A4 Paper Simulation -->
+                <div id="printArea" class="bg-white mx-auto p-5 shadow-sm" style="max-width: 210mm; min-height: 297mm; font-family: 'Times New Roman', serif;">
+                    <!-- JS fills this -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary-gm" onclick="window.print()"><i class="fa-solid fa-print me-2"></i>Print / Save PDF</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+  <!-- ADD THIS MODAL AT THE BOTTOM OF YOUR HTML (Outside the rows) -->
+<!-- TIMETABLE MANAGER MODAL -->
+<div class="modal fade" id="timetableModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0">
+            <div class="modal-header border-0 pb-0">
+                <h5 class="fw-800" id="ttModalTitle">Add Class Slot</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="ttForm">
+                    <input type="hidden" id="ttEditId"> <!-- Hidden ID for editing -->
+                    
+                    <div class="mb-3">
+                        <label class="small fw-bold text-muted">Day of Week</label>
+                        <select id="ttDay" class="form-select fw-bold">
+                            <option value="Monday">Monday</option>
+                            <option value="Tuesday">Tuesday</option>
+                            <option value="Wednesday">Wednesday</option>
+                            <option value="Thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
+                        </select>
+                    </div>
+
+                    <div class="row g-2 mb-3">
+                        <div class="col-6">
+                            <label class="small fw-bold text-muted">Start Time</label>
+                            <input type="time" id="ttStart" class="form-control" required>
+                        </div>
+                        <div class="col-6">
+                            <label class="small fw-bold text-muted">End Time</label>
+                            <input type="time" id="ttEnd" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="small fw-bold text-muted">Subject</label>
+                        <input type="text" id="ttSubject" class="form-control" placeholder="e.g. Mathematics" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="small fw-bold text-muted">Class Arm</label>
+                        <input type="text" id="ttClass" class="form-control" placeholder="e.g. JSS 1 Gold" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer border-0 pt-0">
+                <button type="button" class="btn btn-light text-danger me-auto d-none" id="ttDeleteBtn" onclick="deleteSlot()">Delete</button>
+                <button type="button" class="btn btn-orange-solid w-50" onclick="saveTimetableSlot()">Save Schedule</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- TRANSACTION MODAL -->
+<div class="modal fade" id="transactionModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content border-0">
+            <div class="modal-header border-0 pb-0">
+                <h6 class="fw-800" id="transModalTitle">Log Expense</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="transForm">
+                    <!-- Amount Input -->
+                    <div class="mb-3 text-center">
+                        <label class="small text-muted fw-bold">Amount (₦)</label>
+                        <input type="number" id="transAmount" class="form-control form-control-lg fw-900 text-center border-0 bg-light" placeholder="0.00" style="font-size: 1.5rem;" required>
+                    </div>
+
+                    <!-- Category Selection Grid -->
+                    <label class="small text-muted fw-bold mb-2">Select Category</label>
+                    <div class="category-grid mb-3" id="categoryGrid">
+                        <!-- JS Injects Categories Here -->
+                    </div>
+                    <input type="hidden" id="selectedCategoryIcon">
+                    <input type="hidden" id="selectedCategoryName">
+                    <input type="hidden" id="transactionType">
+
+                    <!-- Note -->
+                    <div class="mb-2">
+                        <input type="text" id="transNote" class="form-control form-control-sm" placeholder="Add a note (optional)...">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer border-0 justify-content-center pt-0">
+                <button type="button" class="btn btn-primary-gm w-100 py-2 rounded-3" onclick="saveTransaction()">Confirm Transaction</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <!-- EXPORT & HISTORY MODAL -->
+<div class="modal fade" id="exportModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content border-0">
+            <div class="modal-header border-0 pb-0">
+                <h6 class="fw-800">Transaction History</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                
+                <!-- Filter Controls -->
+                <div class="bg-light p-3 rounded-3 mb-3">
+                    <label class="small fw-bold text-muted mb-2">Export Period</label>
+                    <div class="d-flex gap-2">
+                        <select id="exportFilter" class="form-select form-select-sm fw-bold" onchange="filterExportList()">
+                            <option value="today">Today</option>
+                            <option value="week" selected>This Week</option>
+                            <option value="all">All Time</option>
+                        </select>
+                        <button class="btn btn-sm btn-dark fw-bold px-3" onclick="downloadTxtExport()">
+                            <i class="fa-solid fa-file-arrow-down me-2"></i>Export TXT
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Full List Container -->
+                <h6 class="small fw-bold text-muted mb-2">Detailed Statement</h6>
+                <div id="fullHistoryList" class="custom-scrollbar" style="max-height: 300px;">
+                    <!-- JS Injects Full List Here -->
+                </div>
+            </div>
+            <div class="modal-footer border-0 bg-light justify-content-between">
+                <div>
+                    <span class="small text-muted d-block">Total Spent (Period)</span>
+                    <span class="fw-800 text-danger" id="exportTotalExp">₦0.00</span>
+                </div>
+                <div class="text-end">
+                    <span class="small text-muted d-block">Total Income (Period)</span>
+                    <span class="fw-800 text-success" id="exportTotalInc">₦0.00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+   <!-- SYLLABUS EDITOR MODAL -->
+<div class="modal fade" id="syllabusModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0">
+            <div class="modal-header border-0 pb-0">
+                <h5 class="fw-800" id="sylModalTitle">Edit Scheme</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="sylForm">
+                    <input type="hidden" id="sylEditId">
+                    
+                    <div class="row g-2 mb-3">
+                        <div class="col-4">
+                            <label class="small fw-bold text-muted">Week No.</label>
+                            <input type="number" id="sylWeek" class="form-control fw-bold" placeholder="1" min="1" max="20" required>
+                        </div>
+                        <div class="col-8">
+                            <label class="small fw-bold text-muted">Status</label>
+                            <select id="sylStatus" class="form-select">
+                                <option value="pending">Pending</option>
+                                <option value="completed">Completed</option>
+                                <option value="skipped">Mid-Term / Skipped</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="small fw-bold text-muted">Topic Title</label>
+                        <input type="text" id="sylTopic" class="form-control" placeholder="e.g. Introduction to Geometry" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="small fw-bold text-muted">Sub-topics / Notes (Optional)</label>
+                        <textarea id="sylSub" class="form-control" rows="3" placeholder="- Definition&#10;- Types of triangles"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer border-0 pt-0 justify-content-between">
+                <button type="button" class="btn btn-light text-danger" id="sylDeleteBtn" onclick="deleteSyllabusTopic()">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+                <button type="button" class="btn btn-orange-solid px-4" onclick="saveSyllabusTopic()">Save Topic</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+   <!-- ADD THIS MODAL AT THE BOTTOM -->
+   <div class="modal fade" id="classManagerModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg rounded-4">
+            <div class="modal-header border-0 pb-0 px-4 pt-4">
+                <h5 class="fw-800 mb-0">Student Master List</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body px-4 pb-4">
+                <p class="text-muted small mb-4">Add students to their permanent Class Arm (e.g., SS 1A). They will appear in all subjects assigned to that arm.</p>
+                
+                <div class="bg-light p-3 rounded-4 mb-4">
+                    <label class="small fw-bold text-muted mb-2">Assign to Arm</label>
+                    <div class="input-group mb-2">
+                        <input type="text" id="addStudentInput" class="form-control border-0 shadow-sm" placeholder="Student Full Name">
+                        <button class="btn btn-orange-solid px-3" onclick="addStudentToClass()">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="masterListContainer" class="custom-scrollbar" style="max-height: 250px;">
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="assignmentModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content border-0 shadow-lg rounded-4">
+            <div class="modal-header border-0 pb-0">
+                <h6 class="fw-800">New Subject Assignment</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="small fw-bold">Subject Name</label>
+                    <input type="text" id="asgnSub" class="form-control" placeholder="e.g. Mathematics">
+                </div>
+                <div class="mb-3">
+                    <label class="small fw-bold">Target Class Arm</label>
+                    <input type="text" id="asgnClass" class="form-control" placeholder="e.g. SS 1A">
+                    <small class="text-muted" style="font-size: 0.65rem;">Must match the Master List arm exactly.</small>
+                </div>
+                <button class="btn btn-orange-solid w-100 py-2 mt-2" onclick="saveAssignment()">Initialize Assignment</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- LOGBOOK ENTRY MODAL -->
+<div class="modal fade" id="diaryModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0">
+            <div class="modal-header border-0 pb-0">
+                <h5 class="fw-800" id="diaryModalTitle">New Log Entry</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="diaryForm">
+                    <input type="hidden" id="diaryEditId">
+                    
+                    <!-- Week Selector -->
+                    <div class="row g-2 mb-3">
+                        <div class="col-4">
+                            <label class="small fw-bold text-muted">Week No.</label>
+                            <input type="number" id="logWeek" class="form-control fw-bold" min="1" max="24">
+                        </div>
+                        <div class="col-8">
+                            <label class="small fw-bold text-muted">Week Rating</label>
+                            <select id="logMood" class="form-select">
+                                <option value="success">✅ Successful</option>
+                                <option value="stress">🤯 Stressful</option>
+                                <option value="average">😐 Uneventful</option>
+                                <option value="challenge">⚠️ Challenging</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Topics -->
+                    <div class="mb-3">
+                        <label class="small fw-bold text-muted">Topic(s) Taught</label>
+                        <input type="text" id="logTopic" class="form-control" placeholder="e.g. Algebra & Linear Equations">
+                    </div>
+
+                    <!-- Methodology -->
+                    <div class="mb-3">
+                        <label class="small fw-bold text-muted">Methodology Used</label>
+                        <select id="logMethod" class="form-select">
+                            <option value="Explanation & Discussion">Explanation & Discussion</option>
+                            <option value="Demonstration">Demonstration / Practical</option>
+                            <option value="Field Trip">Field Trip</option>
+                            <option value="Questions & Answers">Questions & Answers</option>
+                        </select>
+                    </div>
+
+                    <!-- Description/Challenges -->
+                    <div class="mb-3">
+                        <label class="small fw-bold text-muted">Summary & Challenges</label>
+                        <textarea id="logDesc" class="form-control" rows="3" placeholder="Briefly describe the week. Any issues with students or facilities?"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer border-0 pt-0 justify-content-between">
+                 <button type="button" class="btn btn-light text-danger d-none" id="diaryDeleteBtn" onclick="deleteDiaryEntry()">Delete</button>
+                <button type="button" class="btn btn-primary-gm px-4 ms-auto" onclick="saveDiaryEntry()">Save to Logbook</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+     <!-- MODAL: ADD ASSIGNMENT -->
+<div class="modal fade" id="assignmentModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0">
+            <div class="modal-header border-0 pb-0">
+                <h5 class="fw-800">New Assignment</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="small fw-bold text-muted">Subject</label>
+                    <input type="text" id="assignSubject" class="form-control" placeholder="e.g. Mathematics">
+                </div>
+                <div class="mb-3">
+                    <label class="small fw-bold text-muted">Class Arm (Base Class)</label>
+                    <input type="text" id="assignClass" class="form-control" placeholder="e.g. SS 1A">
+                </div>
+            </div>
+            <div class="modal-footer border-0">
+                <button class="btn btn-orange-solid w-100" onclick="saveAssignment()">Create Assignment</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- ADD THIS LINE HERE: -->
+    <script src="auth.js"></script> 
+    <script src="tp.js"></script>
+</body>
+</html>

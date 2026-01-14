@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources | GradMate Hub</title>
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="dashboard.css" />
+    <link rel="stylesheet" href="resoS.css" />
+</head>
+<body>
+
+    <!-- SIDEBAR NAVIGATION (Fixed Left) -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="asset/EHSnV01.svg" alt="GradMate" class="nav-logo" style="height: 25px;">
+            <span class="ms-2 fw-bold logo-text">
+                <span class="logo-g">G</span><span class="logo-rest">radMate</span>
+            </span>
+        </div>
+        
+        <ul class="nav-menu list-unstyled">
+            <li class="nav-item" id="nav-dashboard">
+                <a href="dashboard.html" class="nav-link">
+                    <i class="fa-solid fa-house-chimney me-2"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item" id="nav-siwes">
+                <a href="siwes.html" class="nav-link">
+                    <i class="fa-solid fa-briefcase me-2"></i>
+                    <span>SIWES Module</span>
+                </a>
+            </li>
+            <li class="nav-item" id="nav-resources">
+                <a href="resoS.html" class="nav-link">
+                    <i class="fa-solid fa-layer-group me-2"></i>
+                    <span>Resources</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="infos.html" class="nav-link opacity-50">
+                    <i class="fa-solid fa-book-open me-2"></i>
+                    <span>Project Hub</span>
+                </a>
+            </li>
+        </ul>
+    
+        <div class="sidebar-footer mt-auto p-3">
+            <div class="d-flex align-items-center p-2 bg-light rounded-3">
+                <div class="user-avatar-sm me-2">
+                    <i class="fa-solid fa-circle-user text-primary"></i>
+                </div>
+                <div class="overflow-hidden">
+                    <p class="mb-0 small fw-bold text-truncate" id="sidebarUserName">Student User</p>
+                    <p class="mb-0 smaller text-muted">University Account</p>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- MAIN CONTENT AREA -->
+    <main class="content-area">
+        <div class="container-fluid">
+            
+            <!-- SECTION 1: Header -->
+            <header class="top-nav d-flex justify-content-between align-items-center mb-4 pt-2">
+                <button id="sidebarToggle" class="btn d-lg-none"><i class="fa-solid fa-bars"></i></button>
+                <div>
+                    <h4 class="fw-800 mb-0">SIWES Resource Library</h4>
+                    <p class="text-muted small mb-0">Approved courses, industry guides, and templates.</p>
+                </div>
+                <div class="d-none d-md-block">
+                    <img src="https://ui-avatars.com/api/?name=User&background=6C63FF&color=fff&size=40" class="rounded-circle" alt="User">
+                </div>
+            </header>
+
+            <!-- SECTION 2: Navigation Tabs -->
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-header bg-white border-bottom-0 pt-4 px-4">
+                    <ul class="nav nav-tabs nav-fill gm-tabs" id="resourceTabs" role="tablist">
+                        <li class="nav-item">
+                            <button class="nav-link active" id="tab-courses" data-bs-toggle="tab" data-bs-target="#courses-pane" type="button">
+                                <i class="fa-solid fa-certificate me-2"></i>Approved Courses
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link" id="tab-industry" data-bs-toggle="tab" data-bs-target="#industry-pane" type="button">
+                                <i class="fa-solid fa-city me-2"></i>Business Line Guide
+                            </button>
+                        </li>
+                        <li class="nav-item">
+                            <button class="nav-link" id="tab-knowledge" data-bs-toggle="tab" data-bs-target="#knowledge-pane" type="button">
+                                <i class="fa-solid fa-book-open-reader me-2"></i>Knowledge & FAQs
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card-body p-4">
+                    <div class="tab-content" id="resourceTabsContent">
+                        
+                        <!-- TAB PANE 1: Approved Courses -->
+                        <div class="tab-pane fade show active" id="courses-pane" role="tabpanel">
+                            <div class="row mb-4">
+                                <div class="col-md-8 mx-auto text-center">
+                                    <h5 class="fw-bold mb-3">Eligibility Search</h5>
+                                    <div class="input-group input-group-lg shadow-sm">
+                                        <span class="input-group-text bg-white border-end-0"><i class="fa-solid fa-magnifying-glass text-muted"></i></span>
+                                        <input type="text" id="courseSearch" class="form-control border-start-0 ps-0" placeholder="Search course (e.g. Computer Science)...">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row g-3" id="courseListContainer">
+                                <!-- JS Injection Site -->
+                            </div>
+                        </div>
+
+                        <!-- TAB PANE 2: Industry Guide -->
+                        <div class="tab-pane fade" id="industry-pane" role="tabpanel">
+                            <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+                                <div class="flex-grow-1">
+                                    <div class="input-group shadow-sm" style="max-width: 500px;">
+                                        <span class="input-group-text bg-white border-end-0"><i class="fa-solid fa-filter text-muted"></i></span>
+                                        <input type="text" id="industrySearch" class="form-control border-start-0 ps-0" placeholder="Filter by Program...">
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary-gm" data-bs-toggle="modal" data-bs-target="#addIndustryModal">
+                                    <i class="fa-solid fa-plus me-2"></i>Suggest Industry
+                                </button>
+                            </div>
+                            <div class="accordion" id="industryAccordion">
+                                <!-- JS Injection Site -->
+                            </div>
+                        </div>
+
+                        <!-- TAB PANE 3: Knowledge Base & FAQs -->
+                        <div class="tab-pane fade" id="knowledge-pane" role="tabpanel">
+                            <div class="row g-4 mb-5">
+                                <!-- Left Column: Glossary -->
+                                <div class="col-lg-7">
+                                    <h6 class="fw-bold mb-3">Glossary of Terms</h6>
+                                    <div class="input-group mb-4">
+                                        <span class="input-group-text bg-light border-end-0"><i class="fa-solid fa-search text-muted"></i></span>
+                                        <input type="text" id="glossarySearch" class="form-control bg-light border-start-0" placeholder="Search terms (e.g. Scaf, Defense)...">
+                                    </div>
+                                    <div class="glossary-grid" id="glossaryContainer">
+                                        <!-- JS Injection Site (Neon Cards) -->
+                                    </div>
+                                </div>
+                                
+                                <!-- Right Column: Downloads & Quick Tip -->
+                                <div class="col-lg-5">
+                                    <h6 class="fw-bold mb-3">Templates & Downloads</h6>
+                                    <div class="list-group shadow-sm border-0 rounded-4 overflow-hidden mb-4">
+                                        <a href="asset/LOGBOOK.pdf" download class="list-group-item list-group-item-action py-3 d-flex justify-content-between align-items-center">
+                                            <span><i class="fa-solid fa-file-pdf text-danger me-2"></i> SIWES Logbook Sample</span>
+                                            <i class="fa-solid fa-download text-muted"></i>
+                                        </a>
+                                        <a href="asset/report_template.docx" download class="list-group-item list-group-item-action py-3 d-flex justify-content-between align-items-center">
+                                            <span><i class="fa-solid fa-file-word text-primary me-2"></i> Technical Report Template</span>
+                                            <i class="fa-solid fa-download text-muted"></i>
+                                        </a>
+                                        <a href="asset/Form8.pdf" download class="list-group-item list-group-item-action py-3 d-flex justify-content-between align-items-center">
+                                            <span><i class="fa-solid fa-file-pdf text-danger me-2"></i> ITF Form 8 Guide</span>
+                                            <i class="fa-solid fa-download text-muted"></i>
+                                        </a>
+                                    </div>
+
+                                    <div class="card bg-soft-blue border-0 p-3">
+                                        <div class="d-flex">
+                                            <i class="fa-solid fa-circle-info text-primary fa-lg me-3 mt-1"></i>
+                                            <div>
+                                                <h6 class="fw-bold mb-1 text-primary">Quick Tip</h6>
+                                                <p class="small text-muted mb-0">Always scan your stamped documents before submitting originals!</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- FAQ Section (Full Width Bottom) -->
+                            <div class="bg-light p-4 rounded-4">
+                                <h5 class="fw-bold text-center mb-4"><i class="fa-solid fa-circle-question text-primary me-2"></i>Frequently Asked Questions</h5>
+                                <div class="accordion accordion-flush" id="faqAccordion">
+                                    <!-- JS Injection Site -->
+                                </div>
+                            </div>
+                        </div> <!-- End Knowledge Pane -->
+
+                    </div> <!-- End Tab Content -->
+                </div> <!-- End Card Body -->
+            </div> <!-- End Main Card -->
+        </div> <!-- End Container Fluid -->
+    </main>
+
+    <!-- MODAL: Add New Industry -->
+    <div class="modal fade" id="addIndustryModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold">Suggest Business Line</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form id="addIndustryForm">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold">Program of Study</label>
+                            <input type="text" class="form-control" id="newProgramName" placeholder="e.g. Mechatronics Engineering" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold">Suitable Business Lines (Comma separated)</label>
+                            <textarea class="form-control" id="newBusinessLines" rows="3" placeholder="e.g. Robotics Firms, Assembly Plants" required></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0">
+                        <button type="submit" class="btn btn-primary-gm w-100 py-2">Add to List</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="resoS.js"></script>
+</body>
+</html>

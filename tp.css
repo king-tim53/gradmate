@@ -1,0 +1,775 @@
+/* Color Palette for Teaching Practice (Warm/Academic) */
+:root {
+    --gm-orange: #fd7e14;
+    --gm-soft-orange: #ffe8cc;
+    --gm-dark-orange: #e8590c;
+}
+
+/* Sidebar Active State Override for TP */
+.sidebar .nav-menu li.active a i.fa-chalkboard-user {
+    color: var(--gm-orange);
+}
+
+/* Card Styling - Education Theme */
+.tp-card-accent {
+    border-left: 4px solid var(--gm-orange) !important;
+}
+
+/* Badges and Tags */
+.bg-soft-orange {
+    background-color: var(--gm-soft-orange) !important;
+}
+.text-orange {
+    color: var(--gm-dark-orange) !important;
+}
+
+.subject-tag {
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #495057;
+    display: inline-flex;
+    align-items: center;
+}
+.subject-tag::before {
+    content: '\f19d'; /* FontAwesome Book Icon */
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    margin-right: 6px;
+    color: var(--gm-orange);
+}
+
+.class-tag {
+    background: var(--gm-soft-orange);
+    color: var(--gm-dark-orange);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+/* Circular Progress Override */
+.week-counter-circle.border-orange {
+    border: 4px solid var(--gm-soft-orange);
+}
+.week-counter-circle .current-week.text-orange {
+    color: var(--gm-dark-orange);
+}
+
+.progress-bar.bg-orange {
+    background-color: var(--gm-orange) !important;
+}
+
+/* Setup Modal Button */
+.btn-orange-gradient {
+    background: linear-gradient(135deg, var(--gm-orange) 0%, var(--gm-dark-orange) 100%);
+    border: none;
+}
+.btn-orange-gradient:hover {
+    background: linear-gradient(135deg, var(--gm-dark-orange) 0%, var(--gm-orange) 100%);
+}
+
+/* Decorative Chalk Background for Stats Card */
+.chalk-dust-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(#495057 1px, transparent 1px);
+    background-size: 20px 20px;
+    opacity: 0.05;
+    z-index: 1;
+    pointer-events: none;
+}
+
+
+/* --- WIDGET STYLING --- */
+.tp-card-widget {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    border: 1px solid rgba(0,0,0,0.02);
+    transition: transform 0.3s ease;
+}
+.tp-card-widget:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+}
+
+/* --- FEATURE 6: TIMETABLE --- */
+.timetable-scroller {
+    overflow-x: auto;
+    padding-bottom: 10px;
+    scrollbar-width: thin;
+}
+.tt-card {
+    min-width: 140px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 1rem;
+    border-left: 3px solid #dee2e6;
+    transition: all 0.2s;
+}
+.tt-card.active-class {
+    background: var(--gm-soft-orange);
+    border-left: 3px solid var(--gm-orange);
+    transform: scale(1.02);
+    box-shadow: 0 4px 10px rgba(253, 126, 20, 0.15);
+}
+.tt-card h6 { font-size: 0.9rem; margin-bottom: 4px; }
+.tt-card p { font-size: 0.75rem; margin-bottom: 0; opacity: 0.7; }
+
+/* --- FEATURE 10: WALLET --- */
+.border-dashed-orange { border: 1px dashed var(--gm-orange); color: var(--gm-dark-orange); }
+.border-dashed-green { border: 1px dashed #2ecc71; color: #27ae60; }
+.wallet-overlay {
+    position: absolute;
+    top: -50%; right: -50%;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(253, 126, 20, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+/* --- FEATURE 1: SYLLABUS --- */
+.syllabus-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #f1f3f5;
+    transition: 0.2s;
+}
+.syllabus-item.completed span {
+    text-decoration: line-through;
+    opacity: 0.5;
+}
+.syllabus-checkbox {
+    width: 20px; height: 20px;
+    border: 2px solid var(--gm-orange);
+    border-radius: 6px;
+    margin-right: 12px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    color: white;
+}
+.syllabus-item.completed .syllabus-checkbox {
+    background: var(--gm-orange);
+}
+
+/* --- FEATURE 5: ATTENDANCE BUBBLES --- */
+.attendance-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+    gap: 8px;
+    max-height: 150px;
+    overflow-y: auto;
+}
+.att-bubble {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: #f1f3f5;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: #868e96;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    user-select: none;
+}
+.att-bubble.present {
+    background: #d4edda;
+    color: #155724;
+    border: 2px solid #c3e6cb;
+}
+.att-bubble:active { transform: scale(0.9); }
+
+/* --- FEATURE 8: DIARY --- */
+.diary-history { max-height: 150px; overflow-y: auto; margin-top: 1rem; }
+.diary-item {
+    padding-left: 12px;
+    border-left: 2px solid #dee2e6;
+    margin-bottom: 12px;
+}
+.diary-item small { font-size: 0.7rem; color: #adb5bd; }
+
+/* Custom Scrollbar for inner widgets */
+.custom-scrollbar::-webkit-scrollbar { width: 4px; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: #e9ecef; border-radius: 10px; }
+
+/* Utilities */
+.btn-orange-solid {
+    background: var(--gm-orange);
+    color: white;
+    font-weight: 600;
+    border: none;
+}
+.btn-orange-solid:hover { background: var(--gm-dark-orange); color: white; }
+.bg-pattern-dots {
+    background-image: radial-gradient(#adb5bd 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+
+/* --- TIMETABLE ENHANCEMENTS --- */
+
+/* Day Tabs */
+.day-tabs-wrapper {
+    overflow-x: auto;
+    padding-bottom: 5px;
+}
+.day-tabs .nav-link {
+    color: #6c757d;
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 6px 16px;
+    border-radius: 20px;
+    background: #f8f9fa;
+    margin-right: 8px;
+    white-space: nowrap;
+    border: 1px solid transparent;
+}
+.day-tabs .nav-link.active {
+    background: var(--gm-orange);
+    color: white;
+    box-shadow: 0 4px 10px rgba(253, 126, 20, 0.3);
+}
+
+/* Timetable Cards */
+.tt-card {
+    min-width: 150px;
+    background: white;
+    border: 1px solid #e9ecef;
+    border-left: 4px solid #adb5bd; /* Default Gray */
+    border-radius: 12px;
+    padding: 1rem;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.tt-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+/* Active Class State */
+.tt-card.status-active {
+    background: #fff4e6; /* Soft Orange */
+    border-color: #ffd8a8;
+    border-left-color: var(--gm-orange);
+    box-shadow: 0 8px 20px rgba(253, 126, 20, 0.15);
+}
+.tt-card.status-active::after {
+    content: 'NOW';
+    position: absolute;
+    top: 8px; right: 8px;
+    background: var(--gm-orange);
+    color: white;
+    font-size: 0.6rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: bold;
+    animation: pulse 2s infinite;
+}
+
+/* Status Banners */
+.banner-free {
+    background: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+}
+.banner-busy {
+    background: #fff3cd;
+    border: 1px solid #ffeeba;
+    color: #856404;
+}
+.banner-done {
+    background: #e2e3e5;
+    color: #383d41;
+}
+
+/* Animation */
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.6; }
+    100% { opacity: 1; }
+}
+
+.btn-orange-soft {
+    background: #fff4e6;
+    color: var(--gm-orange);
+    border: none;
+}
+.btn-orange-soft:hover {
+    background: var(--gm-orange);
+    color: white;
+}
+
+
+/* --- FINTECH WALLET STYLES --- */
+
+/* The Card Header */
+.wallet-header {
+    background: linear-gradient(135deg, var(--gm-orange) 0%, #e8590c 100%);
+    color: white;
+    position: relative;
+    border-radius: 16px 16px 0 0; /* Only top corners rounded if inside widget */
+}
+
+/* Glassy Eye Button */
+.btn-white-glass {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    backdrop-filter: blur(4px);
+}
+.btn-white-glass:hover {
+    background: rgba(255, 255, 255, 0.4);
+    color: white;
+}
+
+/* Decorative Circles */
+.deco-circle-1 {
+    position: absolute;
+    top: -20px; right: -20px;
+    width: 100px; height: 100px;
+    background: white;
+    opacity: 0.1;
+    border-radius: 50%;
+}
+.deco-circle-2 {
+    position: absolute;
+    bottom: -30px; left: -10px;
+    width: 80px; height: 80px;
+    background: white;
+    opacity: 0.1;
+    border-radius: 50%;
+}
+
+/* Transaction List */
+.transaction-list {
+    max-height: 250px;
+    overflow-y: auto;
+}
+.trans-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #f8f9fa;
+    transition: background 0.2s;
+}
+.trans-item:hover {
+    background: #fcfcfc;
+}
+.trans-icon-box {
+    width: 40px; height: 40px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+/* Icon Colors */
+.bg-icon-transport { background: #e7f5ff; color: #1c7ed6; } /* Blue */
+.bg-icon-food { background: #fff0f6; color: #d6336c; } /* Pink */
+.bg-icon-data { background: #e6fcf5; color: #0ca678; } /* Teal */
+.bg-icon-edu { background: #fff9db; color: #f08c00; } /* Yellow */
+.bg-icon-gift { background: #f3f0ff; color: #7950f2; } /* Purple */
+.bg-icon-clothing { background: #fff5f5; color: #fa5252; } /* Red */
+.bg-icon-income { background: #ebfbee; color: #2f9e44; } /* Green */
+
+/* Modal Category Grid */
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+.cat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    transition: 0.2s;
+    border: 1px solid transparent;
+}
+.cat-item:hover {
+    background: #f8f9fa;
+}
+.cat-item.selected {
+    background: #fff4e6;
+    border: 1px solid var(--gm-orange);
+}
+.cat-item i {
+    font-size: 1.2rem;
+    margin-bottom: 4px;
+    color: #868e96;
+}
+.cat-item.selected i { color: var(--gm-orange); }
+.cat-item span {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #495057;
+}
+
+/* Amount Colors */
+.text-amt-exp { color: #fa5252; }
+.text-amt-inc { color: #2f9e44; }
+
+/* --- FEATURE 1: ADVANCED SYLLABUS --- */
+
+.syllabus-item {
+    display: flex;
+    align-items: flex-start; /* Align to top for multi-line */
+    padding: 12px 10px;
+    border-bottom: 1px solid #f8f9fa;
+    border-radius: 8px;
+    transition: all 0.2s;
+    cursor: pointer;
+    position: relative;
+}
+.syllabus-item:hover {
+    background: #fdfdfd;
+}
+
+/* Week Badge */
+.wk-badge {
+    background: #e9ecef;
+    color: #495057;
+    font-size: 0.65rem;
+    font-weight: 800;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-bottom: 4px;
+    display: inline-block;
+}
+
+/* Custom Checkbox Design */
+.syllabus-checkbox-custom {
+    min-width: 22px;
+    height: 22px;
+    border: 2px solid #dee2e6;
+    border-radius: 6px;
+    margin-right: 12px;
+    margin-top: 2px;
+    display: flex; align-items: center; justify-content: center;
+    color: white;
+    transition: 0.2s;
+}
+
+/* States */
+.syllabus-item.completed .syllabus-checkbox-custom {
+    background: var(--gm-orange);
+    border-color: var(--gm-orange);
+}
+.syllabus-item.completed .topic-text {
+    text-decoration: line-through;
+    color: #adb5bd;
+}
+.syllabus-item.skipped {
+    background: #fff9db; /* Yellow tint for holidays */
+    opacity: 0.8;
+}
+
+/* Edit Icon (Hidden until hover) */
+.syl-edit-icon {
+    opacity: 0;
+    transition: 0.2s;
+    color: #ced4da;
+    padding: 5px;
+}
+.syllabus-item:hover .syl-edit-icon {
+    opacity: 1;
+}
+.syl-edit-icon:hover {
+    color: var(--gm-orange);
+}
+
+/* Button Outline */
+.btn-orange-outline {
+    border: 1px solid var(--gm-orange);
+    color: var(--gm-orange);
+    background: transparent;
+}
+.btn-orange-outline:hover {
+    background: var(--gm-orange);
+    color: white;
+}
+
+
+/* --- FEATURE 5: PRO ATTENDANCE --- */
+
+.attendance-container {
+    overflow-y: auto;
+    min-height: 150px;
+    padding-right: 5px;
+}
+
+/* GRID VIEW (Bubbles) */
+.att-grid-view {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(45px, 1fr));
+    gap: 10px;
+}
+
+.att-bubble {
+    width: 45px; height: 45px;
+    border-radius: 12px;
+    background: #f8f9fa;
+    border: 2px solid #e9ecef;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: #adb5bd;
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+    position: relative;
+}
+
+/* Status Colors */
+.att-bubble.status-present {
+    background: #d4edda; color: #155724; border-color: #c3e6cb;
+}
+.att-bubble.status-late {
+    background: #fff3cd; color: #856404; border-color: #ffeeba;
+}
+.att-bubble.status-absent {
+    background: #f8d7da; color: #721c24; border-color: #f5c6cb;
+}
+
+/* LIST VIEW (Rows) */
+.att-list-view {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.att-list-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    background: white;
+    border: 1px solid #f1f3f5;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.att-list-item:hover { background: #f8f9fa; }
+
+.att-status-indicator {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    margin-right: 12px;
+    background: #e9ecef; /* Default/Pending */
+}
+.att-list-item.status-present .att-status-indicator { background: #28a745; box-shadow: 0 0 8px #28a74566; }
+.att-list-item.status-late .att-status-indicator { background: #ffc107; box-shadow: 0 0 8px #ffc10766; }
+.att-list-item.status-absent .att-status-indicator { background: #dc3545; box-shadow: 0 0 8px #dc354566; }
+
+/* Small buttons */
+.btn-xs {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+
+/* --- FEATURE 8: DIARY TIMELINE --- */
+
+.border-dashed-blue {
+    border: 1px dashed #4dabf7;
+    background: #e7f5ff;
+}
+
+.diary-timeline-container {
+    padding-left: 10px;
+    position: relative;
+    max-height: 250px; /* Limits height within the card */
+    overflow-y: auto;
+}
+
+/* Vertical Line */
+.diary-timeline-container::before {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0; left: 24px;
+    width: 2px;
+    background: #e9ecef;
+    z-index: 1;
+}
+
+.diary-card {
+    position: relative;
+    margin-bottom: 20px;
+    padding-left: 40px;
+    z-index: 2;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.diary-card:hover {
+    transform: translateX(4px);
+}
+
+/* The Dot on the timeline */
+.diary-dot {
+    position: absolute;
+    left: 18px; top: 0;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: white;
+    border: 3px solid var(--gm-orange); /* Default */
+    z-index: 3;
+}
+
+/* Status Colors for Dots */
+.diary-dot.mood-success { border-color: #28a745; background: #d4edda; }
+.diary-dot.mood-stress { border-color: #dc3545; background: #f8d7da; }
+.diary-dot.mood-average { border-color: #ffc107; background: #fff3cd; }
+.diary-dot.mood-challenge { border-color: #6c757d; background: #e2e3e5; }
+
+/* Content Styling */
+.diary-week-badge {
+    font-size: 0.65rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #adb5bd;
+    margin-bottom: 2px;
+    display: block;
+}
+
+.diary-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #343a40;
+    line-height: 1.2;
+}
+
+.diary-desc {
+    font-size: 0.75rem;
+    color: #6c757d;
+    margin-top: 4px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Tag for Method */
+.method-tag {
+    font-size: 0.6rem;
+    background: #f1f3f5;
+    padding: 1px 6px;
+    border-radius: 4px;
+    color: #495057;
+    margin-top: 4px;
+    display: inline-block;
+}
+
+
+/* --- FEATURE 2: LESSON NOTE ARCHITECT --- */
+
+/* Recent Note Card */
+.note-preview-card {
+    background: white;
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    padding: 15px;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+}
+.note-preview-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    border-color: #dee2e6;
+}
+.note-preview-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: var(--gm-orange);
+}
+
+/* Wizard */
+.wizard-step {
+    animation: fadeIn 0.4s ease-in-out;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Print Specific */
+@media print {
+    body * { visibility: hidden; }
+    #printModal, #printArea, #printArea * { visibility: visible; }
+    #printModal { position: absolute; left: 0; top: 0; width: 100%; margin: 0; padding: 0; }
+    #printArea { box-shadow: none !important; margin: 0 !important; width: 100%; }
+    .modal-header, .modal-footer, .btn-close { display: none !important; }
+}
+
+/* Accordion Tweaks */
+.accordion-button:not(.collapsed) {
+    background-color: #fff4e6;
+    color: var(--gm-orange);
+}
+.accordion-button:focus {
+    box-shadow: none;
+    border-color: rgba(253, 126, 20, 0.5);
+}
+
+/* Assignment Pill Styling */
+.asgn-pill {
+    min-width: 160px;
+    background: white;
+    border: 1px solid #e9ecef;
+    padding: 12px 18px;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.asgn-pill:hover { border-color: var(--gm-orange); transform: translateY(-2px); }
+.asgn-pill.active {
+    background: #fff4e6;
+    border-color: var(--gm-orange);
+    box-shadow: 0 4px 15px rgba(253, 126, 20, 0.1);
+}
+.asgn-pill h6 { font-size: 0.85rem; margin-bottom: 2px; font-weight: 800; }
+.asgn-pill small { color: #adb5bd; font-weight: 700; font-size: 0.7rem; }
+
+/* Attendance Bubbles */
+.attendance-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(55px, 1fr));
+    gap: 15px;
+}
+.att-bubble {
+    width: 55px; height: 55px;
+    border-radius: 18px;
+    background: white;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 0.9rem;
+    cursor: pointer; position: relative;
+    transition: 0.2s; border: 2px solid transparent;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+.att-bubble.status-present { background: #dcfce7; color: #166534; border-color: #22c55e; }
+.att-bubble.status-absent { background: #fee2e2; color: #991b1b; border-color: #ef4444; }
+
+/* Truancy Logic Dot */
+.truancy-dot {
+    position: absolute;
+    top: -4px; right: -4px;
+    width: 12px; height: 12px;
+    background: #f59e0b;
+    border: 2px solid white;
+    border-radius: 50%;
+    display: none; /* Only show via JS */
+}

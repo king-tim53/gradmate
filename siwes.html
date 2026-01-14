@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIWES Companion | GradMate</title>
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Bootstrap 5 & AOS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="siwes.css">
+</head>
+<body>
+    <div class="mesh-gradient"></div>
+
+    <!-- SIDEBAR NAVIGATION -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="/asset/EHSnV01.svg" alt="GradMate" class="nav-logo" style="height: 25px;">
+            <span class="ms-2 fw-bold logo-text">
+                <span class="logo-g">G</span><span class="logo-rest">radMate</span>
+            </span>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="dashboard.html"><i class="fa-solid fa-house"></i> Overview</a></li>
+            <li class="active"><a href="siwes.html"><i class="fa-solid fa-briefcase"></i> SIWES Module</a></li>
+            <li><a href="project.html"><i class="fa-solid fa-graduation-cap"></i> Project Defense</a></li>
+            <li><a href="resoS.html"><i class="fa-solid fa-book"></i> Resources</a></li>
+            <li ><a href="tp.html"><i class="fa-solid fa-chalkboard-user"></i> Teaching Practice</a></li>
+            <li><a href="chat.html"><i class="fa-solid fa-robot"></i> AI Assistant</a></li>
+            <li class="menu-divider"></li>
+            <li><a href="infos.html"><i class="fa-solid fa-book"></i> Info</a></li>
+            <li><a href="login.html" class="text-danger"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+        </ul>
+    </nav>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="content-area">
+        <div class="container-fluid px-lg-4">
+            
+            <!-- SECTION 1: Page Header -->
+            <header class="d-flex justify-content-between align-items-center mb-4 pt-2">
+                <div data-aos="fade-down">
+                    <h3 class="fw-800 mb-0">SIWES Management</h3>
+                    <p class="text-muted small">Academic Year 2025/2026</p>
+                </div>
+                <button class="btn btn-primary-gm" data-bs-toggle="modal" data-bs-target="#setupSiwesModal">
+                    <i class="fa-solid fa-pen-to-square me-2"></i> Setup Placement
+                </button>
+            </header>
+
+            <!-- SECTION 2: Placement Details & Progress -->
+            <div class="row g-4 mb-4">
+                <!-- Placement Profile Card -->
+                <div class="col-lg-8" data-aos="fade-right">
+                    <div class="siwes-card h-100">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <span class="badge bg-soft-blue text-primary mb-2">Active Placement</span>
+                                <h4 class="fw-800 mb-1" id="displayCompany">Chevron Nigeria Limited</h4>
+                                <p class="text-muted" id="displayPosition"><i class="fa-solid fa-user-tie me-2"></i>Junior Software Intern</p>
+                            </div>
+                            <div class="text-end">
+                                <p class="mb-0 small fw-bold text-muted">UNITS</p>
+                                <h4 class="fw-800 text-primary" id="displayUnits">6 Units</h4>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row g-3 mt-1">
+                            <div class="col-6 col-md-3">
+                                <small class="text-muted d-block">Start Date</small>
+                                <span class="fw-bold" id="displayStart">Sept 01, 2025</span>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <small class="text-muted d-block">End Date</small>
+                                <span class="fw-bold" id="displayEnd">Feb 28, 2026</span>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="countdown-mini bg-light p-2 rounded">
+                                    <small class="text-muted d-block">Time Remaining</small>
+                                    <span class="fw-800 text-accent"><i class="fa-solid fa-hourglass-half me-1"></i> <span id="daysRemaining">120</span> Days</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Training Progress Circle -->
+                <div class="col-lg-4" data-aos="fade-left">
+                    <div class="siwes-card h-100 text-center d-flex flex-column justify-content-center">
+                        <h6 class="text-muted fw-bold small text-uppercase mb-3">Training Progress</h6>
+                        <div class="week-counter-circle mb-3 mx-auto">
+                            <span class="current-week">12</span>
+                            <small>of 24 Weeks</small>
+                        </div>
+                        <div class="health-meter-container px-2">
+                            <div class="d-flex justify-content-between small mb-1">
+                                <span>Logbook Health</span>
+                                <span class="text-success fw-bold">Excellent</span>
+                            </div>
+                            <div class="progress" style="height: 8px;">
+                                <div class="progress-bar bg-success" style="width: 92%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 3: Supervision & Toolbag -->
+            <div class="row g-4 mb-4">
+                  <!-- Feature: Supervisor Tracking Card -->
+<div class="col-lg-4" data-aos="fade-up">
+    <div class="supervisor-card h-100 p-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h6 class="fw-800 mb-0 small text-uppercase letter-spacing-1">Supervisor Tracker</h6>
+            <!-- Clickable Badge to view history -->
+            <span class="visit-count-badge cursor-pointer" id="visitCount" data-bs-toggle="modal" data-bs-target="#historyModal">0 Visits</span>
+        </div>
+
+        <div class="text-center py-3">
+            <!-- Pulse icon changes to green when visited -->
+            <div id="visitationStatus" class="visitation-pulse bg-soft-coral mb-3">
+                <i class="fa-solid fa-user-check"></i>
+            </div>
+            <p class="small text-muted mb-4" id="visitationText">No official school visitation recorded yet.</p>
+        </div>
+
+        <!-- Latest Visit Detail (Hidden by default) -->
+        <div id="lastVisitDetails" class="d-none">
+            <div class="last-visit-box mb-4">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span class="smaller text-muted">Last Visited By:</span>
+                    <span class="small fw-bold" id="lastSupName">--</span>
+                </div>
+                <div class="text-end">
+                    <a href="javascript:void(0)" class="smaller fw-bold text-primary text-decoration-none" data-bs-toggle="modal" data-bs-target="#historyModal">
+                        View All History <i class="fa-solid fa-chevron-right ms-1"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn btn-primary-gm w-100 py-2" data-bs-toggle="modal" data-bs-target="#logVisitModal">
+            <i class="fa-solid fa-calendar-plus me-2"></i> Log New Visit
+        </button>
+    </div>
+</div>
+
+<!-- MODAL: Log New Visit (Hybrid Logic) -->
+<div class="modal fade" id="logVisitModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 p-3 shadow-lg">
+            <div class="modal-header border-0 pb-0">
+                <h5 class="fw-800">Log School Visitation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                
+                <!-- 1. The Decision Toggle -->
+                <div class="p-3 bg-light rounded-3 mb-3">
+                    <div class="form-check form-switch d-flex justify-content-between align-items-center ps-0">
+                        <label class="form-check-label small fw-bold text-muted" for="supToggle">Is Supervisor on GradMate?</label>
+                        <input class="form-check-input ms-3" type="checkbox" id="supToggle" onchange="toggleVisitMode()">
+                    </div>
+                </div>
+
+                <!-- 2. SCENARIO B: Manual Entry (Default) -->
+                <div id="manualModeInputs">
+                    <div class="mb-3">
+                        <label class="small fw-bold">Supervisor Name</label>
+                        <input type="text" id="supNameIn" class="form-control bg-light border-0 p-3" style="border-radius:12px" placeholder="e.g. Dr. Kolawole">
+                    </div>
+                </div>
+
+                <!-- 3. SCENARIO A: SPID Entry (Hidden by default) -->
+                <div id="digitalModeInputs" class="d-none">
+                    <div class="mb-3">
+                        <label class="small fw-bold text-primary">Supervisor SPID</label>
+                        <input type="text" id="supSpidIn" class="form-control bg-soft-blue border-primary p-3 fw-bold text-uppercase" style="border-radius:12px" placeholder="SPID-DR-XXXXXX">
+                        <small class="text-muted smaller">This will send a verification request to your supervisor.</small>
+                    </div>
+                </div>
+
+                <!-- Common Date Field -->
+                <div class="mb-0">
+                    <label class="small fw-bold">Visitation Date</label>
+                    <input type="date" id="supDateIn" class="form-control bg-light border-0 p-3" style="border-radius:12px">
+                </div>
+            </div>
+            <div class="modal-footer border-0">
+                <button class="btn btn-primary-gm w-100 py-3" onclick="recordVisit()">Confirm Log</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL: Visitation History -->
+<div class="modal fade" id="historyModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 p-3 shadow-lg">
+            <div class="modal-header border-0">
+                <h5 class="fw-800">Visitation History</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div id="visitHistoryList" class="history-list">
+                    <!-- JS will fill this -->
+                    <p class="text-center text-muted py-4">No visits recorded yet.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+                <!-- Industry Toolbag & Competency Hub -->
+                <div class="col-lg-8" data-aos="fade-up" data-aos-delay="100">
+                    <div class="siwes-card h-100 p-4">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h6 class="fw-800 mb-0"><i class="fa-solid fa-screwdriver-wrench text-primary me-2"></i>Industry Toolbag</h6>
+                            <span class="badge bg-soft-blue text-primary px-3 py-2">Engineering Faculty</span>
+                        </div>
+
+                        <div class="toolbag-grid mb-4">
+                            <div class="d-flex flex-wrap gap-2">
+                                <span class="tool-tag"><i class="fa-solid fa-code me-1"></i> VS Code</span>
+                                <span class="tool-tag"><i class="fa-brands fa-git-alt me-1"></i> Git / GitHub</span>
+                                <span class="tool-tag"><i class="fa-solid fa-compass-drafting me-1"></i> AutoCAD</span>
+                                <span class="tool-tag secondary"><i class="fa-solid fa-pen-nib me-1"></i> Technical Sketchpad</span>
+                            </div>
+                        </div>
+
+                        <hr class="my-4 opacity-50">
+
+                        <div class="competency-section">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h6 class="fw-800 mb-0">Skill Competency Tracker</h6>
+                                <button class="btn btn-sm btn-primary-gm" data-bs-toggle="modal" data-bs-target="#addSkillModal">
+                                    <i class="fa-solid fa-plus me-1"></i> Add Skill
+                                </button>
+                            </div>
+                            <div id="skillsContainer" class="skills-list-wrapper">
+                                <div class="text-center py-4 text-muted smaller">No skills added yet.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 4: Professional Document Vault -->
+            <section class="mb-5" data-aos="fade-up">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div>
+                        <h5 class="fw-800 mb-0">Document Vault <small class="text-muted ms-2" id="vaultCount">(0/4)</small></h5>
+                        <p class="smaller text-muted mb-0">Your files are stored locally in your browser.</p>
+                    </div>
+                </div>
+                
+                <div id="vaultGrid" class="row g-3">
+                    <div class="col-6 col-md-3"><div class="vault-slot" id="vault-slot-1"></div></div>
+                    <div class="col-6 col-md-3"><div class="vault-slot" id="vault-slot-2"></div></div>
+                    <div class="col-6 col-md-3"><div class="vault-slot" id="vault-slot-3"></div></div>
+                    <div class="col-6 col-md-3"><div class="vault-slot" id="vault-slot-4"></div></div>
+                </div>
+            </section>
+          
+            <div class="modal fade" id="mentorReviewModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content border-0 shadow-lg" style="border-radius: 20px;">
+                        <div class="modal-header bg-dark text-white border-0">
+                            <h6 class="fw-bold mb-0"><i class="fa-solid fa-user-check me-2 text-warning"></i>Mentor Verification Portal</h6>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body p-4">
+                            <div class="text-center mb-4">
+                                <div class="badge bg-soft-blue text-primary px-3 py-2 mb-2">OFFICIAL REVIEW</div>
+                                <h5 id="m_studentName" class="fw-800 mb-0">---</h5>
+                                <p class="text-muted smaller">Intern Activity Verification</p>
+                            </div>
+                            
+                            <div class="bg-light p-3 rounded-4 mb-4 border-start border-4 border-primary">
+                                <div class="d-flex justify-content-between mb-2">
+                                    <small class="fw-bold text-primary" id="m_logDate">Date</small>
+                                    <span class="badge bg-white text-dark border">Daily Log</span>
+                                </div>
+                                <p class="mt-2 mb-1 fw-800 small text-secondary uppercase">Work Description:</p>
+                                <p id="m_logWork" class="small text-dark mb-3">---</p>
+                                <p class="mt-2 mb-1 fw-800 small text-secondary uppercase">Competencies Acquired:</p>
+                                <p id="m_logLessons" class="small text-muted mb-0">---</p>
+                            </div>
+            
+                            <input type="hidden" id="m_logId">
+                            
+                            <div class="mb-3">
+                                <label class="small fw-bold mb-2">Mentor Name & Designation</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-white border-end-0"><i class="fa-solid fa- signature text-muted"></i></span>
+                                    <input type="text" id="mentorName" class="form-control border-start-0 ps-0" placeholder="e.g. Engr. Bolu (Site Manager)">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer border-0 pt-0">
+                            <button class="btn btn-success w-100 py-3 fw-bold shadow-sm" onclick="mentorSignOff()">
+                                <i class="fa-solid fa-check-double me-2"></i> Verify & Sign This Entry
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION 5: Daily Logbook -->
+            <section class="mb-5" data-aos="fade-up">
+                <div class="row align-items-end mb-3 gy-3">
+                    <div class="col-lg-4">
+                        <h5 class="fw-800 mb-0">Daily Technical Logs</h5>
+                        <p class="smaller text-muted mb-0">Record and manage your industrial activities.</p>
+                    </div>
+                    <!-- Search & Filter -->
+                    <div class="col-lg-4">
+                        <div class="input-group input-group-sm">
+                            <span class="input-group-text bg-white border-end-0 text-muted"><i class="fa-solid fa-magnifying-glass"></i></span>
+                            <input type="text" id="logSearch" class="form-control border-start-0" placeholder="Search work or lessons..." onkeyup="filterLogs()">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 text-lg-end">
+                        <div class="d-flex gap-2 justify-content-lg-end">
+                            <button class="btn btn-sm btn-outline-secondary" onclick="bulkExport()">
+                                <i class="fa-solid fa-file-pdf me-2"></i>Export
+                            </button>
+                            <button class="btn btn-sm btn-primary-gm" data-bs-toggle="modal" data-bs-target="#addLogModal">
+                                <i class="fa-solid fa-plus me-1"></i>New Entry
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="log-table-container bg-white shadow-sm border-radius-lg">
+                    <div class="table-responsive">
+                        <table class="table mb-0 align-middle" id="logTable">
+                            <thead class="bg-light">
+                                <tr>
+                                    <th class="ps-4" style="width: 40px;"><input type="checkbox" id="selectAllLogs" onclick="toggleSelectAll(this)"></th>
+                                    <th style="width: 120px;">Date</th>
+                                    <th style="width: 300px;">Work Description</th>
+                                    <th>Lessons Learned</th>
+                                    <th style="width: 100px;">Status</th>
+                                    <th class="text-end pe-4" style="width: 100px;">Action</th>
+                                    <th style="width: 80px;">Loc.</th>
+                                </tr>
+                            </thead>
+                            <tbody id="logEntries">
+                                <!-- Dynamic Logs -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Empty State -->
+                    <div id="logEmptyState" class="text-center py-5 d-none">
+                        <i class="fa-solid fa-book-open-reader fa-3x mb-3 opacity-25"></i>
+                        <p class="text-muted">No logs found. Start by adding your first daily entry!</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Modal: Edit Log -->
+            <div class="modal fade" id="editLogModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content border-0 p-3 shadow-lg">
+                        <div class="modal-header border-0">
+                            <h5 class="fw-800">Edit Entry</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="hidden" id="editLogId">
+                            <div class="mb-3">
+                                <label class="small fw-bold">Description of Work</label>
+                                <textarea id="editWork" class="form-control" rows="3"></textarea>
+                            </div>
+                            <div>
+                                <label class="small fw-bold">Lessons Learned</label>
+                                <textarea id="editLessons" class="form-control" rows="2"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer border-0">
+                            <button class="btn btn-primary-gm w-100" onclick="saveLogEdit()">Update Log</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SECTION 6: Report CTA -->
+            <div class="row mb-5">
+                <div class="col-12" data-aos="zoom-in">
+                    <div class="siwes-card bg-primary text-white">
+                        <div class="row align-items-center">
+                            <div class="col-md-8">
+                                <h5 class="fw-800"><i class="fa-solid fa-wand-magic-sparkles me-2"></i>Automatic Report Builder</h5>
+                                <p class="small opacity-75 mb-0">Instantly generate your final 6-month technical report outline based on your daily logs.</p>
+                            </div>
+                            <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                                <button class="btn btn-primary-gm w-100 py-3" onclick="generateReportOutline()" data-bs-toggle="modal" data-bs-target="#reportModal">
+                                    <i class="fa-solid fa-wand-magic-sparkles me-2"></i>Generate Technical Report
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+
+        </div> <!-- End Container Fluid -->
+    </main>
+
+    <!-- MODALS SECTION -->
+    
+    
+
+    
+
+   
+    <!-- Setup Modal -->
+    <div class="modal fade" id="setupSiwesModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 p-3">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="fw-800">Placement Configuration</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form id="setupForm">
+                    <div class="modal-body">
+                        <input type="text" id="companyIn" class="form-control mb-3" placeholder="Company Name" required>
+                        <input type="text" id="posIn" class="form-control mb-3" placeholder="Position" required>
+                        <div class="row g-2 mb-3">
+                            <div class="col-6"><input type="date" id="startIn" class="form-control" required></div>
+                            <div class="col-6"><input type="date" id="endIn" class="form-control" required></div>
+                        </div>
+                        <select id="unitsIn" class="form-control">
+                            <option value="6">6 Units</option>
+                            <option value="4">4 Units</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer border-0">
+                        <button type="submit" class="btn btn-primary-gm w-100">Save Configuration</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Visitation Log Modal -->
+    <div class="modal fade" id="logVisitModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 p-3">
+                <div class="modal-header border-0">
+                    <h5 class="fw-800">Log School Visitation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" id="supNameIn" class="form-control mb-3" placeholder="Supervisor Name">
+                    <input type="date" id="supDateIn" class="form-control">
+                </div>
+                <div class="modal-footer border-0">
+                    <button class="btn btn-primary-gm w-100" onclick="recordVisit()">Confirm Visitation</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- History Modal -->
+    <div class="modal fade" id="historyModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 p-3">
+                <div class="modal-header border-0 pb-0"><h5 class="fw-800">Visitation History</h5></div>
+                <div class="modal-body"><div id="visitHistoryList" class="history-list"></div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Log Modal -->
+    <div class="modal fade" id="addLogModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 p-3">
+                <div class="modal-header border-0 pb-0"><h5 class="fw-800">Daily Activity Log</h5></div>
+                <form id="logForm">
+                    <div class="modal-body">
+                        <textarea id="workIn" class="form-control mb-3" rows="3" placeholder="What did you do today?" required></textarea>
+                        <textarea id="lessonIn" class="form-control" rows="2" placeholder="Skills or lessons acquired..." required></textarea>
+                    </div>
+                    <div class="modal-footer border-0">
+                        <button type="submit" class="btn btn-primary-gm w-100">Sync with Logbook</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 
+        MODALS SECTION 
+        Keep modals at the bottom of the body for better accessibility and to prevent z-index issues.
+    -->
+    
+    <!-- Setup Placement Modal -->
+    <div class="modal fade" id="setupSiwesModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 p-3">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="fw-800">Placement Configuration</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form id="setupForm">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="small fw-bold">Company Name</label>
+                            <input type="text" id="companyIn" class="form-control" placeholder="e.g. NNPC Research Lab" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="small fw-bold">Position</label>
+                            <input type="text" id="posIn" class="form-control" placeholder="e.g. Chemical Analyst Intern" required>
+                        </div>
+                        <div class="row g-2 mb-3">
+                            <div class="col-6">
+                                <label class="small fw-bold">Start Date</label>
+                                <input type="date" id="startIn" class="form-control" required>
+                            </div>
+                            <div class="col-6">
+                                <label class="small fw-bold">End Date</label>
+                                <input type="date" id="endIn" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="mb-0">
+                            <label class="small fw-bold">Course Units</label>
+                            <select id="unitsIn" class="form-control">
+                                <option value="2">2 Units</option>
+                                <option value="4">4 Units</option>
+                                <option value="6" selected>6 Units</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0">
+                        <button type="submit" class="btn btn-primary-gm w-100">Save & Calculate Progress</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+   
+    <div class="modal fade" id="addSkillModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg" style="border-radius: 24px;">
+                <div class="modal-header border-0 pb-0">
+                    <div class="d-flex align-items-center">
+                        <div class="icon-box me-3" style="background: var(--primary-light); color: var(--primary); padding: 12px; border-radius: 15px;">
+                            <i class="fa-solid fa-bolt-lightning"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-800 mb-0">Track New Skill</h5>
+                            <small class="text-muted">Measure your technical growth</small>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="addSkillForm">
+                    <div class="modal-body py-4">
+                        <div class="mb-4">
+                            <label class="form-label small fw-bold text-uppercase" style="letter-spacing: 1px;">Skill Name</label>
+                            <input type="text" id="skillNameIn" class="form-control form-control-lg border-0 bg-light" 
+                                   placeholder="e.g. AutoCAD, Python, HVAC Maintenance" required 
+                                   style="border-radius: 12px; font-size: 0.95rem;">
+                        </div>
+                        
+                        <div class="mb-2">
+                            <div class="d-flex justify-content-between">
+                                <label class="form-label small fw-bold text-uppercase" style="letter-spacing: 1px;">Proficiency</label>
+                                <span id="skillValueDisplay" class="badge rounded-pill bg-primary-gm">50%</span>
+                            </div>
+                            <input type="range" class="form-range custom-range" id="skillLevelIn" min="0" max="100" value="50"
+                                   oninput="document.getElementById('skillValueDisplay').innerText = this.value + '%'">
+                            <div class="d-flex justify-content-between mt-1">
+                                <small class="text-muted" style="font-size: 0.7rem;">Beginner</small>
+                                <small class="text-muted" style="font-size: 0.7rem;">Expert</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0 pt-0">
+                        <button type="submit" class="btn btn-primary-gm w-100 py-3 fw-bold" style="border-radius: 15px;">
+                            Add to Tracker
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Log Modal -->
+    <div class="modal fade" id="addLogModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 p-3">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="fw-800">Daily Activity Log</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form id="logForm">
+                    <div class="modal-body">
+                        <textarea id="workIn" class="form-control mb-3" rows="3" placeholder="What did you do today?" required></textarea>
+                        <textarea id="lessonIn" class="form-control" rows="2" placeholder="Skills or lessons acquired..." required></textarea>
+                    </div>
+                    <div class="modal-footer border-0">
+                        <button type="submit" class="btn btn-primary-gm w-100">Sync with Logbook</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Report Preview Modal -->
+    <div class="modal fade" id="reportModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg" style="border-radius: 20px;">
+                <div class="modal-header bg-light border-0 px-4 py-3">
+                    <div>
+                        <h5 class="fw-800 mb-0">Technical Report Preview</h5>
+                        <small class="text-muted">Draft generated from your logbook entries</small>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4" id="reportOutput" style="min-height: 400px; background: #fdfdfd;">
+                    <div class="text-center py-5">
+                        <p class="text-muted">Click "Generate" to synthesize your report...</p>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 p-4">
+                    <button class="btn btn-secondary w-25" data-bs-dismiss="modal">Close</button>
+                    <button class="btn btn-primary-gm flex-grow-1" onclick="window.print()">
+                        <i class="fa-solid fa-file-pdf me-2"></i>Print / Save as PDF
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+ 
+    <div class="modal fade" id="mentorReviewModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg" style="border-radius: 20px;">
+                <div class="modal-header bg-dark text-white border-0">
+                    <h6 class="fw-bold mb-0"><i class="fa-solid fa-user-check me-2"></i>Industry Mentor Verification</h6>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="mb-4">
+                        <small class="text-muted d-block uppercase fw-bold">Intern Name</small>
+                        <h5 id="m_studentName" class="fw-800">---</h5>
+                    </div>
+                    <div class="bg-light p-3 rounded-3 mb-3">
+                        <small class="text-primary fw-bold" id="m_logDate">Date</small>
+                        <p class="mt-2 mb-1 fw-bold">Activity:</p>
+                        <p id="m_logWork" class="small text-muted">---</p>
+                        <p class="mt-2 mb-1 fw-bold">Lessons:</p>
+                        <p id="m_logLessons" class="small text-muted">---</p>
+                    </div>
+                    <input type="hidden" id="m_logId">
+                    <div class="mb-3">
+                        <label class="small fw-bold">Mentor Name / Designation</label>
+                        <input type="text" id="mentorName" class="form-control" placeholder="e.g. Engr. Smith (HOD)">
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button class="btn btn-success w-100 py-3 fw-bold" onclick="mentorSignOff()">
+                        <i class="fa-solid fa-pen-nib me-2"></i> Approve & Sign Logbook
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>AOS.init({ duration: 800, once: true });</script>
+    <!-- ADD THIS LINE HERE: -->
+    <script src="auth.js"></script> 
+    <script src="siwes.js"></script>
+</body>
+</html>
